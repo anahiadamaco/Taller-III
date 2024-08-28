@@ -1,1 +1,14 @@
-a
+Uso de Pull Requests (PR)
+Cuando alguien trabaja en una rama, hace sus cambios allí, y en lugar de subirlos directamente al código principal, crea un Pull Request. Un PR es básicamente una solicitud para que los cambios sean revisados y aprobados antes de ser integrados en la rama principal o en otra rama.
+
+Flujo de trabajo:
+Un desarrollador hace cambios en la rama de frontend o backend.
+Cuando termina, crea un Pull Request desde su rama hacia la rama principal (o una rama de integración).
+El equipo revisa los cambios, puede comentar sobre el código y sugerir mejoras.
+Si todo está bien, se aprueban los cambios y se integran en la rama principal.
+Este proceso asegura que el código se mantenga limpio y que los cambios se revisen antes de fusionarlos. Además, GitHub permite ver fácilmente qué cambios se hicieron y cómo afectan al proyecto.
+
+Visual Studio Code
+VS Code facilita este proceso gracias a su integración con GitHub. Puedes ver, crear y gestionar Pull Requests directamente desde la interfaz. También puedes revisar el código y los comentarios del equipo sin salir del editor. Así, el equipo se mantiene enfocado en el desarrollo, pero con un flujo organizado de revisiones y aprobaciones.
+
+Trabajar con ramas y Pull Requests te ayudará a evitar conflictos y a garantizar que el código de frontend y backend se mantenga sincronizado y estable.
