@@ -26,7 +26,7 @@
 - El cliente y el servidor pueden estar en hosts diferentes comunicandose a traves de una conexion de red TCP/IP
 - El servidor PostgreSQL puede gestionar multiples conexiones concurrentes de clientes, para lograrlo, se inicia “bifurca” un nuevo proceso para cada conexion
 
-# 15 minutos de investigacion (30-08, 10:25 - 10:55)
+# 15 minutos de investigacion (30-08, 10:35 - 10:50)
 - Crear una base de datos: $ createdb [nombrebd]
 - Eliminar una base de datos: $ dropdb [nombrebd]
 - Ejecutar el programa de terminal interactivo permite ingresar, editar y ejecutar comandos SQL de forma interactiva: $ psql [nombrebd]
@@ -52,3 +52,14 @@
 - point es un tipo de dato especifico de PostgreSQL
 - Para recrear una tabla o eliminarla: DROP TABLE [NombreTabla];
 - INSERT se utiliza para rellenar una tabla con filas: INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+
+# 15 minutos de investigacion (30-08, 12:20 - 12:35)
+- Existen agregaciones para calcular count, sum, avg(promedio), max(maximo) y min(minimo) en un conjunto de filas
+- Los agregados tambien son muy utiles en combinación con GROUP BY
+- Podemos filtrar estas filas agrupadas mediante HAVING
+- Puede actualizar las filas existentes mediante UPDATE
+- Se pueden eliminar filas de una tabla mediante DELETE
+- El punto esencial de una transaccion es que agrupa multiples pasos en una unica operacion de todo o nada
+
+# Conclusión:
+- En base a mi investigación, me parece una muy buena opción trabajar con este sistema de base de datos, ademas de que me parecio facil de usar y aborda lo solicitado en este proyecto
