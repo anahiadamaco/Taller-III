@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Home from "./component/prestador_servicio/Home"
+import PS_Psicologia from "./component/prestador_servicio/Psicologia"
+import PS_Kinesiologia from "./component/prestador_servicio/Kinesiologia"
 
 function App() {
     return (
@@ -14,6 +16,8 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/p" element={<PS_Psicologia />} />
+                <Route path="/k" element={<PS_Kinesiologia />} />
             </Routes>
         </Router>
     );
