@@ -12,3 +12,11 @@ const sequelize = new Sequelize(
 );
 
 module.exports = sequelize;
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conexión exitosa a PostgreSQL con Sequelize');
+  })
+  .catch(err => {
+    console.error('Error al conectar a PostgreSQL con Sequelize:', err);
+  });
