@@ -13,10 +13,22 @@ function Home() {
             <section>
                 <div>
                     <h2> Resumen de citas semanales </h2>
+                    <div>
+                        <h4> Nombre </h4>
+                        <h5> Rut </h5>
+                        <h5> Dia </h5>
+                        <h5> Hora inicio </h5>
+                        <h5> Hora fin </h5>
+                    </div>
                 </div>
 
                 <div>
                     <h2> Horarios disponibles </h2>
+                    <div>
+                        <h5> Dia </h5>
+                        <h5> Hora inicio </h5>
+                        <h5> Hora fin </h5>
+                    </div>
                 </div>
 
                 <div>
