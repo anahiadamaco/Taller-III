@@ -7,7 +7,7 @@ import Psicologia from './component/persona_mayor/Psicologia';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Principal />
+    <Psicologia />
   </React.StrictMode>
 );
 

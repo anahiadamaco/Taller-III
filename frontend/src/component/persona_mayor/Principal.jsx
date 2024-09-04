@@ -1,4 +1,5 @@
 import React from 'react';
+import './Principal.css';
 
 const Principal = () => {
   return (
