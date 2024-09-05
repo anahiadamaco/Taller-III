@@ -1,6 +1,12 @@
+import HeaderLog from '../component/HeaderLog.jsx';
+import React from 'react';
+
 function Login() {
     return (
       <div>
+        <header>
+          <HeaderLog/>
+        </header>
         <div>
           <div>
             <h1 className="text-2xl font-bold text-black text-center">Bienvenido por favor inicie sesión</h1>
