@@ -9,7 +9,7 @@ function Peluqueria(){
             </header>
 
             <div>
-                <h1 className='bg-red-950'>Psicologia</h1>
+                <h1>Psicologia</h1>
 
                 <div>
                     <h1>Seleccionar horario</h1>
