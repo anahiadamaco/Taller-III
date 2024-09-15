@@ -1,22 +1,21 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Podologia from '../src/component/pages/Podologia_pm';
-import Fonoaudiologiaa from '../src/component/pages/Fonoaudiologia_p';
-import KinesiologiaM from '../src/component/pages/Kinesiologia_pm';
-import RegistroPersonaMayor from './component/pages/RegistropMayor';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Login from './pages/Login';
+import Peluqueria from './pages/Peluqueria';
+import Registro from './pages/Registro';
 
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/podologia" element={<Podologia />} />
-        <Route path="/fonoaudiologia" element={<Fonoaudiologiaa/>} />
-        <Route path="/kinesiologiaM" element={<KinesiologiaM />} />
-        <Route path="/registropMayor" element={<RegistroPersonaMayor />} />
-
+        <Route path='/' element={<Peluqueria/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/Registro' element={<Registro/>}/>
       </Routes>
-    </Router>
-  )
+    </BrowserRouter>
+
+  );
 }
 
-export default App
+export default App;
