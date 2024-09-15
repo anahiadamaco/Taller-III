@@ -1,4 +1,4 @@
-import HeaderLog from '../component/HeaderLog.jsx';
+import HeaderLog from '../component/NavLog.jsx';
 import React from 'react';
 
 

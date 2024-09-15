@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderLog from '../component/HeaderLog.jsx';
+import HeaderLog from '../component/NavLog.jsx';
 
 function Peluqueria(){
     return(
