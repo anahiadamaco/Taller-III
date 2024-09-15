@@ -1,11 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import "./App.css";
-
-import Home from "./component/prestador_servicio/Home"
-import PS_Psicologia from "./component/prestador_servicio/Psicologia"
-import PS_Kinesiologia from "./component/prestador_servicio/Kinesiologia"
+import Home from "./pages/HomePS"
+import PS_Psicologia from "./pages/PsicologiaPS"
+import PS_Kinesiologia from "./pages/KinesiologiaPS"
 
 function App() {
     return (
