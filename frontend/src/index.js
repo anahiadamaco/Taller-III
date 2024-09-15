@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
+import Principal from './page/persona_mayor/Principal';
+import Psicologia from './page/persona_mayor/Psicologia';
+import Podologia from './page/prestador_servicio/Podologia';
+import AsistenciaJuridica from './page/prestador_servicio/AsistenciaJuridica';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AsistenciaJuridica />
   </React.StrictMode>
 );
 
