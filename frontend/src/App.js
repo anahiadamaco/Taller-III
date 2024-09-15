@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Podologia from '../src/component/prestador_servicios/Podologia';
-import Kinesiologia from '../src/component/prestador_servicios/Kinesiologia';
-import Fonoaudiologia from '../src/component/prestador_servicios/Fonoaudiologia';
+import Podologia from '../src/component/pages/Podologia_pm';
+import Fonoaudiologiaa from '../src/component/pages/Fonoaudiologia_p';
+import KinesiologiaM from '../src/component/pages/Kinesiologia_pm';
+import RegistroPersonaMayor from './component/pages/RegistropMayor';
 
 
 function App() {
@@ -9,8 +10,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/podologia" element={<Podologia />} />
-        <Route path="/kinesiologia" element={<Kinesiologia />} />
-        <Route path="/fonoaudiologia" element={<Fonoaudiologia />} />
+        <Route path="/fonoaudiologia" element={<Fonoaudiologiaa/>} />
+        <Route path="/kinesiologiaM" element={<KinesiologiaM />} />
+        <Route path="/registropMayor" element={<RegistroPersonaMayor />} />
 
       </Routes>
     </Router>
