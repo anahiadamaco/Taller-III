@@ -1,21 +1,14 @@
 import React from 'react';
+import HeaderLog from '../component/NavLog.jsx';
+
 
 function asistencia_juridica() {
     return(
         <div>
             <header>
-                <div> Logo Muni Temuco </div>
-                
-                <div> Asistente social </div>
-                <div> Asistente juridico </div>
-                <div> Fonoaudiologia </div>
-                <div> Podologia </div>
-                <div> Peluqueria </div>
-                <div> Kinesiologia </div>
-                <div> Psicologia </div>
-
-                <div> Cerrar sesion </div>
-            </header>
+                <HeaderLog/>
+            </header>
+            
             <section>
                 <h2>
                     Asistencia Juridica

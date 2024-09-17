@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import HeaderLog from '../component/NavLog.jsx';
 
 const KinesiologiaM = () => {
   const [name, setName] = useState('');
@@ -12,19 +13,23 @@ const KinesiologiaM = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen p-4">
+    <div className="bg-gray-50 min-h-screen overflow-hidden">
       {/* Encabezado */}
-      <header className="bg-green-500 text-white text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Servicios de Kinesiología para Adultos Mayores</h1>
-        <p className="text-xl">Atención integral para mejorar tu bienestar físico.</p>
+      <header>
+          <HeaderLog/>
       </header>
 
-      <main className="py-12 px-4 grid grid-cols-2  gap-8">
+      <div className="bg-green-500 text-white text-center py-16">
+        <h1 className="text-4xl font-bold mb-4">Servicios de Kinesiología para Adultos Mayores</h1>
+        <p className="text-xl">Atención integral para mejorar tu bienestar físico.</p>
+      </div>
+
+      <main className="py-12 px-4 grid lg:grid-cols-2 md:grid-cols-1 gap-8">
         
         {/* Columna izquierda: Servicios */}
         <section>
           <h2 className="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid 2xl:grid-cols-2 sm:grid-cols-1 gap-8 ">
             <div className="bg-white shadow-lg p-6 rounded-lg">
               <h3 className="text-2xl font-bold mb-4">Terapia de Rehabilitación</h3>
               <p className="text-gray-700 mb-4">
@@ -47,7 +52,7 @@ const KinesiologiaM = () => {
         </section>
 
         {/* Columna derecha: Formulario de Reservas */}
-        <section className="bg-gray-400 p-8 rounded-lg shadow-lg">
+        <section className="bg-gray-100 p-8 border border-green-500 rounded-lg shadow-lg">
           <h2 className="text-5xl text-center mb-4">Reservar una Cita</h2>
           <div className="grid grid-cols-1 gap-4 mb-6">
             <input

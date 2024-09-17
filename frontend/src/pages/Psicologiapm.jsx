@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HeaderLog from '../component/NavLog.jsx';
 
 const Psicologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -8,15 +9,18 @@ const Psicologia = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-200 overflow-hidden">
+      <header>
+          <HeaderLog/>
+      </header>
 
-      <header className="bg-green-900 p-4 flex justify-between items-center">
+      <div className="bg-green-900 p-4 flex justify-between items-center">
         <img src="logo-temuco.png" alt="Temuco Logo" className="h-12" />
         <h1 className="text-white text-2xl font-semibold">Bienvenid@ (Nombre)</h1>
         <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Cerrar sesión
         </button>
-      </header>
+      </div>
 
       <div className="max-w-7xl mx-auto p-8 grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
         
