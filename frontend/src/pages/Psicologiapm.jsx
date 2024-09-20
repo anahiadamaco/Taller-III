@@ -11,15 +11,12 @@ const Psicologia = () => {
   return (
     <div className="min-h-screen bg-gray-200 overflow-hidden">
       <header>
-          <HeaderLog/>
+        <HeaderLog/>
       </header>
 
-      <div className="bg-green-900 p-4 flex justify-between items-center">
-        <img src="logo-temuco.png" alt="Temuco Logo" className="h-12" />
-        <h1 className="text-white text-2xl font-semibold">Bienvenid@ (Nombre)</h1>
-        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-          Cerrar sesión
-        </button>
+      <div className="bg-green-500 text-white text-center py-16">
+        <h1 className="text-4xl font-bold mb-4">Bienvenido a Psicología para Adultos Mayores</h1>
+        <p className="text-xl">Cuidado emocional y asistencia profecional.</p>
       </div>
 
       <div className="max-w-7xl mx-auto p-8 grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">

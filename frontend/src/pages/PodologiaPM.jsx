@@ -26,7 +26,7 @@ const Podologia = () => {
         <h2 className="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-white shadow-lg p-6 rounded-lg text-center">
+            <div key={index} className="bg-white shadow-lg p-6 rounded-lg text-center border-2 border-sky-600">
               <h3 className="text-2xl font-bold mb-4">{service}</h3>
               <p className="text-gray-700 mb-4">Ofrecemos un servicio profesional para el tratamiento de {service.toLowerCase()}.</p>
               <button className="bg-sky-600 text-white py-2 px-4 rounded hover:bg-sky-900 transition duration-300">

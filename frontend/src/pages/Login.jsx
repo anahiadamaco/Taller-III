@@ -1,14 +1,14 @@
-import HeaderLog from '../component/NavLog.jsx';
+import HeaderNoLog from '../component/NavNoLog';
 import React from 'react';
 
 function Login() {
     return (
       <div className='overflow-hidden'>
         <header>
-          <HeaderLog/>
+          <HeaderNoLog/>
         </header>
         <div className='container- mx-auto w-full my-20 flex justify-center '>
-          <div className="bg-white p-10 rounded-md shadow-xl flex flex-col items-center border- border-blue-900">
+          <div className="bg-white p-10 rounded-md shadow-xl flex flex-col items-center ">
             <h1 className="text-2xl font-bold text-black text-center">Bienvenido por favor inicie sesión</h1>
             <hr className="mt-2 bg-black shadow w-full"></hr>
             
@@ -23,9 +23,6 @@ function Login() {
             </form>
           </div>
         </div>
-
-        
-
       </div>
     );
   }
