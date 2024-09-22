@@ -5,10 +5,10 @@ const { Pool } = require('pg');
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
   user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT,
+  dataname: process.env.DB_NAME,
 });
 
 // Conexión a la base de datos y creación de tablas
@@ -20,7 +20,7 @@ pool.connect((err, client, release) => {
 
     // Creación de tablas si no existen
     const createTablesQuery = `
-      -- Crear tabla Administrador primero
+      -- Crear tabla Administrador
 CREATE TABLE Administrador (
     Id_Administrador INT PRIMARY KEY,
     Correo_Municipal VARCHAR(64),
@@ -146,16 +146,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Rutas
-app.get('/api/users', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM Usuario');  // Cambié la tabla a Usuario
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: 'Error al obtener usuarios' });
-  }
-});
 
 // Iniciar servidor
 app.listen(port, () => {
