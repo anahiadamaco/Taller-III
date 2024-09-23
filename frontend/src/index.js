@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+<<<<<<< Updated upstream
+=======
+import reportWebVitals from './reportWebVitals';
+import AsistenciaJuridica from './component/persona_mayor/asistencia_juridica';
+import AsistenteSocial from './component/persona_mayor/asistente_social';
+import Peluqueria from './component/persona_mayor/peluqueria';
+>>>>>>> Stashed changes
 
 
 ReactDOM.render(

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -24,6 +25,13 @@ import KinePM from './pages/KinesiologiaPM';
 import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
+=======
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AsistenciaJuridica from './component/persona_mayor/asistencia_juridica';
+import AsistenteSocial from './component/persona_mayor/asistente_social';
+import Peluqueria from './component/persona_mayor/peluqueria';
+>>>>>>> Stashed changes
 
 function App() {
     return (
