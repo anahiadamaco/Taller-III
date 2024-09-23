@@ -15,7 +15,7 @@ function asistencia_juridica() {
                 <div> Psicologia </div>
 
                 <div> Cerrar sesion </div>
-            </header>
+            </header>
             <section>
                 <h2>
                     Asistencia Juridica
