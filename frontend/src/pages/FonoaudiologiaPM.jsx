@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 import HeaderLog from '../component/NavLog.jsx';
-=======
-
->>>>>>> Nicolas
 import React from 'react';
 
 const Fonoaudiologiaa = () => {
   return (
-<<<<<<< HEAD
     
     <div className="bg-gray-50 min-h-screen">
       <header>
@@ -17,18 +12,10 @@ const Fonoaudiologiaa = () => {
         <h1 className="text-4xl font-bold mb-4">Bienvenido a Nuestro Servicio de Fonoaudiología</h1>
         <p className="text-xl">Ayudamos a mejorar la comunicación y la audición.</p>
       </div>
-=======
-    <div className="bg-gray-50 min-h-screen p-4">
-      <header className="bg-blue-500 text-white text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Bienvenido a Nuestro Servicio de Fonoaudiología</h1>
-        <p className="text-xl">Ayudamos a mejorar la comunicación y la audición.</p>
-      </header>
->>>>>>> Nicolas
 
       <section className="py-12 px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-<<<<<<< HEAD
           <div className="bg-white shadow-lg p-6 rounded-lg border-2 border-green-500">
             <h3 className="text-2xl font-bold mb-4">Terapia del Lenguaje</h3>
             <p className="text-gray-700 mb-4">Tratamos problemas relacionados con el habla y el lenguaje.</p>
@@ -44,23 +31,6 @@ const Fonoaudiologiaa = () => {
             <h3 className="text-2xl font-bold mb-4">Evaluación de Trastornos del Habla</h3>
             <p className="text-gray-700 mb-4">Realizamos evaluaciones exhaustivas para identificar trastornos.</p>
             <button  className='text-white-200 bg-green-500 py-2 px-4 rounded mb-4'> Ver mas</button>
-=======
-          <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Terapia del Lenguaje</h3>
-            <p className="text-gray-700 mb-4">Tratamos problemas relacionados con el habla y el lenguaje.</p>
-            <button className='text-white-200 bg-blue-500 py-2 px-4 rounded '> Ver mas</button>
-          </div>
-          <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Rehabilitación Auditiva</h3>
-            <p className="text-gray-700 mb-4">Proporcionamos soluciones para mejorar la audición.</p>
-            <button  className='text-white-200 bg-blue-500 py-2 px-4 rounded '> Ver mas</button>
-           
-          </div>
-          <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Evaluación de Trastornos del Habla</h3>
-            <p className="text-gray-700 mb-4">Realizamos evaluaciones exhaustivas para identificar trastornos.</p>
-            <button  className='text-white-200 bg-blue-500 py-2 px-4 rounded mb-4'> Ver mas</button>
->>>>>>> Nicolas
           </div>
         </div>
       </section>
