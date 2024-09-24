@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from './pages/Login';
 
-
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
 /* import RegiPS from './pages/RegistroPS'; */
@@ -12,7 +11,7 @@ import AsJuPS from './pages/AsistenciaJuridicaPS';
 /* import FonoPS from './pages/FonoaudiologiaPS'; */
 import KinePS from './pages/KinesiologiaPS';
 /* import PeluPS from './pages/PeluqueriaPS'; */
-import PodoPS from './pages/PodologiaPS.jsx';
+import PodoPS from './pages/PodologiaPS';
 import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
@@ -20,17 +19,17 @@ import HomePM from './pages/HomePM';
 import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
 /* import AsSoPM from './pages/AsistenciaSocialPM'; */
-import FonoPM from './pages/FonoaudiologiaPM.jsx';
+import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/PeluqueriaPM.jsx';
+import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/PsicologiaPM.jsx';
+import PsicPM from './pages/PsicologiaPM';
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login/>} />
+                <Route path="/" element={<Login />} />
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />
