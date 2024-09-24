@@ -6,6 +6,8 @@ import React from 'react';
 function Registro() {
   const [email, setEmail] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const [celular, setCelular] = useState('');
+  const [rut, setRut] = useState('');
   const [mensaje, setMensaje] = useState('');
 
   const handleSubmit = async (e) => {
@@ -17,7 +19,7 @@ function Registro() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, contraseña }),
+        body: JSON.stringify({ correo: email, contraseña, celular, rut }),
       });
 
       const data = await res.json();
@@ -49,10 +51,10 @@ function Registro() {
                 <input type="Email" value={email} onChange={(e)=> setEmail(e.target.value)} required className="bg-white border border-black text-black px-2 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
 
                 <p className="text-black mt-2">Ingrese su número de celular: </p>
-                <input type="tel" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+                <input type="tel" value={celular} onChange={(e) => setCelular(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
 
                 <p className="text-black mt-2">Ingrese su rut: </p>
-                <input type="number" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+                <input type="number" value={rut} onChange={(e) => setRut(e.target.value)} className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
 
                 <p className="text-black mt-2">Ingrese su Contraseña: </p>
                 <input type="password" value={contraseña} onChange={(e)=> setContraseña(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
