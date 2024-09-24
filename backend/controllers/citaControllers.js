@@ -47,8 +47,28 @@ const updateCita = async (req, res) => {
     }
   };
   
-  module.exports = {
-    getCitas,
-    createCita,
-    updateCita,  
- };
+// Cancelar una cita existente
+const cancelCita = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query(
+      'UPDATE Citacion SET Estado = $1 WHERE Id_Citacion = $2 RETURNING *',
+      [false, id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Cita no encontrada' });
+    }
+    res.status(200).json({ message: 'Cita cancelada exitosamente', cita: result.rows[0] });
+  } catch (err) {
+    console.error('Error cancelando cita:', err);
+    res.status(500).json({ error: 'Error cancelando cita' });
+  }
+};
+
+module.exports = {
+  getCitas,
+  createCita,
+  updateCita,
+  cancelCita,
+};
