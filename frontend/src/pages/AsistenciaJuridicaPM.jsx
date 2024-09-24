@@ -15,7 +15,7 @@ function asistencia_juridica() {
                 <div> Psicologia </div>
 
                 <div> Cerrar sesion </div>
-            </header>
+            </header>
             <section>
                 <h2>
                     Asistencia Juridica
@@ -33,4 +33,4 @@ function asistencia_juridica() {
         </div>
     );
 }
-export default asistencia_juridica;
+export default asistencia_juridica;
