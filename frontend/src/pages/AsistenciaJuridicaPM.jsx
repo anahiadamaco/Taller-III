@@ -1,11 +1,11 @@
 import React from 'react';
 
-function asistencia_juridica() {
+function asistencia_juridica() {
     return(
         <div>
             <header>
                 <div> Logo Muni Temuco </div>
-                
+
                 <div> Asistente social </div>
                 <div> Asistente juridico </div>
                 <div> Fonoaudiologia </div>

@@ -18,11 +18,21 @@ const RegistroPersonaMayor = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
+<<<<<<< HEAD
+=======
+      {/* Header */}
+>>>>>>> Nicolas
       <header className="bg-blue-500 text-white text-center py-4">
         <h1 className="text-4xl font-bold">Regístrese</h1>
       </header>
 
+<<<<<<< HEAD
       <main className="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-4 p-6">
+=======
+      {/* Main content in two columns */}
+      <main className="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-4 p-6">
+        {/* Left column: Information or image */}
+>>>>>>> Nicolas
         <section className="flex items-center justify-center bg-white rounded-lg shadow-lg p-8">
           <div>
             <h2 className="text-2xl font-semibold mb-4">¡Bienvenido!</h2>
@@ -32,6 +42,10 @@ const RegistroPersonaMayor = () => {
           </div>
         </section>
 
+<<<<<<< HEAD
+=======
+        {/* Right column: Registration form */}
+>>>>>>> Nicolas
         <section className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-2xl font-semibold text-center mb-6">Formulario de Registro</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
