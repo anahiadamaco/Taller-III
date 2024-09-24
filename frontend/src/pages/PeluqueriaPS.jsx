@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderLog from '../component/NavLog.jsx';
 
 const Peluqueria = () => {
-  return ( // Aquí agregamos la declaración 'return' para que el componente devuelva JSX
+  return ( 
     <div className="bg-gray-50 min-h-screen p-4">
       <header className="bg-blue-600 text-white py-4">
         <HeaderLog />
