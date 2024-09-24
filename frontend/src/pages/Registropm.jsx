@@ -1,8 +1,37 @@
+import { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
 import React from 'react';
 
 
 function Registro() {
+  const [email, setEmail] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [mensaje, setMensaje] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, contraseña }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setMensaje('Registro exitoso');
+      } else {
+        setMensaje(data.error || 'Error en el registro');
+      }
+    } catch (error) {
+      console.error('Error al registrar', error);
+      setMensaje('Error en el registro');
+    }
+  };
+
     return (
       <div>
         <header>
@@ -14,19 +43,25 @@ function Registro() {
               <h1 className="text-2xl font-bold text-black text-center">Registrese para crear su cuenta</h1>
               <hr className="mt-2 bg-black shadow w-full"></hr>
 
-              <form className="flex flex-col ">
+              <formm onSubmit={handleSubmit} className="flex flex-col ">
+
                 <p className="text-black mt-4 fond-bold">Ingrese su correo electronico</p>
-                <input type="Email" className="bg-white border border-black text-black px-2 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+                <input type="Email" value={email} onChange={(e)=> setEmail(e.target.value)} required className="bg-white border border-black text-black px-2 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+
                 <p className="text-black mt-2">Ingrese su número de celular: </p>
-                <input type="password" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+                <input type="tel" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+
                 <p className="text-black mt-2">Ingrese su rut: </p>
-                <input type="password" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+                <input type="number" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+
                 <p className="text-black mt-2">Ingrese su Contraseña: </p>
-                <input type="password" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+                <input type="password" value={contraseña} onChange={(e)=> setContraseña(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+
                 <button type="submit" className="border border-black rounded-md w-20 h-9">
                   Ingresar
                 </button>
-              </form>
+                <p>{mensaje}</p>
+              </formm>
             </div>
           </div>
         </div>  
