@@ -2,7 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 function Psicologia() {
-    {/* Sacar informacion de la bd */}
+
     const data = [
         { day: '01', count: 0 },
         { day: '02', count: 0 },
@@ -39,7 +39,7 @@ function Psicologia() {
 
     return (
         <div>
-            {/* Header provisorio mientras se termina el navbar */}
+
             <header className='flex justify-between bg-red-200 text-center gap-2 p-6'>
                 <div className='w-1/8 border-black border-2 p-2'> Logo Muni </div>
                 
@@ -74,7 +74,6 @@ function Psicologia() {
                     </LineChart>
                 </div>
 
-                {/* no se como mejorar esto help */}
                 <div className='w-1/2 border-black border-2 p-2'>
                     <h3 className='text-xl font-bold mb-1 text-center'> Perfil prestador servicio </h3><br />
                     <div>
@@ -87,7 +86,6 @@ function Psicologia() {
                 </div>
             </section>
 
-            {/* Footer provisorio */}
             <footer className='flex justify-between bg-red-200 text-center gap-2 p-12'>
                 <div className='w-1/2'> Mensaje </div>
                 <div className='w-1/2'> Contacto muni </div>
