@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
 
-const Fonoaudiologia = () => {
+const AsistenciaSocial = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState('');
 
   const handleSubmit = () => {
-    if (!name || !phone || !date) {
-      alert("Por favor, completa todos los campos.");
-      return;
-    }
-    
     console.log('Nombre:', name);
     console.log('Teléfono:', phone);
     console.log('Fecha:', date);
-    alert("Cita reservada con éxito.");
   };
 
   return (
@@ -24,29 +18,35 @@ const Fonoaudiologia = () => {
         <HeaderLog />
       </header>
       <section className="text-center py-16">
-        <h1 className="text-4xl font-bold mb-4"> Fonoaudiologia</h1>
-        <p className="text-xl">Apoyo auditivo adultos mayores para en su bienestar.</p>
+        <h1 className="text-4xl font-bold mb-4"> Asistencia Social</h1>
+        <p className="text-xl">Apoyo integral para adultos mayores en su bienestar social.</p>
       </section>
       <section className="py-12 px-4">
+        <h2 className="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Terapia del Lenguaje</h3>
-            <p className="text-gray-700 mb-4">Tratamos problemas relacionados con el habla y el lenguaje.</p>
+            <h3 className="text-2xl font-bold mb-4">Orientación Social</h3>
+            <p className="text-gray-700 mb-4">
+              Asesoramiento para acceder a recursos y servicios comunitarios.
+            </p>
             <button className='text-white bg-blue-500 py-2 px-4 rounded'>Ver más</button>
           </div>
           <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Rehabilitación Auditiva</h3>
-            <p className="text-gray-700 mb-4">Proporcionamos soluciones para mejorar la audición.</p>
+            <h3 className="text-2xl font-bold mb-4">Actividades Recreativas</h3>
+            <p className="text-gray-700 mb-4">
+              Programas para fomentar la socialización y el bienestar emocional.
+            </p>
             <button className='text-white bg-blue-500 py-2 px-4 rounded'>Ver más</button>
           </div>
           <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Evaluación de Trastornos del Habla</h3>
-            <p className="text-gray-700 mb-4">Realizamos evaluaciones exhaustivas para identificar trastornos.</p>
+            <h3 className="text-2xl font-bold mb-4">Asistencia en Gestión de Servicios</h3>
+            <p className="text-gray-700 mb-4">
+              Ayuda para la gestión de trámites y servicios necesarios.
+            </p>
             <button className='text-white bg-blue-500 py-2 px-4 rounded'>Ver más</button>
           </div>
         </div>
       </section>
-
       <section className="py-12 px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">Calendario de Eventos</h2>
         <iframe
@@ -57,10 +57,10 @@ const Fonoaudiologia = () => {
           title="Calendario de Google"
         ></iframe>
       </section>
-
-      <section className="py-12 px-4 bg-gray-200 rounded-lg shadow-md">
-        <h2 className="text-3xl font-semibold text-center mb-8">Reservar tu Cita</h2>
-        <div className="bg-white p-8 rounded-lg shadow-lg">
+      <section className="py-12 px-4">
+        <h2 className="text-3xl font-semibold text-center mb-8">Reservar una Cita</h2>
+        <div className="bg-gray-400 p-8 rounded-lg shadow-lg">
+          <h2 className="text-5xl text-center mb-4 text-white">Formulario de Reserva</h2>
           <div className="grid grid-cols-1 gap-4 mb-6">
             <input
               type="text"
@@ -68,35 +68,42 @@ const Fonoaudiologia = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="p-2 border border-gray-300 rounded-md"
-              required
             />
             <input
-              type="tel"
+              type="text"
               placeholder="Teléfono de contacto"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="p-2 border border-gray-300 rounded-md"
-              required
             />
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className="p-2 border border-gray-300 rounded-md"
-              required
             />
           </div>
           <button
             onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition duration-300"
+            className="w-full bg-gray-600 text-white py-3 rounded hover:bg-gray-700 transition duration-300"
           >
             Reservar Hora
           </button>
         </div>
       </section>
-
+      <section className="py-12 px-4">
+        <h2 className="text-3xl font-semibold text-center mb-8">Reserva tu Cita</h2>
+        <div className="flex justify-center">
+          <iframe
+            src="https://calendly.com/cfonseca2022-alu/30min"
+            className="w-full max-w-4xl h-96 border-0"
+            frameBorder="0"
+            title="Calendly"
+          ></iframe>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default Fonoaudiologia;
+export default AsistenciaSocial;
