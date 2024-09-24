@@ -91,17 +91,6 @@ const AsistenciaSocial = () => {
           </button>
         </div>
       </section>
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Reserva tu Cita</h2>
-        <div className="flex justify-center">
-          <iframe
-            src="https://calendly.com/cfonseca2022-alu/30min"
-            className="w-full max-w-4xl h-96 border-0"
-            frameBorder="0"
-            title="Calendly"
-          ></iframe>
-        </div>
-      </section>
     </div>
   );
 };

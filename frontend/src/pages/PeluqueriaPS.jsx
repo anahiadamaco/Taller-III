@@ -1,24 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HeaderLog from '../component/NavLog.jsx';
 
 const Peluqueria = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [date, setDate] = useState('');
-
-  const handleSubmit = () => {
-    if (!name || !phone || !date) {
-      alert("Por favor, completa todos los campos.");
-      return;
-    }
-    
-    console.log('Nombre:', name);
-    console.log('Teléfono:', phone);
-    console.log('Fecha:', date);
-    alert("Cita reservada con éxito."); // Mensaje de confirmación
-  };
-
-  return (
+  return ( // Aquí agregamos la declaración 'return' para que el componente devuelva JSX
     <div className="bg-gray-50 min-h-screen p-4">
       <header className="bg-blue-600 text-white py-4">
         <HeaderLog />
@@ -64,7 +48,7 @@ const Peluqueria = () => {
       </section>
 
       <section className="py-12 px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Horas Ocupadas y Desocupadas</h2>
+        <h2 className="text-3xl font-semibold text-center mb-8">Horas Ocupadas y Desocupadas y Cambio de Horas</h2>
         <iframe
           src="https://calendar.google.com/calendar/embed?src=c_a616c7d9dee0f23b629cf457063b8264c2ce2ae1f9f84a4bc912686dcd45a824%40group.calendar.google.com&ctz=America%2FSantiago"
           className="border-0 w-full h-96 rounded-lg shadow-md"
@@ -72,45 +56,8 @@ const Peluqueria = () => {
           scrolling="no"
           title="Calendario de Google"
         ></iframe>
-      </section>
+      </section>    
       
-      <section className="py-12 px-4 bg-gray-200 rounded-lg shadow-md">
-        <h2 className="text-3xl font-semibold text-center mb-8">Reservar tu Cita</h2>
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <div className="grid grid-cols-1 gap-4 mb-6">
-            <input
-              type="text"
-              placeholder="Nombre completo"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="p-2 border border-gray-300 rounded-md"
-              required
-            />
-            <input
-              type="tel"
-              placeholder="Teléfono de contacto"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="p-2 border border-gray-300 rounded-md"
-              required
-            />
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-          <button
-            onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition duration-300"
-          >
-            Reservar Hora
-          </button>
-        </div>
-      </section>
-
       <footer className="py-8 px-4 bg-blue-600 text-white">
         <div className="flex justify-center space-x-4">
           <a href="#" className="hover:text-gray-200"><i className="fab fa-facebook-f"></i></a>
