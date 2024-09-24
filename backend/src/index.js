@@ -8,7 +8,10 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 
-// Definir rutas aquí, como ejemplo:
+// Rutas
+app.use('/api/citas', citasRoutes);  // Conectar el controlador de citas
+
+// Ruta de prueba
 app.get('/', (req, res) => {
   res.send('API funcionando correctamente');
 });
