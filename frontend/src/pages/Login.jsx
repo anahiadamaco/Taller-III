@@ -17,7 +17,7 @@ function Login() {
             
             <form className="flex flex-col ">
               <p className="text-black mt-4 fond-bold">Por favor ingrese su rut</p>
-              <input type="Email"  className="bg-white border border-black text-black px-2 py-2 rounded-md my-4 w-64" autoComplete="off"></input>
+              <input type="rut"  className="bg-white border border-black text-black px-2 py-2 rounded-md my-4 w-64" autoComplete="off"></input>
               <p className="text-black mt-2">Por favor ingrese su contraseña: </p>
               <input type="password" className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-64" autoComplete="off"></input>
               <button type="submit" className="border border-black rounded-md w-20 h-8">
