@@ -6,24 +6,24 @@ import Login from './pages/Login';
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
 /* import RegiPS from './pages/RegistroPS'; */
-import AsJuPS from './pages/AsistenciaJuridicaPS';
+import AsJuPS from './pages/AsistenciaJuridicaps';
 /* import AsSoPS from './pages/AsistenciaSocialPS'; */
 /* import FonoPS from './pages/FonoaudiologiaPS'; */
 import KinePS from './pages/KinesiologiaPS';
 /* import PeluPS from './pages/PeluqueriaPS'; */
-import PodoPS from './pages/PodologiaPS';
+import PodoPS from './pages/Podologiaps';
 import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
-import RegiPM from './pages/RegistroPM';
+import RegiPM from './pages/Registropm';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
 /* import AsSoPM from './pages/AsistenciaSocialPM'; */
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/PeluqueriaPM';
+import PeluPM from './pages/Peluqueriapm';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/PsicologiaPM';
+import PsicPM from './pages/Psicologiapm';
 
 function App() {
     return (
