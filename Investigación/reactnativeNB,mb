@@ -1,0 +1,26 @@
+React Native es un framework que permite crear aplicaciones móviles multiplataforma (iOS y Android) utilizando JavaScript y React. Ofrece un rendimiento casi nativo, lo que garantiza una experiencia fluida para los usuarios.
+
+Los adultos mayores necesitan recordatorios constantes y notificaciones claras. React Native facilita la integración con sistemas de notificaciones y APIs de mensajería que podrían enviar recordatorios automáticos para citas agendadas.
+
+ La accesibilidad es un punto crucial en el diseño de una aplicación para este grupo demográfico. Con React Native, puedes implementar fácilmente características como aumentar el tamaño de la letra, mejorar el contraste y garantizar la compatibilidad con herramientas de accesibilidad nativas del dispositivo, como VoiceOver (iOS) y TalkBack (Android).
+ 
+Multiplataforma
+Desarrollas una sola app que funciona tanto en iOS como en Android, asegurando accesibilidad para usuarios de ambas plataformas, ideal para adultos mayores que usan diferentes dispositivos.
+
+Rendimiento cercano a nativo
+Al ofrecer un rendimiento óptimo, evita frustraciones que podrían desincentivar a los adultos mayores de usar la app.
+
+Actualizaciones rápidas
+La base de código compartida facilita la implementación rápida de mejoras y correcciones.
+
+Interfaz nativa y accesible
+React Native permite crear interfaces familiares y fáciles de usar, adaptándose a las necesidades de accesibilidad de los adultos mayores, como tamaños de texto ajustables y soporte para lectores de pantalla.
+
+Componentes personalizables
+Puedes crear interfaces flexibles, ajustando elementos como tamaño de texto o contraste, mejorando la experiencia de los usuarios con limitaciones visuales.
+
+Integración con APIs y notificaciones
+Es fácil integrar sistemas de recordatorios automáticos para citas, una característica esencial para los adultos mayores.
+
+Conclusión
+React Native ofrece compatibilidad multiplataforma, accesibilidad optimizada, rendimiento de alto nivel y actualizaciones sencillas, creando una experiencia de usuario intuitiva y confiable.
