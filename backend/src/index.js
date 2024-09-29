@@ -1,9 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const { registerUser } = require('./controllers/userController');
 const { Pool } = require('pg');
-const routes = require('./routes/userRoute');
+const userRoutes = require('./routes/userRoute');
 
 
 // Configura dotenv para manejar variables de entorno
@@ -19,16 +18,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 
-
-// Define el puerto (puedes usar una variable de entorno o un número de puerto por defecto)
-const PORT = process.env.PORT || 3000;
-
 // Middleware para manejar las peticiones
 app.use(express.json());
-
-app.use('/api', userRoutes);
+app.use('/api/users', userRoutes);
 
 // Inicia el servidor y escucha en el puerto definido
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
