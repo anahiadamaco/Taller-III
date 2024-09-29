@@ -24,6 +24,7 @@ import KinePM from './pages/KinesiologiaPM';
 import PeluPM from './pages/Peluqueriapm';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/Psicologiapm';
+import FormularioMovilidad from "./pages/Fomulario_Movi";
 
 function App() {
     return (
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/PEPM" element={<PeluPM />} />
                 <Route path="/POPM" element={<PodoPM />} />
                 <Route path="/PSPM" element={<PsicPM />} />
+                <Route path="/FM" element={<FormularioMovilidad />} />
             </Routes>
         </Router>
     );
