@@ -1,33 +1,20 @@
-import { toast, Zoom } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-export const notify = (message, type = 'default') => {
-  const options = {
-    position: toast.POSITION.TOP_CENTER,
-    transition: Zoom,
-  };
-
-  switch (type) {
+export const notify = (message, type) => {
+  switch(type) {
     case 'success':
-      toast.success(message, options);
+      toast.success(message);
       break;
     case 'error':
-      options.position = toast.POSITION.TOP_LEFT;
-      toast.error(message, options);
+      toast.error(message);
       break;
     case 'warning':
-      options.position = toast.POSITION.BOTTOM_LEFT;
-      toast.warning(message, options);
+      toast.warning(message);
       break;
     case 'info':
-      options.position = toast.POSITION.BOTTOM_RIGHT;
-      toast.info(message, options);
+      toast.info(message);
       break;
     default:
-      toast(message, {
-        ...options,
-        className: 'foo-bar',
-        theme: 'light',
-      });
-      break;
+      toast(message);
   }
 };
