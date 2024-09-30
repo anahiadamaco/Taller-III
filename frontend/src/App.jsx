@@ -8,7 +8,7 @@ import HomePS from './pages/HomePS';
 /* import RegiPS from './pages/RegistroPS'; */
 import AsJuPS from './pages/AsistenciaJuridicaPS';
 /* import AsSoPS from './pages/AsistenciaSocialPS'; */
-/* import FonoPS from './pages/FonoaudiologiaPS'; */
+import FonoPS from './pages/FonoaudiologiaPS';
 import KinePS from './pages/KinesiologiaPS';
 /* import PeluPS from './pages/PeluqueriaPS'; */
 import PodoPS from './pages/PodologiaPS';
@@ -24,6 +24,7 @@ import KinePM from './pages/KinesiologiaPM';
 import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
+import AsisoPM from './pages/AsistenicaSocialPM';
 
 function App() {
     return (
@@ -36,7 +37,7 @@ function App() {
                 {/* <Route path="/RPS" element={<RegiPS />} /> */}
                 <Route path="/AJPS" element={<AsJuPS />} />
                 {/* <Route path="/ASPS" element={<AsSoPS />} /> */}
-                {/* <Route path="/FPS" element={<FonoPS />} /> */}
+                <Route path="/FPS" element={<FonoPS />} />
                 <Route path="/KPS" element={<KinePS />} />
                 {/* <Route path="/PEPS" element={<PeluPS />} /> */}
                 <Route path="/POPS" element={<PodoPS />} />
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/HPM" element={<HomePM />} />
                 <Route path="/RPM" element={<RegiPM />} />
                 <Route path="/AJPM" element={<AsJuPM />} />
+                <Route path="/ASISOPM" element={<AsisoPM />} />
                 {/* <Route path="/ASPM" element={<AsSoPM />} /> */}
                 <Route path="/FPM" element={<FonoPM />} />
                 <Route path="/KPM" element={<KinePM />} />

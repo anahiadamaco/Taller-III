@@ -84,8 +84,8 @@ function HeaderLog() {
                             Asistencia Jurídica
                         </Link>
 
-                        <Link className="mx-4 px-4 py-1 text-center border rounded-lg border-white  text-white duration-300 hover:text-red-600 bg-red-600 hover:border-red-600 hover:bg-white">
-                            Servicio5
+                        <Link to="/ASISOPM" className="mx-4 px-4 py-1 text-center border rounded-lg border-white  text-white duration-300 hover:text-red-600 bg-red-600 hover:border-red-600 hover:bg-white">
+                        Asistencia Social
                         </Link>
 
                         <Link to="/" className="mx-4 px-4 py-1 text-center border border-white rounded text-white duration-300 bg-teal-500 hover:text-teal-500 hover:border-teal-500 hover:bg-white">
@@ -129,8 +129,8 @@ function HeaderLog() {
                             Asistencia Jurídica
                         </Link>
 
-                        <Link className="text-20 w-full px-4 py-2 text-center text-white duration-300 hover:text-red-600 bg-red-600 hover:bg-white">
-                            Servicio5
+                        <Link to="/ASISOPM" className="text-20 w-full px-4 py-2 text-center text-white duration-300 hover:text-red-600 bg-red-600 hover:bg-white">
+                            Asistencia Social
                         </Link>
 
                         <Link to="/" className="text-20 w-full my-3 px-4 py-2 text-center text-white duration-300 bg-teal-500 hover:text-teal-500 hover:bg-white">
