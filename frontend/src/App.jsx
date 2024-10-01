@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from './pages/Login';
+/* Rutas Administrador */
+import HomeAdmin from './pages/HomeAdmin';
+import GestionarPS from './pages/GestionarPS';
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
@@ -30,6 +33,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
+
+                {/* Rutas Administrador */}
+                <Route path="/Admin" element={<HomeAdmin />} />
+                <Route path="/Admin/GestionarPS" element={<GestionarPS/>} />
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />
