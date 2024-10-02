@@ -15,7 +15,7 @@ const createTables = async () => {
   const sql = `
     CREATE TABLE IF NOT EXISTS "Rol" (
       "rol" serial PRIMARY KEY,
-      "nombre_rol" varchar(20)
+      "nombre_rol" varchar(50)
     );
 
     CREATE TABLE IF NOT EXISTS "Usuario" (
@@ -100,11 +100,30 @@ const createTables = async () => {
     console.log('Tablas creadas correctamente');
   } catch (err) {
     console.error('Error creando tablas:', err);
-  } finally {
-    pool.end();
   }
 };
 
-createTables();
+async function insertarRoles() {
+  const query = `
+      INSERT INTO "Rol" (nombre_rol)
+      VALUES 
+          ('personamayor'),
+          ('prestador'),
+          ('administrador');
+  `;
 
+  try {
+      // Ejecutar la consulta
+      await pool.query(query);
+      console.log("Roles insertados exitosamente.");
+  } catch (err) {
+      console.error('Error insertando roles:', err);
+  }
+}
 
+const initializeDatabase = async () => {
+  await createTables();
+  await insertarRoles();
+};
+
+initializeDatabase();
