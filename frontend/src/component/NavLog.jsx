@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import {Outlet, Link} from 'react-router-dom';
+import logo from '../img/logo_muni.webp';
+
 
 function HeaderLog() {
 
@@ -53,8 +55,8 @@ function HeaderLog() {
             <section>
                 <header className="relative flex flex-wrap bg-nav h-24 justify-between items-center shadow-md">
                 
-                    <div className="flex items-center px-8"> 
-                        <h2 className="justify-center px-2">Logo</h2>
+                   <div className="flex items-center px-8"> 
+                        <img src={logo} alt="Logo" className="h-12 w-auto" /> {/* Imagen del logo */}
                     </div>
 
                     {/* Nav que redirige a la página de registro e inicio de sesion */}
