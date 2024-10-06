@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderLog from '../component/NavLog.jsx';
 import { Link } from "react-router-dom";
+import Graf from '../component/Grafico';
 
 
 function HomeAdmin() {
@@ -40,6 +41,9 @@ function HomeAdmin() {
                             <h3 className="text-lg font-bold mb-2 text-center">Uso del Servicio por Prestador</h3>
                             {/*gráfico de líneas aquí */}
                             <div className="h-64 bg-gray-200">Gráfico de líneas</div>
+                            <div>
+                                <Graf/>
+                            </div>
                         </div>
                     </div>
                 </div>      
