@@ -13,6 +13,8 @@ import KinePS from './pages/KinesiologiaPS';
 /* import PeluPS from './pages/PeluqueriaPS'; */
 import PodoPS from './pages/PodologiaPS';
 import PsicPS from './pages/PsicologiaPS';
+import AsSoPS from './pages/AsistenciaSocialPS';
+import PeluPS from './pages/PeluqueriaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
@@ -25,6 +27,9 @@ import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
 import AsisoPM from './pages/AsistenicaSocialPM';
+/* rutas moviles' */
+import PsicPM_movil from './pages/PsicologiaPM_movil';
+import AsJuPS_movil from './pages/AsistenciaJuridicaPS_movil';
 
 function App() {
     return (
@@ -42,6 +47,8 @@ function App() {
                 {/* <Route path="/PEPS" element={<PeluPS />} /> */}
                 <Route path="/POPS" element={<PodoPS />} />
                 <Route path="/PSPS" element={<PsicPS />} />
+                <Route path="/AsSoPS" element={<AsSoPS />} />
+                <Route path="/PlPS" element={<PeluPS />} />
 
                 {/* Rutas Persona Mayor */}
                 <Route path="/HPM" element={<HomePM />} />
@@ -54,6 +61,10 @@ function App() {
                 <Route path="/PEPM" element={<PeluPM />} />
                 <Route path="/POPM" element={<PodoPM />} />
                 <Route path="/PSPM" element={<PsicPM />} />
+
+                {/* Rutas Movil PS*/}
+                <Route path="/PSPM_M" element={<PsicPM_movil />} />
+                <Route path="/AsJuPS_M" element={<AsJuPS_movil />} />
             </Routes>
         </Router>
     );

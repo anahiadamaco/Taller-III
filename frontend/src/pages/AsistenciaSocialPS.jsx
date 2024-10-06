@@ -2,7 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
 
-function asistencia_juridica() {
+function AsistenciaSocial() {
     // Datos para el gráfico (simulados)
     const data = [
         { day: '01', count: 0 },
@@ -20,7 +20,7 @@ function asistencia_juridica() {
             </header>
 
             <div className="bg-red-600 text-white text-center py-16">
-                <h1 className="text-4xl font-bold mb-4">Administrador de Asistencia Jurídica</h1>
+                <h1 className="text-4xl font-bold mb-4">Administrador de Asistencia Social</h1>
                 <p className="text-xl">Gestión de servicios y especialistas.</p>
             </div>
 
@@ -42,27 +42,27 @@ function asistencia_juridica() {
                 <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-red-600">
                     <h2 className="text-xl font-bold text-red-700 mb-4">Perfil del Prestador de Servicio</h2>
                     <div>
-                        <h4><strong>Nombre:</strong> Juan Perez</h4>
+                        <h4><strong>Nombre:</strong> María González</h4>
                         <h4><strong>RUT:</strong> 12.345.678-9</h4>
-                        <h4><strong>Correo:</strong> juan.perez@example.com</h4>
+                        <h4><strong>Correo:</strong> maria.gonzalez@example.com</h4>
                         <h4><strong>Fono oficina:</strong> +56 9 1234 5678</h4>
-                        <h4><strong>Título:</strong> Abogado</h4>
+                        <h4><strong>Título:</strong> Asistente Social</h4>
                     </div>
                 </div>
             </div>
 
             {/* Botones de acción */}
             <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">Editar Horarios</button>
-                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">Editar Citas</button>
-                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">Editar Perfil</button>
+                <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 transition duration-300">Editar Horarios</button>
+                <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 transition duration-300">Editar Citas</button>
+                <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 transition duration-300">Editar Perfil</button>
             </div>
 
             <footer className="bg-red-600 text-white text-center p-6">
-                <p>© 2024 Municipalidad - Asistencia Jurídica</p>
+                <p>© 2024 Municipalidad - Asistencia Social</p>
             </footer>
         </div>
     );
 }
 
-export default asistencia_juridica;
+export default AsistenciaSocial;

@@ -15,4 +15,3 @@ Tambien el Síndrome de Asperger, el cual, es un tipo de autismo por el cual se 
 *Escarlata: bg-red-700
 *Verde Esmeralda: bg-green-600
 *Verde Lima: bg-lime-500
-*Amarillo Dorado: bg-amber-500
