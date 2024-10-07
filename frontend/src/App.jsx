@@ -45,7 +45,7 @@ function App() {
                 {/* <Route path="/ASPS" element={<AsSoPS />} /> */}
                 <Route path="/FPS" element={<FonoPS />} />
                 <Route path="/KPS" element={<KinePS />} />
-                {/* <Route path="/PEPS" element={<PeluPS />} /> */}
+                {/* \<Route path="/PEPS" element={<PeluPS />} /> */}
                 <Route path="/POPS" element={<PodoPS />} />
                 <Route path="/PSPS" element={<PsicPS />} />
 
