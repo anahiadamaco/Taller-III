@@ -1,73 +1,201 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
+import { toast } from 'react-toastify'; // Para notificaciones
 
-const Kinesiologia = () => {
-  return ( 
-    <div className="bg-gray-50 min-h-screen p-4">
-      <header className="bg-blue-600 text-white py-4">
+const AsistenciaJuridica = () => {
+  const [isCalendarOpen, setCalendarOpen] = useState(false);
+  const [isScheduleOpen, setScheduleOpen] = useState(false);
+  const [selectedSpecialist, setSelectedSpecialist] = useState(null);
+  const [appointmentTime, setAppointmentTime] = useState('');
+
+  const toggleCalendar = () => {
+    setCalendarOpen(!isCalendarOpen);
+  };
+
+  const toggleSchedule = () => {
+    setScheduleOpen(!isScheduleOpen);
+  };
+
+  const especialistas = [
+    { 
+      nombre: "Laura Pérez", 
+      especialidad: "Derecho Familiar", 
+      descripcion: "Especialista en casos de divorcio, custodia de hijos y pensiones alimenticias.",
+      disponibilidad: { lunes: ["09:00-11:00", "14:00-16:00"], miércoles: ["10:00-12:00"] },
+    },
+    { 
+      nombre: "Javier Torres", 
+      especialidad: "Derecho Penal", 
+      descripcion: "Abogado defensor con experiencia en delitos menores y casos complejos.",
+      disponibilidad: { martes: ["10:00-14:00"], jueves: ["09:00-13:00"] },
+    },
+    { 
+      nombre: "María Sánchez", 
+      especialidad: "Derecho Laboral", 
+      descripcion: "Asesora en conflictos laborales y derechos de los trabajadores.",
+      disponibilidad: { lunes: ["11:00-15:00"], viernes: ["09:00-12:00"] },
+    },
+  ];
+
+  const handleSpecialistClick = (especialista) => {
+    setSelectedSpecialist(especialista);
+    toast.success(`Has seleccionado a ${especialista.nombre}`);
+  };
+
+  const handleScheduleAppointment = () => {
+    if (appointmentTime && selectedSpecialist) {
+      toast.success(`Cita agendada con ${selectedSpecialist.nombre} para el ${appointmentTime}`);
+      setAppointmentTime('');
+      setScheduleOpen(false);
+    } else {
+      toast.error('Por favor, selecciona una hora y especialista.');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-200 flex flex-col">
+      <header>
         <HeaderLog />
       </header>
 
-      <section className="py-8 px-2 sm:px-4">
-        <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8">Nuestros Servicios de Kinesiología</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {['Rehabilitación Física', 'Terapia Manual'].map((servicio, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-lg p-4 sm:p-6 rounded-lg transition-transform transform hover:scale-105 hover:shadow-2xl"
-            >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 flex items-center">
-                <i className={`fas ${servicio === 'Rehabilitación Física' ? 'fa-dumbbell' : 'fa-hand-paper'} mr-2`}></i>
-                {servicio}
-              </h3>
-              <p className="text-gray-700 mb-4 text-sm sm:text-base">
-                {servicio === 'Rehabilitación Física'
-                  ? 'Ofrecemos programas de rehabilitación personalizados para mejorar la movilidad y reducir el dolor.'
-                  : 'Utilizamos técnicas manuales para aliviar tensiones musculares y mejorar la función corporal.'}
-              </p>
-              <button className='text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded transition-colors'>
-                Ver más
+      {/* Sección de Bienvenida */}
+      <div className="bg-blue-600 text-white text-center py-6 sm:py-10">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Bienvenido a Asistencia Jurídica</h1>
+        <p className="text-lg">Obtén el apoyo legal que necesitas con nuestros especialistas.</p>
+      </div>
+
+      <div className="flex-grow p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        {/* Servicios Jurídicos */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-blue-600">
+          <h2 className="text-xl font-bold mb-2 text-blue-700">Servicios Jurídicos</h2>
+          <p className="text-gray-700 mb-4">
+            Ofrecemos asistencia legal en diversas áreas para garantizar tus derechos.
+          </p>
+          <ul className="list-disc list-inside text-gray-700 space-y-1">
+            <li>Derecho Familiar</li>
+            <li>Derecho Penal</li>
+            <li>Derecho Laboral</li>
+            <li>Asesoría en Contratos</li>
+            <li>Litigios Civiles</li>
+          </ul>
+        </div>
+
+        {/* Especialistas */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-blue-600">
+          <h2 className="text-xl font-bold text-blue-700 mb-4">Especialistas Disponibles</h2>
+          <div className="space-y-2 overflow-y-auto h-48">
+            {especialistas.map((especialista, index) => (
+              <div 
+                key={index} 
+                onClick={() => handleSpecialistClick(especialista)}
+                className="flex items-center gap-4 cursor-pointer hover:bg-blue-100 p-2 rounded transition duration-300"
+              >
+                <div className="bg-blue-600 h-10 w-10 rounded-full"></div> {/* Avatar circle */}
+                <div>
+                  <p className="text-gray-700 font-bold">{especialista.nombre}</p>
+                  <p className="text-gray-500">{especialista.especialidad}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Detalle del Especialista Seleccionado */}
+        {selectedSpecialist && (
+          <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-blue-600">
+            <h2 className="text-xl font-bold text-blue-700 mb-2">Detalle del Especialista</h2>
+            <p className="text-gray-700"><strong>Nombre:</strong> {selectedSpecialist.nombre}</p>
+            <p className="text-gray-700"><strong>Especialidad:</strong> {selectedSpecialist.especialidad}</p>
+            <p className="text-gray-700"><strong>Descripción:</strong> {selectedSpecialist.descripcion}</p>
+            <p className="text-gray-700"><strong>Disponibilidad:</strong></p>
+            <ul className="list-disc list-inside text-gray-600">
+              {Object.entries(selectedSpecialist.disponibilidad).map(([day, slots]) => (
+                <li key={day}>{day.charAt(0).toUpperCase() + day.slice(1)}: {slots.join(", ")}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Botón para ver el horario */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-blue-600">
+          <h2 className="text-xl font-bold text-blue-700 mb-4">Seleccionar Horario</h2>
+          <button
+            onClick={toggleSchedule}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+          >
+            Ver Disponibilidad
+          </button>
+        </div>
+      </div>
+
+      {/* Ventana Emergente de Disponibilidad */}
+      {isScheduleOpen && selectedSpecialist && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md transition-transform transform scale-100 sm:scale-110">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-blue-700">Disponibilidad de {selectedSpecialist.nombre}</h2>
+              <button
+                onClick={toggleSchedule}
+                className="text-blue-600 hover:text-blue-700 font-bold"
+              >
+                Cerrar
               </button>
             </div>
-          ))}
+            <div className="flex flex-col space-y-4">
+              {Object.entries(selectedSpecialist.disponibilidad).map(([day, slots]) => (
+                <div key={day} className="border-b border-gray-300 pb-2">
+                  <h3 className="font-bold text-lg text-gray-700">{day.charAt(0).toUpperCase() + day.slice(1)}</h3>
+                  <ul className="list-disc list-inside text-gray-600">
+                    {slots.map((slot, index) => (
+                      <li key={index}>
+                        <button 
+                          onClick={() => { 
+                            setAppointmentTime(`${day} ${slot}`); 
+                            toggleSchedule(); 
+                            toast.success(`Cita agendada con ${selectedSpecialist.nombre} para el ${day} a las ${slot}`);
+                          }} 
+                          className="text-blue-600 hover:underline cursor-pointer transition duration-200 hover:text-blue-700"
+                        >
+                          {slot}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </section>
-      
-      <section className="py-8 sm:py-12 px-2 sm:px-4 bg-gray-100 rounded-lg shadow-md">
-        <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8">Ejercicios de Kinesiología</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
-          {['exercise1.jpg', 'exercise2.jpg', 'exercise3.jpg'].map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`Ejercicio ${index + 1}`}
-              className="rounded-lg shadow-lg transition-transform transform hover:scale-105"
-            />
-          ))}
-        </div>
-      </section>
+      )}
 
-      <section className="py-8 sm:py-12 px-2 sm:px-4">
-        <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8">Horas Ocupadas y Desocupadas y Cambio de Horas</h2>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?src=c_a616c7d9dee0f23b629cf457063b8264c2ce2ae1f9f84a4bc912686dcd45a824%40group.calendar.google.com&ctz=America%2FSantiago"
-          className="border-0 w-full h-64 sm:h-96 rounded-lg shadow-md"
-          frameBorder="0"
-          scrolling="no"
-          title="Calendario de Google"
-        ></iframe>
-      </section>    
-      
-      <footer className="py-8 px-2 sm:px-4 bg-blue-600 text-white">
-        <div className="flex justify-center space-x-4">
-          <a href="#" className="hover:text-gray-200"><i className="fab fa-facebook-f"></i></a>
-          <a href="#" className="hover:text-gray-200"><i className="fab fa-instagram"></i></a>
-          <a href="#" className="hover:text-gray-200"><i className="fab fa-twitter"></i></a>
+      {/* Calendario Emergente */}
+      {isCalendarOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-3xl h-3/4 flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-blue-700">Calendario de Asistencia Jurídica</h2>
+              <button
+                onClick={toggleCalendar}
+                className="text-blue-600 hover:text-blue-700 font-bold"
+              >
+                Cerrar
+              </button>
+            </div>
+            <div className="flex-grow overflow-auto">
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=your_calendar_url"
+                className="w-full h-full"
+                frameBorder="0"
+                scrolling="no"
+                title="Calendario de Asistencia Jurídica"
+              ></iframe>
+            </div>
+          </div>
         </div>
-        <p className="text-center mt-4 text-sm sm:text-base">© 2024 Kinesiología. Todos los derechos reservados.</p>
-      </footer>
+      )}
     </div>
   );
 };
 
-export default Kinesiologia;
+export default AsistenciaJuridica;
