@@ -4,6 +4,7 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const userRoutes = require('./routes/userRoute');
 const { registerUser } = require('./controllers/userController');
+const prestadoresRoutes = require('./routes/prestadores');
 
 
 // Configura dotenv para manejar variables de entorno
@@ -23,6 +24,7 @@ app.use(cors({
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.post('/api/registerPM', registerUser);
+app.use('/api/prestadores', prestadoresRoutes);
 
 // Inicia el servidor y escucha en el puerto definido
 const PORT = process.env.PORT || 3000;

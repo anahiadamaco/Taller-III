@@ -1,26 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderLog from '../component/NavLog.jsx';
 
 function GestionarPS() {
-    // Estado simulado para los prestadores
-    const [prestadores, setPrestadores] = useState([
-        { id: 1, name: "Prestador 1" },
-        { id: 2, name: "Prestador 2" },
-        { id: 3, name: "Prestador 3" },
-    ]);
+    const [prestadores, setPrestadores] = useState([]);
     const [newPrestador, setNewPrestador] = useState("");
+    const [correo, setCorreo] = useState("");
+    const [idServicio, setIdServicio] = useState("");
 
-    // Simulación para eliminar un prestador
-    const deletePrestador = (id) => {
-        setPrestadores(prestadores.filter(prestador => prestador.id !== id));
+    // Cargar los prestadores desde la base de datos
+    useEffect(() => {
+        fetch('/api/prestadores')
+            .then(response => response.json())
+            .then(data => setPrestadores(data))
+            .catch(error => console.error('Error al cargar prestadores:', error));
+    }, []);
+
+    // Crear un nuevo prestador
+    const createPrestador = () => {
+        fetch('/api/prestadores/crear', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nombre: newPrestador, correo, id_servicio: idServicio }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                setPrestadores([...prestadores, data]);
+                setNewPrestador("");
+                setCorreo("");
+                setIdServicio("");
+            })
+            .catch(error => console.error('Error al crear prestador:', error));
     };
 
-    // Simulación para crear un nuevo prestador
-    const createPrestador = () => {
-        const newId = prestadores.length ? prestadores[prestadores.length - 1].id + 1 : 1; // Genera un nuevo ID
-        const newPrestadorData = { id: newId, name: newPrestador };
-        setPrestadores([...prestadores, newPrestadorData]);
-        setNewPrestador(""); // Limpiar el input
+    // Eliminar un prestador
+    const deletePrestador = (id) => {
+        fetch(`/api/prestadores/eliminar/${id}`, {
+            method: 'DELETE',
+        })
+            .then(() => {
+                setPrestadores(prestadores.filter(prestador => prestador.id !== id));
+            })
+            .catch(error => console.error('Error al eliminar prestador:', error));
     };
 
     return (
@@ -40,6 +62,20 @@ function GestionarPS() {
                         className="border border-gray-300 p-2 rounded-md"
                         placeholder="Nombre del Prestador"
                     />
+                    <input
+                        type="email"
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}
+                        className="border border-gray-300 p-2 rounded-md ml-2"
+                        placeholder="Correo"
+                    />
+                    <input
+                        type="text"
+                        value={idServicio}
+                        onChange={(e) => setIdServicio(e.target.value)}
+                        className="border border-gray-300 p-2 rounded-md ml-2"
+                        placeholder="ID Servicio"
+                    />
                     <button
                         onClick={createPrestador}
                         className="ml-2 p-2 bg-blue-500 text-white rounded-md"
@@ -48,19 +84,22 @@ function GestionarPS() {
                     </button>
                 </div>
 
+                {/* Tabla de prestadores */}
                 <table className="min-w-full border border-gray-300">
                     <thead>
                         <tr className="bg-gray-100">
                             <th className="border border-gray-300 p-4">Nombre</th>
-                            <th className="border border-gray-300 p-4">Acciones</th>
-                            <th className="border border-gray-300 p-4">Servicio</th>
                             <th className="border border-gray-300 p-4">Correo</th>
+                            <th className="border border-gray-300 p-4">Servicio</th>
+                            <th className="border border-gray-300 p-4">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {prestadores.map(prestador => (
                             <tr key={prestador.id} className="hover:bg-gray-100">
-                                <td className="border border-gray-300 p-2">{prestador.name}</td>
+                                <td className="border border-gray-300 p-2">{prestador.nombre}</td>
+                                <td className="border border-gray-300 p-2">{prestador.correo}</td>
+                                <td className="border border-gray-300 p-2">{prestador.id_servicio}</td>
                                 <td className="border border-gray-300 p-2">
                                     <button
                                         onClick={() => deletePrestador(prestador.id)}
