@@ -1,13 +1,16 @@
-
+import HeaderLog from '../component/NavLog.jsx';
 import React from 'react';
 
 const Fonoaudiologiaa = () => {
   return (
-    <div className="bg-gray-50 min-h-screen p-4">
-      <header className="bg-blue-500 text-white text-center py-16">
+    <div className="bg-gray-50 min-h-screen">
+      <header>
+        <HeaderLog/>
+      </header>
+      <div className="bg-blue-500 text-white text-center py-16">
         <h1 className="text-4xl font-bold mb-4">Bienvenido a Nuestro Servicio de Fonoaudiología</h1>
         <p className="text-xl">Ayudamos a mejorar la comunicación y la audición.</p>
-      </header>
+      </div>
 
       <section className="py-12 px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>

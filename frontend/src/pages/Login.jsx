@@ -1,4 +1,5 @@
 import HeaderNoLog from '../component/NavNoLog';
+import Footer from '../component/FooterPM';
 import React from 'react';
 
 
@@ -26,6 +27,10 @@ function Login() {
             </form>
           </div>
         </div>
+
+        <footer>
+          <Footer/>
+        </footer>
       </div>
     );
   }
