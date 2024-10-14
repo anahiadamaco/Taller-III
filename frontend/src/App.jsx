@@ -5,7 +5,7 @@ import Login from './pages/Login';
 /* Rutas Administrador */
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
-
+import AdminServicios from "./pages/Admin_servicios";
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
 /* import RegiPS from './pages/RegistroPS'; */
@@ -28,6 +28,7 @@ import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
 
+
 function App() {
     return (
         <Router>
@@ -37,6 +38,7 @@ function App() {
                 {/* Rutas Administrador */}
                 <Route path="/Admin" element={<HomeAdmin />} />
                 <Route path="/Admin/GestionarPS" element={<GestionarPS/>} />
+                <Route path="/Admin/Servicios" element={<AdminServicios />} />
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />

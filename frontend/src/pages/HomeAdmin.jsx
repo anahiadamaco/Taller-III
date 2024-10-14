@@ -19,16 +19,16 @@ function HomeAdmin() {
         {/* Botones de gestión */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Link
-            to="/admin/GestionarPS"
+            to="/admin/gestionar-prestadores"
             className="p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
             Gestionar Prestadores
           </Link>
           <Link
-            to="/admin/estadisticas"
+            to="/admin/Servicios"
             className="p-6 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
-            Ver Estadísticas
+            Administrar Servicios
           </Link>
           <Link
             to="/admin/reportes"
@@ -44,6 +44,7 @@ function HomeAdmin() {
           </Link>
         </div>
 
+        {/* Indicadores Clave */}
         <div className="mt-12">
           <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
             Indicadores Clave

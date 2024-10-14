@@ -5,6 +5,7 @@ const { Pool } = require('pg');
 const userRoutes = require('./routes/userRoute');
 const { registerUser } = require('./controllers/userController');
 const prestadoresRoutes = require('./routes/prestadores');
+const serviciosRoutes = require('./routes/servicios');
 
 
 // Configura dotenv para manejar variables de entorno
@@ -15,7 +16,7 @@ const pool = new Pool({
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3001', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
@@ -24,10 +25,11 @@ app.use(cors({
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.post('/api/registerPM', registerUser);
-app.use('/api/prestadores', prestadoresRoutes);
+app.use('/api/Admin/prestadores', prestadoresRoutes);
+app.use('/api/Admin/Servicios', serviciosRoutes);
 
 // Inicia el servidor y escucha en el puerto definido
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

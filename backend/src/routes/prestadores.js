@@ -1,16 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db');  // Asegúrate de que tu pool de conexión esté configurado
+const pool = require('../db'); 
 
 // Crear un nuevo prestador
 router.post('/crear', async (req, res) => {
-    const { nombre, correo, id_servicio } = req.body;
+    const { nombre } = req.body;
 
     try {
-        const result = await pool.query(
-            'INSERT INTO "Prestador_Servicio" (nombre, correo, id_servicio) VALUES ($1, $2, $3) RETURNING *',
-            [nombre, correo, id_servicio]
-        );
+        const result = await pool.query('INSERT INTO Prestador_Servicio (nombre) VALUES ($1) RETURNING *', [nombre]);
         res.status(201).json(result.rows[0]);
     } catch (error) {
         console.error('Error al crear el prestador:', error);
