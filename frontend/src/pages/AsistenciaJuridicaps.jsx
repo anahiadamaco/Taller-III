@@ -131,8 +131,9 @@ function AsistenciaJuridica() {
     //Para perfiles.
 
     const handleEditPerfilClick = (index) => {
-        setEditedPerfil(index);
-        setEditedPerfil({ ...perfiles[index] });
+        setEditedPerfil(perfiles[index]); // Configura el perfil a editar
+        setEditIndex(index); // Almacena el índice del perfil a editar
+        setIsModalPerfilOpen(true); // Abre el modal
     };
 
     const handleDeletePerfil = (index) => {
@@ -210,7 +211,7 @@ function AsistenciaJuridica() {
                 </button>
                 <button
                     className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={handleEditPerfil}
+                    onClick={ ()=> handleEditPerfil()}
                 >
                     Editar Perfil
                 </button>
