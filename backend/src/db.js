@@ -62,6 +62,11 @@ CREATE TABLE IF NOT EXISTS "Persona_Mayor" (
   FOREIGN KEY ("rut") REFERENCES "Usuario"("rut")
 );
 
+CREATE TABLE IF NOT EXISTS "Servicio" (
+  "id_servicio" serial PRIMARY KEY,
+  "nombre" varchar(20)
+);
+
 CREATE TABLE IF NOT EXISTS "Prestador_Servicio" (
   "reg_prestador" int PRIMARY KEY,
   "rut" varchar(11),
