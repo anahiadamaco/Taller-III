@@ -22,36 +22,38 @@ const Psicologia = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-200 overflow-hidden flex flex-col">
+    <div className="min-h-screen bg-gray-200 flex flex-col">
       <header>
         <HeaderLog />
       </header>
 
-      <div className="bg-green-500 text-white text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Bienvenido a Psicología</h1>
-        <p className="text-xl">Apoyo emocional para mejorar tu calidad de vida.</p>
+      <div className="bg-green-500 text-white text-center py-10">
+        <h1 className="text-3xl font-bold mb-2">Bienvenido a Psicología</h1>
+        <p className="text-lg">Apoyo emocional para mejorar tu calidad de vida.</p>
       </div>
 
-      <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-green-500">
-          <h1 className="text-2xl font-bold mb-4 text-green-700">Psicología</h1>
-          <p className="text-gray-700 mb-4">
-            Ofrecemos terapia psicológica para ayudar a gestionar y mejorar tu bienestar emocional.
-            Asistencia psicológica para ayudarte a superar tus desafíos emocionales y mentales, brindándote apoyo y tratamiento personalizado.
+      <div className="flex-grow grid grid-cols-1 gap-6 p-6">
+        {/* Sección de descripción */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500">
+          <h1 className="text-xl font-bold text-green-700 mb-2">Psicología</h1>
+          <p className="text-gray-700">
+            Ofrecemos terapia psicológica para ayudarte a mejorar tu bienestar emocional. Brindamos apoyo y tratamiento personalizado.
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-green-500">
+        {/* Sección para seleccionar horario */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500">
           <h2 className="text-xl font-bold text-green-700 mb-2">Seleccionar Horario</h2>
           <button
             onClick={toggleCalendar}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 rounded w-full"
           >
             Ver Calendario
           </button>
         </div>
 
-        <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-green-500">
+        {/* Servicios disponibles */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500">
           <h2 className="text-xl font-bold text-green-700 mb-2">Servicios Psicológicos Disponibles</h2>
           <ul className="list-disc list-inside text-gray-700">
             <li>Terapia individual</li>
@@ -61,7 +63,8 @@ const Psicologia = () => {
           </ul>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-green-500 md:col-span-1 h-64 overflow-y-scroll">
+        {/* Especialistas */}
+        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500 overflow-y-auto h-64">
           <h2 className="text-xl font-bold text-green-700 mb-4">Especialistas</h2>
           <div className="grid grid-cols-1 gap-4">
             {personas.map((persona, index) => (
@@ -77,11 +80,12 @@ const Psicologia = () => {
         </div>
       </div>
 
+      {/* Calendario */}
       {isCalendarOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
+          <div className="bg-white p-4 rounded-lg shadow-xl max-w-full h-3/4 flex flex-col">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-green-700">Calendario de Psicología</h2>
+              <h2 className="text-xl font-bold text-green-700">Calendario de Psicología</h2>
               <button
                 onClick={toggleCalendar}
                 className="text-red-500 hover:text-red-700 font-bold"
