@@ -28,6 +28,10 @@ import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
 
+/* Pruebas de Funcionamiento */
+import GPM from "./component/GuiaPM";
+import Graf from "./component/Grafico";
+
 function App() {
     return (
         <Router>
@@ -59,6 +63,10 @@ function App() {
                 <Route path="/PEPM" element={<PeluPM />} />
                 <Route path="/POPM" element={<PodoPM />} />
                 <Route path="/PSPM" element={<PsicPM />} />
+
+                {/* Pruebas de funcionamiento */}
+                <Route path="Guia" element={<GPM/>} />
+                <Route path="Gra" element={<Graf/>} />
             </Routes>
         </Router>
     );
