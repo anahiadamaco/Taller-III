@@ -10,7 +10,8 @@ function Registro() {
   const [celular, setCelular] = useState('');
   const [rut, setRut] = useState('');
   const [nombre, setNombre] = useState('');
-  const [apellidos, setApellidos] = useState('');
+  const [apellido_paterno, setApellidoP] = useState('');
+  const [apellido_materno, setApellidoM] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [mensaje, setMensaje] = useState('');
 
@@ -23,14 +24,16 @@ function Registro() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ rut, nombre, apellidos, fechaNacimiento, correo: email, contraseña, celular}),
+        body: JSON.stringify({ rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, celular, correo: email, contraseña}),
       });
 
-      const data = await res.json();
+      
       if (res.ok) {
+        const data = await res.json();
         setMensaje('Registro exitoso');
-        navigate('/');
+        navigate('/api/login');
       } else {
+        const data = await res.json();
         setMensaje(data.error || 'Error en el registro');
       }
     } catch (error) {
@@ -58,8 +61,11 @@ function Registro() {
               <p className="text-black mt-2">Ingrese su Nombre: </p>
               <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
 
-              <p className="text-black mt-2">Ingrese sus Apellidos: </p>
-              <input type="text" value={apellidos} onChange={(e) => setApellidos(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+              <p className="text-black mt-2">Ingrese su apellido paterno: </p>
+              <input type="text" value={apellido_paterno} onChange={(e) => setApellidoP(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
+
+              <p className="text-black mt-2">Ingrese su apellido materno: </p>
+              <input type="text" value={apellido_materno} onChange={(e) => setApellidoM(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
 
               <p className="text-black mt-2">Ingrese su Fecha de Nacimiento: </p>
               <input type="date" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>

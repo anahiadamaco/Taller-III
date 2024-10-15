@@ -24,7 +24,7 @@ function Login() {
       }
 
       const data = await response.json();
-      const rol = data.rol;
+      const {rol} = data.rol;
 
       // Redirigir según el rol
       if (rol === 1) {

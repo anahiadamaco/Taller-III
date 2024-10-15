@@ -1,7 +1,8 @@
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
 const { Sequelize } = require('sequelize');
-require(dotenv).config();
+
+dotenv.config();
 
 // Configuración de la conexión
 const pool = new Pool({
