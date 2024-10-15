@@ -9,9 +9,10 @@ const AsistenciaSocial = () => {
   };
 
   const personas = [
-    { nombre: "Ana Perez", especialidad: "Asesoramiento y orientación" },
-    { nombre: "Luis Martinez", especialidad: "Asistencia de Abogado" },
-    { nombre: "Carla Lopez", especialidad: "Defensa y representación" },
+    { nombre: "Ana Perez", especialidad: "ejecución y evaluación de políticas" },
+    { nombre: "Luis Martinez", especialidad: "programas y proyectos sociales" },
+    { nombre: "Carla Lopez", especialidad: "Gestión de personas y organizaciones" },
+    { nombre: "Pedro González", especialidad: "Intervención social" },
   ];
 
   return (
@@ -21,8 +22,8 @@ const AsistenciaSocial = () => {
       </header>
 
       <div className="bg-red-600 text-white text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Bienvenido a Asistencia Juridica</h1>
-        <p className="text-xl">Asesoría y apoyo legal para tu tranquilidad.</p>
+        <h1 className="text-4xl font-bold mb-4">Bienvenido a Asistencia Social</h1>
+        <p className="text-xl">Apoyo social para tu bienestar.</p>
       </div>
 
       <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -46,10 +47,10 @@ const AsistenciaSocial = () => {
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-red-600">
           <h2 className="text-xl font-bold text-red-700 mb-2">Servicios Psicológicos Disponibles</h2>
           <ul className="list-disc list-inside text-gray-700">
-            <li>Asesoramiento legal</li>
-            <li>Acompañamiento en trámites jurídicos</li>
-            <li>Gestión de documentación legal</li>
-            <li>Representación en casos legales</li>
+            <li>Apoyo emocional</li>
+            <li>Asesoría en prestaciones sociales</li>
+            <li>Orientación en recursos comunitarios</li>
+            <li>Acompañamiento en procesos legales</li>
           </ul>
         </div>
 
@@ -59,8 +60,10 @@ const AsistenciaSocial = () => {
             {personas.map((persona, index) => (
               <div key={index} className="flex items-center gap-4">
                 <div className="bg-red-600 h-12 w-12 rounded-full"></div> {/* Avatar circle */}
-
-
+                <div>
+                  <p className="text-gray-700 font-bold">{persona.nombre}</p>
+                  <p className="text-gray-500">{persona.especialidad}</p>
+                </div>
               </div>
             ))}
           </div>

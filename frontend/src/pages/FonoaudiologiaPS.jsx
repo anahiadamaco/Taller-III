@@ -1,67 +1,68 @@
-
 import React from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import HeaderLog from '../component/NavLog.jsx';
 
-const Fonoaudiologiaa = () => {
-  return (
-    <div className="bg-gray-50 min-h-screen p-4">
-      <header className="bg-blue-500 text-white text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Bienvenido a Nuestro Servicio de Fonoaudiología</h1>
-        <p className="text-xl">Ayudamos a mejorar la comunicación y la audición.</p>
-      </header>
+function Fonoaudiologia() {
+    // Datos para el gráfico (simulados)
+    const data = [
+        { day: '01', count: 0 },
+        { day: '02', count: 0 },
+        { day: '03', count: 0 },
+        // ... (más datos)
+        { day: '30', count: 0 },
+        { day: '31', count: 0 }
+    ];
 
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Nuestros Servicios</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Terapia del Lenguaje</h3>
-            <p className="text-gray-700 mb-4">Tratamos problemas relacionados con el habla y el lenguaje.</p>
-            <button className='text-white-200 bg-blue-500 py-2 px-4 rounded '> Ver mas</button>
-          </div>
-          <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Rehabilitación Auditiva</h3>
-            <p className="text-gray-700 mb-4">Proporcionamos soluciones para mejorar la audición.</p>
-            <button  className='text-white-200 bg-blue-500 py-2 px-4 rounded '> Ver mas</button>
-           
-          </div>
-          <div className="bg-white shadow-lg p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Evaluación de Trastornos del Habla</h3>
-            <p className="text-gray-700 mb-4">Realizamos evaluaciones exhaustivas para identificar trastornos.</p>
-            <button  className='text-white-200 bg-blue-500 py-2 px-4 rounded mb-4'> Ver mas</button>
-          </div>
+    return (
+        <div className="min-h-screen bg-gray-200 flex flex-col">
+            <header>
+                <HeaderLog />
+            </header>
+
+            <div className="bg-green-600 text-white text-center py-16">
+                <h1 className="text-4xl font-bold mb-4">Administrador de Fonoaudiología</h1>
+                <p className="text-xl">Gestión de servicios y especialistas.</p>
+            </div>
+
+            <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Gráfico de Atención Mensual */}
+                <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-green-600">
+                    <h2 className="text-xl font-bold text-green-700 mb-4">Gráfico de Atención Mensual</h2>
+                    <LineChart width={500} height={300} data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="count" stroke="#8884d8" />
+                    </LineChart>
+                </div>
+
+                {/* Perfil del prestador de servicio */}
+                <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-green-600">
+                    <h2 className="text-xl font-bold text-green-700 mb-4">Perfil del Prestador de Servicio</h2>
+                    <div>
+                        <h4><strong>Nombre:</strong> Maria Lopez</h4>
+                        <h4><strong>RUT:</strong> 12.345.678-9</h4>
+                        <h4><strong>Correo:</strong> maria.lopez@example.com</h4>
+                        <h4><strong>Fono oficina:</strong> +56 9 1234 5678</h4>
+                        <h4><strong>Título:</strong> Fonoaudióloga</h4>
+                    </div>
+                </div>
+            </div>
+
+            {/* Botones de acción */}
+            <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">Editar Horarios</button>
+                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">Editar Citas</button>
+                <button className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">Editar Perfil</button>
+            </div>
+
+            <footer className="bg-green-600 text-white text-center p-6">
+                <p>© 2024 Municipalidad - Fonoaudiología</p>
+            </footer>
         </div>
-      </section>
+    );
+}
 
-      <section className="py-12 px-4 bg-gray-100">
-        <h2 className="text-3xl font-semibold text-center mb-8">Sobre Nosotros</h2>
-        <p className="text-center text-lg max-w-2xl mx-auto">
-          Somos un equipo de profesionales dedicados a la fonoaudiología con años de experiencia.
-        </p>
-      </section>
-
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Calendario de Eventos</h2>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?src=c_a616c7d9dee0f23b629cf457063b8264c2ce2ae1f9f84a4bc912686dcd45a824%40group.calendar.google.com&ctz=America%2FSantiago"
-          className="border-0 w-full h-96"
-          frameBorder="0"
-          scrolling="no"
-          title="Calendario de Google"
-        ></iframe>
-      </section>
-      <section className="py-12 px-4">
-  <h2 className="text-3xl font-semibold text-center mb-8">Reserva tu Cita</h2>
-  <div className="flex justify-center">
-    <iframe
-      src="https://calendly.com/cfonseca2022-alu/30min"
-      className="w-full max-w-4xl h-96 border-0"
-      frameBorder="0"
-      title="Calendly"
-    ></iframe>
-  </div>
-</section>
-
-    </div>
-  );
-};
-
-export default Fonoaudiologiaa;
+export default Fonoaudiologia;
