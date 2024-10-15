@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 
 // Registro de usuario
 const registerUser = async (req, res) => {
-    const { rut, nombre, apellidos, fechaNacimiento, email, contraseña, celular } = req.body;
+    const { rut, nombre, apellidos, fechaNacimiento, email, contrasena, celular } = req.body;
 
     // Validar datos de entrada
-    if (!email || !contraseña || !celular || !rut || !nombre || !apellidos || !fechaNacimiento) {
+    if (!email || !contrasena || !celular || !rut || !nombre || !apellidos || !fechaNacimiento) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
@@ -23,12 +23,12 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ error: 'El RUT ya está registrado' });
         }
 
-        // Hash de la contraseña
-        const hashedPassword = await bcrypt.hash(contraseña, 10); // Hash con un salt de 10 rondas
+        // Hash de la contrasena
+        const hashedPassword = await bcrypt.hash(contrasena, 10); // Hash con un salt de 10 rondas
 
         // Inserta el nuevo Usuario
         const newUser = await pool.query(
-            'INSERT INTO Usuario (rut, nombre, apellidos, fechaNacimiento, correo, contraseña, celular) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+            'INSERT INTO Usuario (rut, nombre, apellidos, fechaNacimiento, correo, contrasena, celular) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
             [rut, nombre, apellidos, fechaNacimiento, email, hashedPassword, celular]
         );
 
@@ -42,7 +42,7 @@ const registerUser = async (req, res) => {
 
 // Login
 const loginUser = async (req, res) => {
-    const { rut, contraseña } = req.body;
+    const { rut, contrasena } = req.body;
 
     try {
         // Verificación de si existe un Usuario
@@ -51,7 +51,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ error: 'RUT o contraseña incorrectos' });
         }
 
-        const validPassword = await bcrypt.compare(contraseña, user.rows[0].contraseña);
+        const validPassword = await bcrypt.compare(contrasena, user.rows[0].contrasena);
         if (!validPassword) {
             return res.status(400).json({ error: 'RUT o contraseña incorrectos' });
         }
