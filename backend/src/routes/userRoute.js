@@ -16,7 +16,5 @@ router.post('/registerPM', userController.registerUser);
 // Login
 router.post('/login', userController.loginUser);
 
-//(no se si hay ID en los parametros pero esta vaina es para obtener el perfil de un usuario)
-router.get('/profile/:id', userController.getUserProfile);
 
 module.exports = router;

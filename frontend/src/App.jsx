@@ -2,7 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from './pages/Login';
-
+/* Rutas Administrador */
+import HomeAdmin from './pages/HomeAdmin';
+import GestionarPS from './pages/GestionarPS';
+import AdminServicios from "./pages/Admin_servicios";
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
 /* import RegiPS from './pages/RegistroPS'; */
@@ -31,11 +34,17 @@ import AsisoPM from './pages/AsistenicaSocialPM';
 import PsicPM_movil from './pages/PsicologiaPM_movil';
 import AsJuPS_movil from './pages/AsistenciaJuridicaPS_movil';
 
+
 function App() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
+
+                {/* Rutas Administrador */}
+                <Route path="/Admin" element={<HomeAdmin />} />
+                <Route path="/Admin/GestionarPS" element={<GestionarPS/>} />
+                <Route path="/Admin/Servicios" element={<AdminServicios />} />
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />

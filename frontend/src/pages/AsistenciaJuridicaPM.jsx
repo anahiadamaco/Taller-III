@@ -59,10 +59,8 @@ const AsistenciaSocial = () => {
             {personas.map((persona, index) => (
               <div key={index} className="flex items-center gap-4">
                 <div className="bg-red-600 h-12 w-12 rounded-full"></div> {/* Avatar circle */}
-                <div>
-                  <p className="text-gray-700 font-bold">{persona.nombre}</p>
-                  <p className="text-gray-500">{persona.especialidad}</p>
-                </div>
+
+
               </div>
             ))}
           </div>

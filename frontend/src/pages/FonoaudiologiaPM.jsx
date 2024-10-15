@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
 
@@ -16,12 +15,17 @@ const Fonoaudiologia = () => {
     { nombre: "Pedro González", especialidad: "Terapia de deglución" },
     { nombre: "Marta Fernández", especialidad: "Rehabilitación vocal" },
   ];
-
+  
   return (
-    <div className="min-h-screen bg-gray-200 overflow-hidden flex flex-col">
+    <div className="bg-gray-50 min-h-screen">
       <header>
-        <HeaderLog />
+        <HeaderLog/>
       </header>
+      <div className="bg-blue-500 text-white text-center py-16">
+        <h1 className="text-4xl font-bold mb-4">Bienvenido a Nuestro Servicio de Fonoaudiología</h1>
+        <p className="text-xl">Ayudamos a mejorar la comunicación y la audición.</p>
+      </div>
+
 
       <div className="bg-green-500 text-white text-center py-16">
         <h1 className="text-4xl font-bold mb-4">Bienvenido a Psicología</h1>
