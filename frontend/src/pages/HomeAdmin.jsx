@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderLog from '../component/NavLog.jsx';
 import { Link } from "react-router-dom";
+import Graf from '../component/Grafico';
 
 function HomeAdmin() {
   return (
@@ -44,6 +45,7 @@ function HomeAdmin() {
           </Link>
         </div>
 
+<<<<<<< HEAD
         {/* Indicadores Clave */}
         <div className="mt-12">
           <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
@@ -74,6 +76,26 @@ function HomeAdmin() {
           </div>
         </div>
       </main>
+=======
+                <div className="mt-8">
+                    <h2 className="text-2xl font-semibold mb-4 text-center">Indicadores Clave</h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div className="p-4 bg-white rounded-lg shadow-md">
+                            <h3 className="text-lg font-bold mb-2 text-center">Atenciones por Mes</h3>
+                            {/*gráfico de barras aquí */}
+                            <div className="h-64 bg-gray-200">Gráfico de barras</div>
+                        </div>
+                        <div className="p-4 bg-white rounded-lg shadow-md">
+                            <h3 className="text-lg font-bold mb-2 text-center">Uso del Servicio por Prestador</h3>
+                            {/*gráfico de líneas aquí */}
+                            <div className="h-64 bg-gray-200">Gráfico de líneas</div>
+                            <div>
+                                <Graf/>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+>>>>>>> Pamela
     </div>
   );
 }

@@ -35,6 +35,10 @@ import PsicPM_movil from './pages/PsicologiaPM_movil';
 import AsJuPS_movil from './pages/AsistenciaJuridicaPS_movil';
 
 
+/* Pruebas de Funcionamiento */
+import GPM from "./component/GuiaPM";
+import Graf from "./component/Grafico";
+
 function App() {
     return (
         <Router>
@@ -71,9 +75,15 @@ function App() {
                 <Route path="/POPM" element={<PodoPM />} />
                 <Route path="/PSPM" element={<PsicPM />} />
 
+<<<<<<< HEAD
                 {/* Rutas Movil PS*/}
                 <Route path="/PSPM_M" element={<PsicPM_movil />} />
                 <Route path="/AsJuPS_M" element={<AsJuPS_movil />} />
+=======
+                {/* Pruebas de funcionamiento */}
+                <Route path="Guia" element={<GPM/>} />
+                <Route path="Gra" element={<Graf/>} />
+>>>>>>> Pamela
             </Routes>
         </Router>
     );
