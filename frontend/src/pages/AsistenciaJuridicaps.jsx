@@ -161,6 +161,30 @@ function AsistenciaJuridica() {
         closeModal();
     };
 
+    // Estados para la búsqueda
+    const [searchCitas, setSearchCitas] = useState('');
+    const [searchHorarios, setSearchHorarios] = useState('');
+    const [searchPerfiles, setSearchPerfiles] = useState('');
+
+    // Filtrado de citas según el término de búsqueda
+    const filteredCitas = citas.filter(cita =>
+        cita.proveedor.toLowerCase().includes(searchCitas.toLowerCase()) ||
+        cita.usuario.toLowerCase().includes(searchCitas.toLowerCase()) ||
+        cita.especialidad.toLowerCase().includes(searchCitas.toLowerCase())
+    );
+
+    // Filtrado de horarios según el término de búsqueda
+    const filteredHorarios = horarios.filter(horario =>
+        horario.proveedor.toLowerCase().includes(searchHorarios.toLowerCase()) ||
+        horario.especialidad.toLowerCase().includes(searchHorarios.toLowerCase())
+    );
+
+    // Filtrado de perfiles según el término de búsqueda
+    const filteredPerfiles = perfiles.filter(perfil =>
+        perfil.nombre.toLowerCase().includes(searchPerfiles.toLowerCase()) ||
+        perfil.rut.toLowerCase().includes(searchPerfiles.toLowerCase())
+    );
+
     return (
         <div className="min-h-screen bg-gray-200 flex flex-col">
             <header>
@@ -235,6 +259,15 @@ function AsistenciaJuridica() {
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
                         <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Citas</h2>
+                        <div className="mb-4">
+                            <input
+                                type="text"
+                                placeholder="Buscar Cita..."
+                                value={searchCitas}
+                                onChange={(e) => setSearchCitas(e.target.value)}
+                                className="w-full p-2 border border-gray-300 rounded"
+                            />
+                        </div>
                         <table className="w-full border-collapse">
                             <thead>
                                 <tr className="bg-gray-100">
@@ -247,7 +280,7 @@ function AsistenciaJuridica() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {citas.map((cita, index) => (
+                                {filteredCitas.map((cita, index) => (
                                     <tr key={index} className="hover:bg-gray-50">
                                         <td className="border border-gray-300 p-2">{cita.proveedor}</td>
                                         <td className="border border-gray-300 p-2">{cita.especialidad}</td>
@@ -331,6 +364,15 @@ function AsistenciaJuridica() {
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
                         <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Horarios</h2>
+                        <div className="mb-4">
+                            <input
+                                type="text"
+                                placeholder="Buscar Horario..."
+                                value={searchHorarios}
+                                onChange={(e) => setSearchHorarios(e.target.value)}
+                                className="w-full p-2 border border-gray-300 rounded"
+                            />
+                        </div>
                         <table className="w-full border-collapse">
                             <thead>
                                 <tr className="bg-gray-100">
@@ -343,7 +385,7 @@ function AsistenciaJuridica() {
                             </thead>
                             
                             <tbody>
-                                {horarios.map((horario, index) => (
+                                {filteredHorarios.map((horario, index) => (
                                     <tr key={index} className="hover:bg-gray-50">
                                         <td className="border border-gray-300 p-2">{horario.proveedor}</td>
                                         <td className="border border-gray-300 p-2">{horario.especialidad}</td>
@@ -417,6 +459,15 @@ function AsistenciaJuridica() {
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
                         <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Perfil</h2>
+                        <div className="mb-4">
+                            <input
+                                type="text"
+                                placeholder="Buscar Perfil..."
+                                value={searchPerfiles}
+                                onChange={(e) => setSearchPerfiles(e.target.value)}
+                                className="w-full p-2 border border-gray-300 rounded"
+                            />
+                        </div>
                         <table className="w-full border-collapse">
                             <thead>
                                 <tr className="bg-gray-100">
@@ -429,7 +480,7 @@ function AsistenciaJuridica() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {perfiles.map((perfil, index) => (
+                                {filteredPerfiles.map((perfil, index) => (
                                     <tr key={index} className="hover:bg-gray-50">
                                         <td className="border border-gray-300 p-2">{perfil.nombre}</td>
                                         <td className="border border-gray-300 p-2">{perfil.tipo}</td>
