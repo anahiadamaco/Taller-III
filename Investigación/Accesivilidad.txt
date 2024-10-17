@@ -1,0 +1,27 @@
+
+
+link de info https://fastercapital.com/es/contenido/Interfaz-de-usuario--como-disenar-una-interfaz-de-usuario-que-sea-simple-e-intuitiva.html
+
+Para poder contar con uan  pagina web en cuanto a a accesibilidad para las personas mayores
+es importantes a tener en claves algunos de estos puntos :
+
+tipografia grande:minimo 16px para acilitar la lectura
+contrastes claros:tanto el texto con el ondo debencombinar
+tipos de fuentes:usar arial o verdana son tipos de fuentes faciles de leer
+
+
+Caracteristicas de accesibilidad
+pueden incluir texto a voz, voz a texto, ampliación, vibración, 
+alertas de sonido y subtítulos, que pueden ayudar
+ a los usuarios con diferentes capacidades y preferencias
+
+Interfaz
+Botones grandes y visibles 
+Utilizar resaltado
+Espacios entre elementos 
+en la imagenes (Poseeer tener descripctivo)
+senales visuales e iconos (llaman la atencion sobre acciones o inormacion especiica)
+
+~las personas con movilidad limitada podrian beneficiarse del uso de la entrada de voz y gestos,por ejemplo
+prporicona hacer cnusltas en lugar de escribir.la entrada de gestos por ejemplo pueden navegar por medio  moviendo las manos 
+el problema puede deberse a que todo tiene que ser preciso
