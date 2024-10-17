@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 
 // Registro de usuario
 const registerUser = async (req, res) => {
-    const { rut, nombre, apellidos, fechaNacimiento, email, contraseña, celular } = req.body;
+    const { rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, email, contrasena, celular } = req.body;
 
     // Validar datos de entrada
-    if (!email || !contraseña || !celular || !rut || !nombre || !apellidos || !fechaNacimiento) {
+    if (!email || !contrasena || !celular || !rut || !nombre || !apellido_paterno || apellido_materno || !fechaNacimiento) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
@@ -23,13 +23,13 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ error: 'El RUT ya está registrado' });
         }
 
-        // Hash de la contraseña
-        const hashedPassword = await bcrypt.hash(contraseña, 10); // Hash con un salt de 10 rondas
+        // Hash de la contrasena
+        const hashedPassword = await bcrypt.hash(contrasena, 10); // Hash con un salt de 10 rondas
 
         // Inserta el nuevo Usuario
         const newUser = await pool.query(
-            'INSERT INTO Usuario (rut, nombre, apellidos, fechaNacimiento, correo, contraseña, celular) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-            [rut, nombre, apellidos, fechaNacimiento, email, hashedPassword, celular]
+            'INSERT INTO Usuario (rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, correo, contrasena, celular) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+            [rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, email, hashedPassword, celular]
         );
 
         res.status(201).json({ message: 'Usuario registrado exitosamente', user: newUser.rows[0] });
@@ -39,10 +39,34 @@ const registerUser = async (req, res) => {
         res.status(500).json({ message: 'Error al registrar el Usuario' });
     }
 };
+//Registro
+exports.registerPM = async (req, res) => {
+    const { rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, celular, correo, contraseña } = req.body;
+  
+    try {
+      // Lógica para registrar a la persona mayor en la base de datos
+      // Suponiendo que tienes un modelo de PersonaMayor
+      const nuevaPersonaMayor = await PersonaMayor.create({
+        rut,
+        nombre,
+        apellido_paterno,
+        apellido_materno,   
+        fecha_nacimiento: fechaNacimiento,
+        celular,
+        correo,
+        contraseña,
+      });
+  
+      res.status(201).json({ message: 'Registro exitoso', personaMayor: nuevaPersonaMayor });
+    } catch (error) {
+      res.status(500).json({ error: 'Error al registrar la persona mayor' });
+    }
+  };
 
+  
 // Login
 const loginUser = async (req, res) => {
-    const { rut, contraseña } = req.body;
+    const { rut, contrasena } = req.body;
 
     try {
         // Verificación de si existe un Usuario
@@ -51,7 +75,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ error: 'RUT o contraseña incorrectos' });
         }
 
-        const validPassword = await bcrypt.compare(contraseña, user.rows[0].contraseña);
+        const validPassword = await bcrypt.compare(contrasena, user.rows[0].contrasena);
         if (!validPassword) {
             return res.status(400).json({ error: 'RUT o contraseña incorrectos' });
         }

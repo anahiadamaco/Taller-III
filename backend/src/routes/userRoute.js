@@ -5,16 +5,16 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3001', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 
 // Registro
-router.post('/registerPM', userController.registerUser);
+router.post('/api/registerPM', userController.registerUser);
 
 // Login
-router.post('/login', userController.loginUser);
+router.post('/api/login', userController.loginUser);
 
 
 module.exports = router;

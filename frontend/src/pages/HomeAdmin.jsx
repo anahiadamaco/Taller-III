@@ -19,7 +19,7 @@ function HomeAdmin() {
         {/* Botones de gestión */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Link
-            to="/admin/gestionar-prestadores"
+            to="/admin/GestionarPS"
             className="p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
             Gestionar Prestadores
