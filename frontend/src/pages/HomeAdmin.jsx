@@ -11,7 +11,7 @@ function HomeAdmin() {
         <HeaderLog />
       </header>
 
-      <main className="container mx-auto p-6">
+      <main className="container mx-auto p-6"/>
         {/* Título principal */}
         <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-10">
           Panel de Administración
@@ -44,39 +44,6 @@ function HomeAdmin() {
             Gestión de Operativos
           </Link>
         </div>
-
-<<<<<<< HEAD
-        {/* Indicadores Clave */}
-        <div className="mt-12">
-          <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
-            Indicadores Clave
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Gráfico de Atenciones por Mes */}
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold text-center text-gray-700 mb-4">
-                Atenciones por Mes
-              </h3>
-              <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-                {/* Aquí irá el gráfico de barras */}
-                <span className="text-gray-500">Gráfico de barras</span>
-              </div>
-            </div>
-
-            {/* Gráfico de Uso por Prestador */}
-            <div className="p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold text-center text-gray-700 mb-4">
-                Uso del Servicio por Prestador
-              </h3>
-              <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-                {/* Aquí irá el gráfico de líneas */}
-                <span className="text-gray-500">Gráfico de líneas</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-=======
                 <div className="mt-8">
                     <h2 className="text-2xl font-semibold mb-4 text-center">Indicadores Clave</h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -95,7 +62,6 @@ function HomeAdmin() {
                         </div>
                     </div>
                 </div>      
->>>>>>> Pamela
     </div>
   );
 }
