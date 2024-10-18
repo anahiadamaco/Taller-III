@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HeaderLog from '../component/NavLog.jsx';
+import HeaderLog from '../frontend/src/component/NavLog.jsx';
 
 const Psicologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);

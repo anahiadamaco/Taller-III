@@ -1,6 +1,6 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import HeaderLog from '../component/NavLog.jsx';
+import HeaderLog from '../frontend/src/component/NavLog.jsx';
 
 function AsistenciaJuridica() {
     // Datos para el gráfico (simulados)

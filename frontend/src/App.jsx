@@ -3,6 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from './pages/Login';
 
+/* Rutas Administrador */
+import HomeAdmin from './pages/HomeAdmin';
+import GestionarPS from './pages/GestionarPS';
+import Servicios from './pages/Admin_servicios';
+
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
 /* import RegiPS from './pages/RegistroPS'; */
@@ -31,6 +36,11 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
+
+                {/* Rutas Administrador */}
+                <Route path="/Admin" element={<HomeAdmin />} />
+                <Route path="/GestionarPS" element={<GestionarPS />} />
+                <Route path="/Servicios" element={<Servicios />} />
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />

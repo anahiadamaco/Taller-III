@@ -1,5 +1,6 @@
 const pool = require('../db');
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcrypt');
+const sequelize = require('../db'); 
 
 // Registro de usuario
 const registerUser = async (req, res) => {

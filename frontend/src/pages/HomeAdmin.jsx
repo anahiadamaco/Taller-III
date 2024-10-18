@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderLog from '../component/NavLog.jsx';
 import { Link } from "react-router-dom";
-import Graf from '../component/Grafico';
+import Graf from '../component/Grafico'; 
 
 function HomeAdmin() {
   return (

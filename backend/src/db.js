@@ -13,6 +13,22 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
+// Configuración de Sequelize
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  dialect: 'postgres',
+  port: process.env.DB_PORT,
+});
+
+// Función para probar la conexión
+const testConnection = async () => {
+  try {
+      await sequelize.authenticate();
+      console.log('La conexión a la base de datos fue exitosa.');
+  } catch (error) {
+      console.error('No se pudo conectar a la base de datos:', error);
+  }
+};
 
 const createTables = async () => {
   const sql = `
@@ -108,23 +124,8 @@ const initializeDatabase = async () => {
   // Aquí puedes agregar más funciones para insertar roles, datos de prueba, etc.
 };
 
-// Crear una nueva instancia de Sequelize
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  dialect: 'postgres',
-});
-
-// Verificar la conexión
-const testConnection = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Conexión establecida con éxito.');
-  } catch (error) {
-    console.error('No se pudo conectar a la base de datos:', error);
-  }
-};
 
 testConnection();
 initializeDatabase();
 
-module.exports = sequelize
+module.exports = sequelize;
