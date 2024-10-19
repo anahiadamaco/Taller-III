@@ -29,26 +29,10 @@ app.use('/api/Admin/prestadores', prestadoresRoutes);
 app.use('/api/Admin/Servicios', serviciosRoutes);
 
 //rutas
-app.post('/api/login', async (req, res) => {
-  const { rut, contrasena } = req.body; // Usa 'contrasena' como definiste en el modelo
-
-  try {
-    // Buscar el usuario en la base de datos
-    const user = await User.findOne({ where: { rut } });
-
-    if (user && user.contrasena === contrasena) { // Compara con la contraseña
-      return res.status(200).json({ rol: user.rol });
-    }
-
-    return res.status(401).json({ message: 'Credenciales incorrectas' });
-  } catch (error) {
-    console.error('Error en el inicio de sesión:', error);
-    return res.status(500).json({ message: 'Error del servidor' });
-  }
-});
+app.post('/api/login')
 
 // Inicia el servidor y escucha en el puerto definido
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

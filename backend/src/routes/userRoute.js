@@ -14,7 +14,7 @@ app.use(cors({
 router.post('/api/registerPM', userController.registerUser);
 
 // Login
-router.post('/api/login', userController.loginUser);
+router.post('/login', userController.loginUser);
 
 
 module.exports = router;
