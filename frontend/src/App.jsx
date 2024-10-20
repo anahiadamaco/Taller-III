@@ -10,7 +10,6 @@ import Servicios from './pages/Admin_Servicios';
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
-/* import RegiPS from './pages/RegistroPS'; */
 import AsJuPS from './pages/AsistenciaJuridicaPS';
 import AsSoPS from './pages/AsistenciaSocialPS';
 import FonoPS from './pages/FonoaudiologiaPS';
