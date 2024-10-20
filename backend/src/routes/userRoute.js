@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const {loginUser} = require('../controllers/loginUser');
 const cors = require('cors');
-
 const app = express();
-app.use(cors({
-  origin: 'http://localhost:3001', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'] 
-}));
 
-// Registro
-router.post('/api/registerPM', userController.registerUser);
 
-// Login
-router.post('/login', userController.loginUser);
+app.use(cors());
+app.use(express.json());
+
+// Asegúrate de que esta ruta esté correctamente definida
+app.post('/login', loginUser);
 
 
 module.exports = router;
+
+app.listen(3000, () => {
+  console.log('Servidor escuchando en el puerto localhost:3000');
+});
+

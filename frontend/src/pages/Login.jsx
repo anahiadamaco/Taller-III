@@ -3,40 +3,33 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [rut, setRut] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [rut, setRut] = useState(''); // Inicializa el estado para el RUT
+  const [contrasena, setContrasena] = useState(''); // Inicializa el estado para la contraseña
   const navigate = useNavigate();
-
   const handleLogin = async (e) => {
     e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
 
-    try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-        body: JSON.stringify({ rut, contrasena }),
-      });
+    const response = await fetch('http://localhost:3001/api/login', { // Ajusta la URL
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ rut, contrasena }),
+  }); 
+    if (!response.ok) {
+      // Manejar error si la respuesta no es exitosa
+      console.error('Error en la solicitud');
+      return;
+    }
+    const data = await response.json();
+    const { rol } = data.user;
 
-      if (!response.ok) {
-        throw new Error('Error en el inicio de sesión');
-      }
-
-      const data = await response.json();
-      const {rol} = data.rol;
-
-      // Redirigir según el rol
-      if (rol === 1) {
-        navigate('/Admin'); // Cambia esta ruta a donde quieras redirigir a los administradores
-      } else if (rol === 2) {
-        navigate('/HPS'); // Cambia esta ruta a donde quieras redirigir a los prestadores de servicio
-      } else if (rol === 3) {
-        navigate('/HPM'); // Cambia esta ruta a donde quieras redirigir a las personas mayores
-      }
-    } catch (error) {
-      console.error('Error en el inicio de sesión', error);
-      alert('Credenciales incorrectas. Intente de nuevo.');
+    if (rol === 1) {
+      navigate('/Admin'); // Redirigir a la ruta del administrador
+    } else if (rol === 2) {
+      navigate('/HPS'); // Redirigir a la ruta de prestador de servicios
+    } else if (rol === 3) {
+      navigate('/HPM'); // Redirigir a la ruta de persona mayor
     }
   };
 

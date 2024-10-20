@@ -35,7 +35,7 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/api/login" element={<Login />} />
 
                 {/* Rutas Administrador */}
                 <Route path="/Admin" element={<HomeAdmin />} />

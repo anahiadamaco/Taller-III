@@ -16,23 +16,21 @@ const pool = new Pool({
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3001', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 
 // Middleware para manejar las peticiones
 app.use(express.json());
-app.use('/api/users', userRoutes);
-app.post('/api/registerPM', registerUser);
-app.use('/api/Admin/prestadores', prestadoresRoutes);
-app.use('/api/Admin/Servicios', serviciosRoutes);
+app.use('/api', userRoutes);
+
 
 //rutas
 app.post('/api/login')
 
 // Inicia el servidor y escucha en el puerto definido
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

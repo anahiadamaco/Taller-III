@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
 );
 
 // Definición del modelo
-const User = sequelize.define('User', {
+const User = sequelize.define('usuario', {
   rut: {
     type: DataTypes.STRING,
     allowNull: false,

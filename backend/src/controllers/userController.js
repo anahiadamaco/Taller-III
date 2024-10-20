@@ -1,6 +1,7 @@
 const pool = require('../db');
 const bcrypt = require('bcrypt');
 const sequelize = require('../db'); 
+const User = require('../models/User');
 
 // Registro de usuario
 const registerUser = async (req, res) => {
@@ -65,31 +66,8 @@ exports.registerPM = async (req, res) => {
   };
 
   
-// Login
-const loginUser = async (req, res) => {
-    const { rut, contrasena } = req.body;
 
-    try {
-        // Verificación de si existe un Usuario
-        const user = await pool.query('SELECT * FROM Usuario WHERE rut = $1', [rut]); // Asegúrate que el nombre de tabla es correcto
-        if (user.rows.length === 0) {
-            return res.status(400).json({ error: 'RUT o contraseña incorrectos' });
-        }
-
-        const validPassword = await bcrypt.compare(contrasena, user.rows[0].contrasena);
-        if (!validPassword) {
-            return res.status(400).json({ error: 'RUT o contraseña incorrectos' });
-        }
-
-        // Si se encuentran las credenciales correctas
-        res.status(200).json({ message: 'Login exitoso', user: user.rows[0] });
-    } catch (err) {
-        console.error('Error iniciando sesión:', err);
-        res.status(500).json({ error: 'Error al iniciar sesión' });
-    }
-};
 
 module.exports = {
     registerUser,
-    loginUser,
 };
