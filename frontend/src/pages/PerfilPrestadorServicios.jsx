@@ -3,7 +3,7 @@ import HeaderLog from '../component/NavLog.jsx';
 import FooterPM from '../component/FooterPM.jsx';
 import ImgPerf from '../img/Perfil.png';
 
-const PerfilUsuarios = () => {
+const PerfilPrestadorServicios = () => {
     return (
         <div className="min-h-screen flex flex-col justify-between bg-gray-50">
             {/* Header */}
@@ -14,18 +14,17 @@ const PerfilUsuarios = () => {
             {/* Contenido principal */}
             <div className="flex-grow">
                 {/* Datos personales */}
-                <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-6">
-                    <h2 className="text-4xl font-bold text-blue-600 text-center mb-4"> Datos personales </h2>
+                <div className="bg-white border border-green-600 shadow-md rounded-lg p-6 m-6">
+                    <h2 className="text-4xl font-bold text-green-600 text-center mb-4"> Datos personales </h2>
                     <div className="flex justify-between items-center">
                         {/* Datos */}
                         <div className="flex-1">
                             <div className="text-2xl text-black mb-2"><strong> Nombre: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> RUT: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Edad: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Fecha de nacimiento: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Número telefónico: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Modo de contacto: </strong></div>
+                            <div className="text-2xl text-black mb-2"><strong> Especialidad: </strong></div>
                         </div>
                         
                         {/* Foto de perfil */}
@@ -35,37 +34,27 @@ const PerfilUsuarios = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-800">
+                    <button className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
                         Editar Información
                     </button>
-
                 </div>
 
-                {/* Historial de citas */}
-                <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-6">
-                    <h2 className="text-4xl font-bold text-blue-600 text-center mb-4"> Historial de citas </h2>
-                    <div className="text-2xl text-black text-center"> Aún no tienes citas </div>
-                </div>
-                
-                {/* Datos médicos */}
-                <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-6">
-                    <h2 className="text-4xl font-bold text-blue-600 text-center mb-4"> Datos médicos </h2>
-                    <div className="flex justify-between">
-                        <div className="flex-1 text-2xl text-black mb-2">
-                            <h3 className="text-center mb-2"><strong> Alergias </strong></h3>
-                            <ul className="list-disc pl-6">
-                                <li>a</li>
-                                <li>b</li>
-                            </ul>
-                        </div>
+                <div className="flex justify-around">
+                    {/* Citas pendientes semanales */}
+                    <div className="bg-white border border-green-600 shadow-md rounded-lg p-6 m-6 w-1/2">
+                        <h2 className="text-4xl font-bold text-green-600 text-center mb-4">Citas pendientes</h2>
+                        <div className="text-2xl text-black text-center">Aún no tienes citas pendientes</div>
+                    </div>
 
-                        <div className="flex-1 text-2xl text-black mb-2">
-                            <h3 className="text-center mb-2"><strong> Condiciones Medicas </strong></h3>
-                            <ul className="list-disc pl-6">
-                                <li> a </li>
-                                <li> b </li>
-                            </ul>
+                    {/* Vacaciones */}
+                    <div className="bg-white border border-green-600 shadow-md rounded-lg p-6 m-6 w-1/2">
+                        <div className="flex justify-around">
+                            <h2 className="text-4xl font-bold text-green-600 text-center mb-4">Inactividad por vacaciones</h2>
+                            <button className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
+                                Agregar vacaciones
+                            </button>
                         </div>
+                        <div className="text-2xl text-black text-center">No hay vacaciones programadas</div>
                     </div>
                 </div>
             </div>
@@ -78,4 +67,4 @@ const PerfilUsuarios = () => {
     );
 };
 
-export default PerfilUsuarios;
+export default PerfilPrestadorServicios;
