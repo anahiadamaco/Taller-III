@@ -1,20 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {loginUser} = require('../controllers/loginUser');
+const { loginUser } = require('../controllers/loginUser'); // Asegúrate de que la ruta sea correcta
 const cors = require('cors');
-const app = express();
 
+router.use(cors());
+router.use(express.json());
 
-app.use(cors());
-app.use(express.json());
-
-// Asegúrate de que esta ruta esté correctamente definida
-app.post('/login', loginUser);
-
+// Define la ruta de inicio de sesión
+router.post('/login', loginUser); // Utiliza la función loginUser aquí
 
 module.exports = router;
 
-app.listen(3000, () => {
-  console.log('Servidor escuchando en el puerto localhost:3000');
-});
 
