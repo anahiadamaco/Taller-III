@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HeaderLog from '../component/NavLog.jsx';
 import FooterPM from '../component/FooterPM.jsx';
 import ImgPerf from '../img/Perfil.png';
@@ -35,9 +36,11 @@ const PerfilUsuarios = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-800">
+                    <Link
+                        to={"FEPPM"}
+                        className="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-800">
                         Editar Información
-                    </button>
+                    </Link>
 
                 </div>
 

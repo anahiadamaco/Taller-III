@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HeaderLog from '../component/NavLog.jsx';
 import FooterPM from '../component/FooterPM.jsx';
 import ImgPerf from '../img/Perfil.png';
@@ -34,9 +35,11 @@ const PerfilPrestadorServicios = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
+                    <Link
+                        to={"FEPPS"}
+                        className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
                         Editar Información
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="flex justify-around">
@@ -50,9 +53,11 @@ const PerfilPrestadorServicios = () => {
                     <div className="bg-white border border-green-600 shadow-md rounded-lg p-6 m-6 w-1/2">
                         <div className="flex justify-around">
                             <h2 className="text-4xl font-bold text-green-600 text-center mb-4">Inactividad por vacaciones</h2>
-                            <button className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
+                            <Link 
+                                to={"FAV"}
+                                className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
                                 Agregar vacaciones
-                            </button>
+                            </Link>
                         </div>
                         <div className="text-2xl text-black text-center">No hay vacaciones programadas</div>
                     </div>

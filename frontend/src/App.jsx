@@ -35,6 +35,9 @@ import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
 import PerPS from './pages/PerfilPrestadorServicios';
+import FormAV from './component/FormAggVac';
+import FormEPPS from './component/FormEdPerfPS';
+import FormEPPM from './component/FormEdPerfPM';
 
 function App() {
     return (
@@ -75,6 +78,9 @@ function App() {
                 <Route path="Guia" element={<Guia />} />
                 <Route path="PerfPM" element={<PerPM />} />
                 <Route path="PerfPS" element={<PerPS />} />
+                <Route path="FAV" element={<FormAV />} />
+                <Route path="FEPPS" element={<FormEPPS />} />
+                <Route path="FEPPM" element={<FormEPPM />} />
             </Routes>
         </Router>
     );
