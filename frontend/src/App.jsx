@@ -34,12 +34,13 @@ import FormularioMovilidad from "./pages/Fomulario_Movi";
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
+import RegisSoc from './pages/RegistroSocialHogar';
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/api/login" element={<Login />} />
+                <Route path="/" element={<Login />} />
 
                 {/* Rutas Administrador */}
                 <Route path="/Admin" element={<HomeAdmin />} />
@@ -73,6 +74,7 @@ function App() {
                 <Route path="Graf" element={<Graf />} />
                 <Route path="Guia" element={<Guia />} />
                 <Route path="Perf" element={<PerPM />} />
+                <Route path="/RSH" element={<RegisSoc />} />
             </Routes>
         </Router>
     );

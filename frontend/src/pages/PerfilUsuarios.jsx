@@ -2,8 +2,14 @@ import React from 'react';
 import HeaderLog from '../component/NavLog.jsx';
 import FooterPM from '../component/FooterPM.jsx';
 import ImgPerf from '../img/Perfil.png';
+import { useNavigate } from 'react-router-dom';
 
 const PerfilUsuarios = () => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate('/RSH')
+    };
     return (
         <div className="min-h-screen flex flex-col justify-between bg-gray-50">
             {/* Header */}
@@ -26,6 +32,9 @@ const PerfilUsuarios = () => {
                             <div className="text-2xl text-black mb-2"><strong> Número telefónico: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Modo de contacto: </strong></div>
+                            <div className="text-2xl text-black mb-2 flex justify-center"> 
+                                <button type="submit" onClick={handleNavigate} className='border border-blue rounded-md bg-blue-300 hover:bg-blue-400 py-2 px-4 whitespace-nowrap'>Ingresar Registro Social de Hogar</button>
+                            </div>
                         </div>
                         
                         {/* Foto de perfil */}

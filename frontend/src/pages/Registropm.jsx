@@ -14,6 +14,7 @@ function Registro() {
   const [apellido_materno, setApellidoM] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [esError, setEsError] = useState(false); 
 
   const calcularEdad = (fecha) => {
     const cumpleanos = new Date(fecha);
@@ -33,6 +34,7 @@ function Registro() {
     const edad = calcularEdad(fechaNacimiento);
     if (edad < 60) {
       setMensaje('No cumple con requisito de edad');
+      setEsError(true); 
       return;
     }
 
@@ -48,14 +50,17 @@ function Registro() {
       if (res.ok) {
         const data = await res.json();
         setMensaje('Registro exitoso');
+        setEsError(false); 
         navigate('/api/login');
       } else {
         const data = await res.json();
         setMensaje(data.error || 'Error en el registro');
+        setEsError(true); 
       }
     } catch (error) {
       console.error('Error al registrar', error);
       setMensaje('Error en el registro');
+      setEsError(true); 
     }
   };
 
@@ -67,7 +72,8 @@ function Registro() {
       <div>
         <div className='container mx-auto w-full my-20 flex justify-center'>
           <div className="bg-white p-10 rounded-md shadow-xl flex flex-col items-center w-1/3">
-            <h1 className="text-2xl font-bold text-black text-center">Registrese para crear su cuenta</h1>
+            <h1 className="text-2xl font-bold text-black text-center">Registro</h1>
+            <h2 className="text-black mt-2 text-center">Bienvenid@s, para poder acceder a nuestros servicios debe registrarse primero</h2>
             <hr className="mt-2 bg-black shadow w-full"></hr>
 
             <form onSubmit={handleSubmit} className="flex flex-col ">
@@ -95,10 +101,17 @@ function Registro() {
               <p className="text-black mt-2">Ingrese su Contraseña: </p>
               <input type="password" value={contrasena} onChange={(e) => setContraseña(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-4 w-72" autoComplete="off"></input>
 
-              <button type="submit" className="border border-black rounded-md w-20 h-9 bg-white hover:bg-red-300">
-                Ingresar
-              </button>
-              <p>{mensaje}</p>
+              <div className="flex justify-center">
+                <button type="submit" className="border border-black rounded-md w-20 h-9 bg-white hover:bg-green-300">
+                  Registrar
+                </button>
+              </div>
+              {/* Mensaje de error o éxito */}
+              {mensaje && (
+                <p className={`mt-4 p-2 text-white rounded-md ${esError ? 'bg-red-500' : 'bg-green-500'}`}>
+                  {mensaje}
+                </p>
+              )}
             </form>
           </div>
         </div>
