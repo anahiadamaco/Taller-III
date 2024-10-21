@@ -34,6 +34,7 @@ import FormularioMovilidad from "./pages/Fomulario_Movi";
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
+import PerPS from './pages/PerfilPrestadorServicios';
 
 function App() {
     return (
@@ -72,7 +73,8 @@ function App() {
                 {/* Para probar funcionamiento */}
                 <Route path="Graf" element={<Graf />} />
                 <Route path="Guia" element={<Guia />} />
-                <Route path="Perf" element={<PerPM />} />
+                <Route path="PerfPM" element={<PerPM />} />
+                <Route path="PerfPS" element={<PerPS />} />
             </Routes>
         </Router>
     );
