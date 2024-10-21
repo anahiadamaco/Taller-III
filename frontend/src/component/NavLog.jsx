@@ -86,7 +86,7 @@ function HeaderLog() {
                             Asistencia Jurídica
                         </Link>
 
-                        <Link to="/ASISOPM" className="mx-4 px-4 py-1 text-center border rounded-lg border-white  text-white duration-300 hover:text-red-600 bg-red-600 hover:border-red-600 hover:bg-white">
+                        <Link to="/ASPM" className="mx-4 px-4 py-1 text-center border rounded-lg border-white  text-white duration-300 hover:text-red-600 bg-red-600 hover:border-red-600 hover:bg-white">
                         Asistencia Social
                         </Link>
 

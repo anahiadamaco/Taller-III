@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HeaderLog from '../frontend/src/component/NavLog.jsx';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 
 const Psicologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -22,91 +22,184 @@ const Psicologia = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-200 flex flex-col">
-      <header>
-        <HeaderLog />
-      </header>
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Bienvenido a Psicología</Text>
+        <Text style={styles.headerSubtitle}>Apoyo emocional para mejorar tu calidad de vida.</Text>
+      </View>
 
-      <div className="bg-green-500 text-white text-center py-10">
-        <h1 className="text-3xl font-bold mb-2">Bienvenido a Psicología</h1>
-        <p className="text-lg">Apoyo emocional para mejorar tu calidad de vida.</p>
-      </div>
+      {/* Contenido principal */}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Psicología</Text>
+          <Text style={styles.cardText}>
+            Ofrecemos terapia psicológica para ayudar a gestionar y mejorar tu bienestar emocional.
+            Asistencia psicológica para ayudarte a superar tus desafíos emocionales y mentales, brindándote apoyo y tratamiento personalizado.
+          </Text>
+        </View>
 
-      <div className="flex-grow grid grid-cols-1 gap-6 p-6">
-        {/* Sección de descripción */}
-        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500">
-          <h1 className="text-xl font-bold text-green-700 mb-2">Psicología</h1>
-          <p className="text-gray-700">
-            Ofrecemos terapia psicológica para ayudarte a mejorar tu bienestar emocional. Brindamos apoyo y tratamiento personalizado.
-          </p>
-        </div>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Seleccionar Horario</Text>
+          <TouchableOpacity style={styles.button} onPress={toggleCalendar}>
+            <Text style={styles.buttonText}>Ver Calendario</Text>
+          </TouchableOpacity>
+        </View>
 
-        {/* Sección para seleccionar horario */}
-        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500">
-          <h2 className="text-xl font-bold text-green-700 mb-2">Seleccionar Horario</h2>
-          <button
-            onClick={toggleCalendar}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 rounded w-full"
-          >
-            Ver Calendario
-          </button>
-        </div>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Servicios Psicológicos Disponibles</Text>
+          <Text style={styles.cardText}>Terapia individual</Text>
+          <Text style={styles.cardText}>Terapia familiar</Text>
+          <Text style={styles.cardText}>Terapia de pareja</Text>
+          <Text style={styles.cardText}>Asesoramiento en salud mental</Text>
+        </View>
 
-        {/* Servicios disponibles */}
-        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500">
-          <h2 className="text-xl font-bold text-green-700 mb-2">Servicios Psicológicos Disponibles</h2>
-          <ul className="list-disc list-inside text-gray-700">
-            <li>Terapia individual</li>
-            <li>Terapia familiar</li>
-            <li>Terapia de pareja</li>
-            <li>Asesoramiento en salud mental</li>
-          </ul>
-        </div>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Especialistas</Text>
+          {personas.map((persona, index) => (
+            <View key={index} style={styles.specialist}>
+              <View style={styles.avatar}></View> {/* Avatar placeholder */}
+              <View>
+                <Text style={styles.specialistName}>{persona.nombre}</Text>
+                <Text style={styles.specialistSpecialty}>{persona.especialidad}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
 
-        {/* Especialistas */}
-        <div className="bg-white p-4 rounded-lg shadow-lg border-2 border-green-500 overflow-y-auto h-64">
-          <h2 className="text-xl font-bold text-green-700 mb-4">Especialistas</h2>
-          <div className="grid grid-cols-1 gap-4">
-            {personas.map((persona, index) => (
-              <div key={index} className="flex items-center gap-4">
-                <div className="bg-green-200 h-12 w-12 rounded-full"></div> {/* Avatar circle */}
-                <div>
-                  <p className="text-gray-700 font-bold">{persona.nombre}</p>
-                  <p className="text-gray-500">{persona.especialidad}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Calendario */}
-      {isCalendarOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-lg shadow-xl max-w-full h-3/4 flex flex-col">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-green-700">Calendario de Psicología</h2>
-              <button
-                onClick={toggleCalendar}
-                className="text-red-500 hover:text-red-700 font-bold"
-              >
-                Cerrar
-              </button>
-            </div>
-            <div className="flex-grow overflow-auto">
-              <iframe
-                src="https://calendar.google.com/calendar/embed?src=eff5da9c280da4b997f8cc2c5e8a649b62fffd71d0be5c347ef755f7e8817192%40group.calendar.google.com&ctz=America%2FSantiago"
-                className="w-full h-full"
-                frameBorder="0"
-                scrolling="no"
-                title="Calendario de Psicología"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+      {/* Modal para el calendario */}
+      <Modal visible={isCalendarOpen} transparent={true} animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Calendario de Psicología</Text>
+            <TouchableOpacity onPress={toggleCalendar}>
+              <Text style={styles.modalCloseButton}>Cerrar</Text>
+            </TouchableOpacity>
+            <View style={styles.calendarContainer}>
+              <Text style={styles.calendarPlaceholder}>[Calendario aquí]</Text>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+  },
+  header: {
+    backgroundColor: '#38a169',
+    padding: 20,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 24,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  headerSubtitle: {
+    fontSize: 16,
+    color: '#fff',
+  },
+  scrollContent: {
+    padding: 20,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  card: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
+    width: '100%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    borderColor: '#38a169',
+    borderWidth: 2,
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#2f855a',
+    marginBottom: 10,
+  },
+  cardText: {
+    fontSize: 16,
+    color: '#4a5568',
+  },
+  button: {
+    backgroundColor: '#38a169',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  specialist: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#c6f6d5',
+    borderRadius: 25,
+    marginRight: 15,
+  },
+  specialistName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4a5568',
+  },
+  specialistSpecialty: {
+    fontSize: 14,
+    color: '#a0aec0',
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#2f855a',
+    marginBottom: 20,
+  },
+  modalCloseButton: {
+    fontSize: 16,
+    color: '#e53e3e',
+  },
+  calendarContainer: {
+    marginTop: 20,
+    backgroundColor: '#f0f0f0',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  calendarPlaceholder: {
+    fontSize: 16,
+    color: '#4a5568',
+  },
+});
 
 export default Psicologia;

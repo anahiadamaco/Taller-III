@@ -22,13 +22,13 @@ const Peluqueria = () => {
 
       <div className="bg-sky-600 text-white text-center py-16">
         <h1 className="text-4xl font-bold mb-4">Bienvenido a Peluquería</h1>
-        <p className="text-xl">Cuidado capilar para tu bienestar.</p>
+        <p className="text-2xl">Cuidado capilar para tu bienestar.</p>
       </div>
 
       <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600">
           <h1 className="text-2xl font-bold mb-4 text-sky-700">Peluquería</h1>
-          <p className="text-gray-700 mb-4">
+          <p className="text-2xl text-gray-700 mb-4">
             Ofrecemos servicios profesionales de peluquería para todas tus necesidades capilares.
           </p>
         </div>
@@ -37,7 +37,7 @@ const Peluqueria = () => {
           <h2 className="text-xl font-bold text-sky-700 mb-2">Seleccionar Horario</h2>
           <button
             onClick={toggleCalendar}
-            className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
+            className="text-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
           >
             Ver Calendario
           </button>
@@ -45,7 +45,7 @@ const Peluqueria = () => {
 
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600">
           <h2 className="text-xl font-bold text-sky-700 mb-2">Servicios Disponibles</h2>
-          <ul className="list-disc list-inside text-gray-700">
+          <ul className="text-2xl list-disc list-inside text-gray-700">
             <li>Cortes de cabello</li>
             <li>Coloración</li>
             <li>Tratamientos capilares</li>
@@ -54,7 +54,7 @@ const Peluqueria = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600 md:col-span-1 h-64 overflow-y-scroll">
           <h2 className="text-xl font-bold text-sky-700 mb-4">Especialistas</h2>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="text-2xl grid grid-cols-1 gap-4">
             {personas.map((persona, index) => (
               <div key={index} className="flex items-center gap-4">
                 <div className="bg-sky-200 h-12 w-12 rounded-full"></div>
