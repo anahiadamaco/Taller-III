@@ -28,7 +28,7 @@ function Home() {
                             
                         </div>
                         <div className='flex flex-end justify-end mt-auto'>
-                                <button className='my-4 bg-blue-300 px-4 py-2 rounded-full hover:bg-blue-500 transition-colors duration-300'> Editar cita </button>
+                            <button className='my-4 bg-blue-300 px-4 py-2 rounded-full hover:bg-blue-500 transition-colors duration-300'> Editar cita </button>
                         </div>
                 </div>
 

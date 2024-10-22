@@ -31,10 +31,16 @@ import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/Psicologiapm';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
 
+
+import Evaluacion_Servicios from "./component/Evaluacion_servicio"; 
+
 function App() {
     return (
         <Router>
             <Routes>
+
+                <Route path="/EvaluacionServicios" element={<Evaluacion_Servicios/>}/>
+
                 <Route path="/" element={<Login />} />
 
                 {/* Rutas Administrador */}
