@@ -93,7 +93,7 @@ const AsistenciaSocial = () => {
         </div>
       )}
       <footer>
-        <Footer />
+        <Footer/>
       </footer>
     </div>
   );

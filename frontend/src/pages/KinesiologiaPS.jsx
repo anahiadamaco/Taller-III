@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
-import Footer from '../component/FooterPS.jsx';
-
+import FooterPS from '../component/FooterPS.jsx';
 function Kinesiologia() {
     
     const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -251,9 +250,9 @@ function Kinesiologia() {
                     Ver Calendario
                 </button>
             </div>
-
-            <footer className="mt-auto">
-                <Footer />
+           
+            <footer>
+                <FooterPS />
             </footer>
 
             {isModalCitasOpen && (

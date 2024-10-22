@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HeaderLog from '../component/NavLog.jsx';
+import FooterPS from '../component/FooterPS.jsx';
 
 function GestionarPS() {
     const [prestadores, setPrestadores] = useState([]);
@@ -46,7 +47,7 @@ function GestionarPS() {
     };
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <header>
                 <HeaderLog />
             </header>
@@ -113,7 +114,13 @@ function GestionarPS() {
                     </tbody>
                 </table>
             </div>
+
+            <footer className="mt-auto">
+                <FooterPS />
+            </footer>
         </div>
+
+        
     );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const Podologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -95,6 +96,10 @@ const Podologia = () => {
           </div>
         </div>
       )}
+
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };

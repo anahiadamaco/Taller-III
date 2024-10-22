@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeaderLog from '../component/NavLog.jsx';
-import Footer from '../component/FooterPM.jsx';
+import FooterPS from '../component/FooterPS.jsx';
 
 function AdministrarServicios() {
     const [servicios, setServicios] = useState([]);
@@ -38,7 +38,7 @@ function AdministrarServicios() {
     }, []);
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <header>
                 <HeaderLog />
             </header>
@@ -84,11 +84,11 @@ function AdministrarServicios() {
                     </tbody>
                 </table>
             </div>
-            <div>
-                <footer>
-                    <Footer />
-                </footer>
-            </div>
+
+
+            <footer className="mt-auto">
+                <FooterPS />
+            </footer>
         </div>
     );
 }

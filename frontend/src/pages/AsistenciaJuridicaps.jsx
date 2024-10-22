@@ -3,6 +3,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import HeaderLog from '../component/NavLog.jsx';
 import Footer from '../component/FooterPS.jsx';
 
+import FooterPS from '../component/FooterPS.jsx';
+
 function AsistenciaJuridica() {
 
     const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -248,8 +250,10 @@ function AsistenciaJuridica() {
                 </button>
             </div>
 
-            <footer className="mt-auto">
-                <Footer />
+
+            <footer>
+                <FooterPS />
+
             </footer>
 
             {isModalCitasOpen && (

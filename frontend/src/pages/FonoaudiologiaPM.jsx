@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const Fonoaudiologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -21,16 +22,13 @@ const Fonoaudiologia = () => {
       <header>
         <HeaderLog/>
       </header>
-      <div className="bg-blue-500 text-white text-center py-16">
+      <div className="bg-green-500 text-white text-center py-16">
         <h1 className="text-4xl font-bold mb-4">Bienvenido a Nuestro Servicio de Fonoaudiología</h1>
         <p className="text-xl">Ayudamos a mejorar la comunicación y la audición.</p>
       </div>
 
 
-      <div className="bg-green-500 text-white text-center py-16">
-        <h1 className="text-4xl font-bold mb-4">Bienvenido a Psicología</h1>
-        <p className="text-xl">Apoyo emocional para mejorar tu calidad de vida.</p>
-      </div>
+  
 
       <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-green-500">
@@ -100,6 +98,10 @@ const Fonoaudiologia = () => {
           </div>
         </div>
       )}
+
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };

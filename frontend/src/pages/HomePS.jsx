@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from '../component/FooterPS';
+import Footer from '../component/FooterPS';
 
 function Home() {
     return (
@@ -11,42 +12,23 @@ function Home() {
                 <div className='w-1/3'> Cerrar sesion </div>
             </header>
 
-            {/* Bordes provisorios pq me confundo */}
-            <section className='flex justify-between items-center gap-2 p-2'>
-                {/* cuadritos con info sacada de la base de datos */}
-                <div className='w-1/3 border-black border-2 p-2'>
-                    <h2 className='text-xl font-bold mb-1 text-center'> Resumen de citas semanales </h2>
-                    <div>
-                        <h4> Nombre: </h4>
-                        <h5> Rut: </h5>
-                        <h5> Dia: </h5>
-                        <h5> Hora de inicio: </h5>
-                        <h5> Hora de fin </h5>
-                    </div>
-                </div>
+            <div className="min-h-screen grid grid-rows-[auto_1fr] bg-gray-100">
+                <header>
+                    {/* Aquí puedes agregar contenido adicional para el header */}
+                </header>
 
-                {/* hacer tipo horario o cuadritos tmb */}
-                <div className='w-1/3 border-black border-2 p-2'>
-                    <h2 className='text-xl font-bold mb-1 text-center'> Horarios disponibles </h2>
-                    <div>
-                        <h5> Dia: </h5>
-                        <h5> Hora de inicio: </h5>
-                        <h5> Hora de fin: </h5>
-                    </div>
+                <div className="flex-grow w-full p-8 grid grid-cols-3 gap-x-8 gap-y-4 bg-white rounded-lg shadow-lg mt-10 h-full">
+                    <div className="bg-blue-500 text-white p-6 rounded-lg text-center h-full">Lorem Ipsum</div>
+                    <div className="bg-green-500 p-6 rounded-lg h-full"></div>
+                    <div className="bg-green-500 p-6 rounded-lg h-full"></div>
+                    <div className="bg-green-500 p-6 rounded-lg h-full"></div>
+                    <div className="bg-red-500 p-6 rounded-lg h-full"></div>
+                    <div className="bg-blue-500 p-6 rounded-lg h-full"></div>
+                    <div className="bg-red-500 p-6 rounded-lg col-span-3"></div>
                 </div>
+            </div>
 
-                {/* hacer ventana flotante para cada button */}
-                <div className='w-1/3 border-black border-2 p-2 text-center'>
-                    <button className='bg-blue-300 px-4 py-2 rounded-full hover:bg-blue-500 transition-colors duration-300'> Editar horario </button><br/><br/>
-                    <button className='bg-green-300 px-4 py-2 rounded-full hover:bg-green-500 transition-colors duration-300'> Editar citas </button><br/><br/>
-                    <button className='bg-red-300 px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-300'> Editar perfil </button>
-                </div>
-            </section>
-                        
-            {/* Footer provisorio */}
-            <footer className='mt-auto'>
-                <Footer />
-            </footer>
+            <Footer />
         </div>
     );
 }

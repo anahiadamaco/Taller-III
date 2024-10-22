@@ -42,11 +42,16 @@ import FormAV from './component/FormAggVac';
 import FormEPPS from './component/FormEdPerfPS';
 import FormEPPM from './component/FormEdPerfPM';
 
+import Evaluacion_Servicios from "./component/Evaluacion_servicio"; 
+
 
 function App() {
     return (
         <Router>
             <Routes>
+
+                <Route path="/EvaluacionServicios" element={<Evaluacion_Servicios/>}/>
+
                 <Route path="/" element={<Login />} />
 
                 {/* Rutas Administrador */}
@@ -68,7 +73,9 @@ function App() {
                 <Route path="/HPM" element={<HomePM />} />
                 <Route path="/RPM" element={<RegiPM />} />
                 <Route path="/AJPM" element={<AsJuPM />} />
+
                 <Route path="/ASPM" element={<AsSoPM />} />
+
                 <Route path="/FPM" element={<FonoPM />} />
                 <Route path="/KPM" element={<KinePM />} />
                 <Route path="/PEPM" element={<PeluPM />} />
