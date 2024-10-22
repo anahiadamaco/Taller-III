@@ -1,8 +1,9 @@
 import React from 'react';
+import Footer from '../component/FooterPS';
 
 function Home() {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             {/* Header provisorio */}
             <header className='flex justify-between bg-red-200 text-center gap-2 p-4'>
                 <div className='w-1/3'> Logo Temuco </div>
@@ -43,9 +44,8 @@ function Home() {
             </section>
                         
             {/* Footer provisorio */}
-            <footer className='flex justify-between bg-red-200 text-center gap-2 p-12'>
-                <div className='w-1/2'> Mensaje </div>
-                <div className='w-1/2'> Contacto muni </div>
+            <footer className='mt-auto'>
+                <Footer />
             </footer>
         </div>
     );

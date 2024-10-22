@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPS.jsx'
 
 function Fonoaudiologia() {
     
@@ -251,8 +252,8 @@ function Fonoaudiologia() {
                 </button>
             </div>
 
-            <footer className="bg-green-600 text-white text-center p-6">
-                <p>© 2024 Municipalidad - Fonoaudiología</p>
+            <footer className="mt-auto">
+                <Footer />
             </footer>
 
             {isModalCitasOpen && (

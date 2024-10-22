@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 function AdministrarServicios() {
     const [servicios, setServicios] = useState([]);
@@ -41,7 +42,7 @@ function AdministrarServicios() {
             <header>
                 <HeaderLog />
             </header>
-            <div className="p-6">
+            <div className="p-6 flex flex-col min-h-screen">
                 <h1 className="text-3xl font-bold mb-6">Administrar Servicios</h1>
 
                 {/* Formulario para crear un nuevo servicio */}
@@ -82,6 +83,11 @@ function AdministrarServicios() {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <footer>
+                    <Footer />
+                </footer>
             </div>
         </div>
     );
