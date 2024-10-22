@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const AsistenciaSocial = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -91,6 +92,9 @@ const AsistenciaSocial = () => {
           </div>
         </div>
       )}
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };

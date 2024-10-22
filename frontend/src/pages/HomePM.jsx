@@ -58,7 +58,6 @@ function Home() {
                 </div>
             </div>
                                    
-            {/* Footer provisorio */}
             <footer>
                 <Footer/>
             </footer>

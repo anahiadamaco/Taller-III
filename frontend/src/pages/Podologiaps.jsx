@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import HeaderLog from '../component/NavLog.jsx';
+import FooterPS from '../component/FooterPS';
+import HeaderLog from '../component/NavLog';
 
 function Podologia() {
     
@@ -251,8 +252,9 @@ function Podologia() {
                 </button>
             </div>
 
-            <footer className="bg-sky-600 text-white text-center p-6">
-                <p>© 2024 Municipalidad - Podología</p>
+            <footer>
+                <FooterPS/>
+                
             </footer>
 
             {isModalCitasOpen && (

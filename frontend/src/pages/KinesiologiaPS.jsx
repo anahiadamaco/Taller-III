@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
+import FooterPS from '../component/FooterPS.jsx';
 
 function Kinesiologia() {
     
@@ -251,8 +252,9 @@ function Kinesiologia() {
                 </button>
             </div>
 
-            <footer className="bg-green-600 text-white text-center p-6">
-                <p>© 2024 Municipalidad - Kinesiología</p>
+            <footer>
+                <FooterPS />
+                
             </footer>
 
             {isModalCitasOpen && (

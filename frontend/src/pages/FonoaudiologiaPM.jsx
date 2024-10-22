@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const Fonoaudiologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -97,6 +98,10 @@ const Fonoaudiologia = () => {
           </div>
         </div>
       )}
+
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };
