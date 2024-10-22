@@ -30,6 +30,7 @@ import PeluPM from './pages/Peluqueriapm';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/Psicologiapm';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
+i
 
 function App() {
     return (
