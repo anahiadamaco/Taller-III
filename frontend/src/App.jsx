@@ -16,7 +16,9 @@ import AsJuPS from './pages/AsistenciaJuridicaPS';
 import AsSoPS from './pages/AsistenciaSocialPS';
 import FonoPS from './pages/FonoaudiologiaPS';
 import KinePS from './pages/KinesiologiaPS';
+
 import PeluPS from './pages/PeluqueriaPS';
+
 import PodoPS from './pages/PodologiaPS';
 import PsicPS from './pages/PsicologiaPS';
 
@@ -24,7 +26,9 @@ import PsicPS from './pages/PsicologiaPS';
 import HomePM from './pages/HomePM';
 import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
+
 import AsSoPM from './pages/AsistenicaSocialPM';
+
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
 import PeluPM from './pages/PeluqueriaPM';
@@ -78,8 +82,8 @@ function App() {
                 <Route path="/RPM" element={<RegiPM />} />
                 <Route path="/AJPM" element={<AsJuPM />} />
 
-                <Route path="/ASPM" element={<AsSoPM />} /> 
 
+                <Route path="/ASPM" element={<AsSoPM />} /> 
                 <Route path="/FPM" element={<FonoPM />} />
                 <Route path="/KPM" element={<KinePM />} />
                 <Route path="/PEPM" element={<PeluPM />} />
