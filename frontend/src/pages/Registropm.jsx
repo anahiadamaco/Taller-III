@@ -53,11 +53,12 @@ function Registro() {
         headers: {
           'Content-Type': 'application/json',
         },
+
         body: JSON.stringify({ rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, celular, correo: email, contrasena }),
+
       });
 
       if (res.ok) {
-        const data = await res.json();
         setMensaje('Registro exitoso');
         setEsError(false); 
         navigate('/api/login');
@@ -78,6 +79,7 @@ function Registro() {
       <header>
         <HeaderLog />
       </header>
+
       <div className="flex justify-center items-center min-h-screen">
         <div className='container mx-auto w-full my-20 flex flex-col md:flex-row md:space-x-4'>
           {/* Contenedor Datos Personales */}
@@ -130,6 +132,7 @@ function Registro() {
                   Registrar
                 </button>
               </div>
+
             </form>
 
             {/* Mensaje de error o éxito */}
@@ -141,9 +144,11 @@ function Registro() {
           </div>
         </div>
       </div>
+
       <footer>
         <FooterPM />
       </footer>
+
     </div>
   );
 }

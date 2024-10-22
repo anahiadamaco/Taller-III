@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
 import Servicios from './pages/Admin_Servicios';
+import GenerarReportes from "./pages/generador_reportes";
+
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
@@ -57,8 +59,9 @@ function App() {
 
                 {/* Rutas Administrador */}
                 <Route path="/Admin" element={<HomeAdmin />} />
-                <Route path="/GestionarPS" element={<GestionarPS />} />
-                <Route path="/Servicios" element={<Servicios />} />
+                <Route path="/Admin/GestionarPS" element={<GestionarPS />} />
+                <Route path="/Admin/Servicios" element={<Servicios />} />
+                <Route path="/Admin/Reportes" element={<GenerarReportes />} />
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />
@@ -75,7 +78,7 @@ function App() {
                 <Route path="/RPM" element={<RegiPM />} />
                 <Route path="/AJPM" element={<AsJuPM />} />
 
-                <Route path="/ASPM" element={<AsSoPM />} />
+                <Route path="/ASPM" element={<AsSoPM />} /> 
 
                 <Route path="/FPM" element={<FonoPM />} />
                 <Route path="/KPM" element={<KinePM />} />
