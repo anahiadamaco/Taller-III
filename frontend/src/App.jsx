@@ -29,6 +29,7 @@ import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
+i
 
 /* Para probar funcionamiento */
 import Graf from './component/Grafico';
