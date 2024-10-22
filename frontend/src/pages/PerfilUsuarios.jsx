@@ -27,6 +27,7 @@ const PerfilUsuarios = () => {
                             <div className="text-2xl text-black mb-2"><strong> Número telefónico: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Modo de contacto: </strong></div>
+                            <div className="text-2xl text-black mb-2"><strong> Dirección: </strong></div>
                         </div>
                         
                         {/* Foto de perfil */}
@@ -41,15 +42,8 @@ const PerfilUsuarios = () => {
                         className="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-800">
                         Editar Información
                     </Link>
-
                 </div>
 
-                {/* Historial de citas */}
-                <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-6">
-                    <h2 className="text-4xl font-bold text-blue-600 text-center mb-4"> Historial de citas </h2>
-                    <div className="text-2xl text-black text-center"> Aún no tienes citas </div>
-                </div>
-                
                 {/* Datos médicos */}
                 <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-6">
                     <h2 className="text-4xl font-bold text-blue-600 text-center mb-4"> Datos médicos </h2>
@@ -71,6 +65,22 @@ const PerfilUsuarios = () => {
                         </div>
                     </div>
                 </div>
+                
+                <div className="flex">
+                    {/* Citas Pendientes */}
+                    <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-2 w-1/2">
+                        <h2 className="text-4xl font-bold text-blue-600 text-center mb-4">Citas Pendientes</h2>
+                        <div className="text-2xl text-black text-center">No tienes citas pendientes</div>
+                    </div>
+
+                    {/* Historial de citas */}
+                    <div className="bg-white border border-blue-600 shadow-md rounded-lg p-6 m-2 w-1/2">
+                        <h2 className="text-4xl font-bold text-blue-600 text-center mb-4">Historial de citas</h2>
+                        <div className="text-2xl text-black text-center">Aún no tienes citas</div>
+                    </div>
+                </div>
+
+
             </div>
 
             {/* Footer */}

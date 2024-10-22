@@ -24,6 +24,7 @@ const PerfilPrestadorServicios = () => {
                             <div className="text-2xl text-black mb-2"><strong> RUT: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Fecha de nacimiento: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Número telefónico: </strong></div>
+                            <div className="text-2xl text-black mb-2"><strong> Número oficina: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong></div>
                             <div className="text-2xl text-black mb-2"><strong> Especialidad: </strong></div>
                         </div>

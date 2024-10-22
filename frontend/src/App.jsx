@@ -22,7 +22,7 @@ import PsicPS from './pages/PsicologiaPS';
 import HomePM from './pages/HomePM';
 import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
-import AsSoPM from './pages/AsistenciaSocialPM';
+import AsSoPM from './pages/AsistenicaSocialPM';
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
 import PeluPM from './pages/PeluqueriaPM';
@@ -52,7 +52,6 @@ function App() {
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />
-                {/* <Route path="/RPS" element={<RegiPS />} /> */}
                 <Route path="/AJPS" element={<AsJuPS />} />
                 <Route path="/ASPS" element={<AsSoPS />} />
                 <Route path="/FPS" element={<FonoPS />} />
@@ -78,9 +77,9 @@ function App() {
                 <Route path="Guia" element={<Guia />} />
                 <Route path="PerfPM" element={<PerPM />} />
                 <Route path="PerfPS" element={<PerPS />} />
-                <Route path="FAV" element={<FormAV />} />
-                <Route path="FEPPS" element={<FormEPPS />} />
-                <Route path="FEPPM" element={<FormEPPM />} />
+                <Route path="PerfPS/FAV" element={<FormAV />} />
+                <Route path="PerfPS/FEPPS" element={<FormEPPS />} />
+                <Route path="PerfPM/FEPPM" element={<FormEPPM />} />
             </Routes>
         </Router>
     );
