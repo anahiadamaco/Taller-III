@@ -9,7 +9,6 @@ import GestionarPS from './pages/GestionarPS';
 import Servicios from './pages/Admin_Servicios';
 import GenerarReportes from "./pages/generador_reportes";
 
-
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
 import AsJuPS from './pages/AsistenciaJuridicaPS';
@@ -35,7 +34,7 @@ import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/PsicologiaPM';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
-i
+
 
 /* Para probar funcionamiento */
 import Graf from './component/Grafico';
@@ -81,7 +80,6 @@ function App() {
                 <Route path="/HPM" element={<HomePM />} />
                 <Route path="/RPM" element={<RegiPM />} />
                 <Route path="/AJPM" element={<AsJuPM />} />
-
 
                 <Route path="/ASPM" element={<AsSoPM />} /> 
                 <Route path="/FPM" element={<FonoPM />} />

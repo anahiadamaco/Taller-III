@@ -1,6 +1,5 @@
 import React from 'react';
 import Footer from '../component/FooterPS';
-import Footer from '../component/FooterPS';
 
 function Home() {
     return (

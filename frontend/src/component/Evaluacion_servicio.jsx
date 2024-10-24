@@ -34,7 +34,7 @@ function Evaluacion_Servicios() {
                             <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded"/>
                         </div>
                         <div class="text-sm leading-6">
-                            <label for="comments" class="font-medium text-gray-900">Exelente</label>
+                            <label for="comments" class="font-medium text-gray-900">Excelente</label>
                         </div>
                        
                     </div>
