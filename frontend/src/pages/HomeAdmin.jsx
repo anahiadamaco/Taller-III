@@ -1,13 +1,14 @@
 import React from "react";
-import HeaderLog from '../component/NavLog.jsx';
+import HeaderAdmin from '../component/NavAdmin.jsx';
 import { Link } from "react-router-dom"; 
+import Footer from "../component/FooterPM.jsx";
 
 function HomeAdmin() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Encabezado */}
       <header className="bg-white shadow-md">
-        <HeaderLog />
+        <HeaderAdmin />
       </header>
 
       <main className="container mx-auto p-6"/>
@@ -61,7 +62,10 @@ function HomeAdmin() {
                             </div>
                         </div>
                     </div>
-                </div>      
+                </div>  
+                <footer>
+                  <Footer />
+                </footer>    
     </div>
   );
 }
