@@ -48,7 +48,7 @@ import FormAV from './component/FormAggVac';
 import FormEPPS from './component/FormEdPerfPS';
 import FormEPPM from './component/FormEdPerfPM';
 
-import Evaluacion_Servicios from "./component/Evaluacion_servicio"; 
+import EvaluacionServicios from "./component/Evaluacion_servicio"; 
 
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
         <Router>
             <Routes>
 
-                <Route path="/EvaluacionServicios" element={<Evaluacion_Servicios/>}/>
+                <Route path="/EvaluacionServicios" element={<EvaluacionServicios/>}/>
 
                 <Route path="/" element={<Login />} />
 
