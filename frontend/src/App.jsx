@@ -18,7 +18,7 @@ import KinePS from './pages/KinesiologiaPS';
 
 import PeluPS from './pages/PeluqueriaPS';
 
-import PodoPS from './pages/PodologiaPS';
+import PodoPS from './pages/PodologiapPS';
 import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
