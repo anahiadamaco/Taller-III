@@ -37,6 +37,9 @@ import FormularioMovilidad from "./pages/Fomulario_Movi";
 
 
 /* Para probar funcionamiento */
+import ModuloSugerencia from "./pages/ModuloSugerencia";
+import UserProfile from "./pages/UserProfile";
+import ReviewPage from "./pages/ReviewPage";
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
@@ -90,6 +93,9 @@ function App() {
                 <Route path="/FM" element={<FormularioMovilidad />} />
 
                 {/* Para probar funcionamiento */}
+                <Route path="/USER" element={<UserProfile/>} />
+                <Route path="/RWPS" element={<ReviewPage/>} />
+                <Route path="/MDS" element={<ModuloSugerencia/>} />
                 <Route path="Graf" element={<Graf />} />
                 <Route path="Guia" element={<Guia />} />
                 <Route path="Perf" element={<PerPM />} />
