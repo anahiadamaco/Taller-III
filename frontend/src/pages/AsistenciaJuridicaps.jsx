@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
-import Footer from '../component/FooterPS.jsx';
+
 
 import FooterPS from '../component/FooterPS.jsx';
+
+//Importacion de imagenes
+import Fondo from '../img/fondologin.webp';
+import EditHorario from '../img/edithorario.png';
+import EditCitas from '../img/editcitas.png';
+import EditPerfil from '../img/editperfil.png';
+import VerCalendario from '../img/vercalendario.png';
 
 function AsistenciaJuridica() {
 
@@ -14,12 +21,19 @@ function AsistenciaJuridica() {
     };
 
     const data = [
-        { day: '01', count: 0 },
-        { day: '02', count: 0 },
-        { day: '03', count: 0 },
-        // ... (más datos)
-        { day: '30', count: 0 },
-        { day: '31', count: 0 }
+        { day: '0', count: 0 },
+        { day: 'Ene', count: 0 },
+        { day: 'Feb', count: 0 },
+        { day: 'Mar', count: 4 },
+        { day: 'Abr', count: 0 },
+        { day: 'May', count: 0 },
+        { day: 'Jun', count: 0 },
+        { day: 'Jul', count: 0 },
+        { day: 'Ago', count: 0 },
+        { day: 'Sep', count: 0 },
+        { day: 'Oct', count: 0 },
+        { day: 'Nov', count: 0 },
+        { day: 'Dic', count: 0 },
     ];
 
     const [isModalCitasOpen, setIsModalCitasOpen] = useState(false);
@@ -189,74 +203,98 @@ function AsistenciaJuridica() {
     );
 
     return (
-        <div className="min-h-screen bg-gray-200 flex flex-col">
-            <header>
-                <HeaderLog />
-            </header>
+        <div className="min-h-screen flex flex-col" style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
+            
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-            <div className="bg-red-600 text-white text-center py-8">
-                <h1 className="text-4xl font-bold mb-4">Administrador de Asistencia Jurídica</h1>
-                <p className="text-2xl">Gestión de servicios y especialistas.</p>
-            </div>
+            <div className="bg-slate-900 z-10 flex-grow max-w-screen-2xl mx-auto w-full">
+                <header>
+                    <HeaderLog />
+                </header>
+                
 
-            <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-red-600">
-                    <h2 className="text-2xl font-bold text-red-700 mb-4">Gráfico de Atención Mensual</h2>
-                    <LineChart width={500} height={300} data={data}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="day" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="count" stroke="#8884d8" />
-                    </LineChart>
+                <div className=" text-white text-center py-8">
+                    <h1 className="text-4xl font-bold mb-4">Administración de Asistencia Jurídica</h1>
+                    <p>Bienvenido (nombre)</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-red-600">
-                    <h2 className="text-2xl font-bold text-red-700 mb-4">Administrador</h2>
-                    <div className='text-3xl'>
-                        <h4><strong>Nombre:</strong> Juan Perez</h4>
-                        <h4><strong>RUT:</strong> 12.345.678-9</h4>
-                        <h4><strong>Correo:</strong> juan.perez@example.com</h4>
-                        <h4><strong>Fono oficina:</strong> +56 9 1234 5678</h4>
+                <div className="flex-grow p-8 grid grid-cols-3 grid-rows-1 gap-4">
+                    <div className="bg-gray-800 col-span-2 p-6 rounded-lg mx-9 shadow-xl border-2 border-white">
+                        <h2 className="text-xl font-bold text-white mb-4 text-center">Gráfico de Atención Mensual</h2>
+                        <LineChart className='' width={800} height={300} data={data}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="day" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="count" stroke="#8884d8" />
+                        </LineChart>
                     </div>
+                    <div className='mx-9 col-start-3 flex flex-col justify-center'>
+                        <button
+                            className="bg-gray-800 border w-full text-white font-bold py-1 px-3 rounded hover:bg-gray-600 transition duration-300"
+                            onClick={handleEditHorarios}
+                        >   
+                            <div className='flex items-center'>
+                                <img src={EditHorario} alt="" className="w-10 h-10 my-1"/>
+                                <div className='mx-auto'>
+                                    Editar Horarios
+                                </div>
+                                <img src={EditHorario} alt="" className="w-10 h-10"/>
+                            </div>
+                        </button>
+
+                        <button
+                            className="bg-gray-800 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                            onClick={handleEditCitas}
+                        >
+                            <div className='flex items-center'>
+                                <img src={EditCitas} alt="" className="w-10 h-10 my-1"/>
+                                <div className='mx-auto'>
+                                    Editar Citas
+                                </div>
+                                <img src={EditCitas} alt="" className="w-10 h-10"/>
+                                
+                            </div>
+                        </button>
+
+                        <button
+                            className="bg-gray-800 border w-full text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                            onClick={ ()=> handleEditPerfil()}
+                        >
+                            <div className='flex items-center'>
+                                <img src={EditPerfil} alt="" className="w-10 h-10 my-1"/>
+                                <div className='mx-auto'>
+                                    Editar Perfil
+                                </div>
+                                <img src={EditPerfil} alt="" className="w-10 h-10"/>
+                                
+                            </div>
+                            
+                        </button>
+
+                        <button
+                            onClick={toggleCalendar}
+                            className="bg-gray-800 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                        >
+                            <div className='flex items-center'>
+                                <img src={VerCalendario} alt="" className="w-10 h-10 my-1"/>
+                                <div className='mx-auto'>
+                                    Ver Calendario
+                                </div>
+                                <img src={VerCalendario} alt="" className="w-10 h-10"/>
+                            </div>
+                        </button>
+                    </div>
+                    
                 </div>
-            </div>
 
-            <div className="p-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-                <button
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={handleEditHorarios}
-                >
-                    Editar Horarios
-                </button>
-                <button
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={handleEditCitas}
-                >
-                    Editar Citas
-                </button>
-                <button
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={ ()=> handleEditPerfil()}
-                >
-                    Editar Perfil
-                </button>
-                <button
-                    onClick={toggleCalendar}
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                >
-                    Ver Calendario
-                </button>
-            </div>
+                
+                <footer className=''>
+                    <FooterPS/>
+                </footer>
 
-
-            <footer>
-                <FooterPS />
-
-            </footer>
-
-            {isModalCitasOpen && (
+                {isModalCitasOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
                         <div className="absolute top-4 right-4 flex space-x-2">
@@ -585,7 +623,8 @@ function AsistenciaJuridica() {
                     </div>
                 </div>
             )}
-            
+                
+            </div>
         </div>
     );
 }
