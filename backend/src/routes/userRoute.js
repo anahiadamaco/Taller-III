@@ -1,20 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
-const cors = require('cors');
 
-const app = express();
-app.use(cors({
-  origin: 'http://localhost:3001', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'] 
-}));
+const usuarioController = require('../controllers/userController');
+const authController = require('../controllers/authController');
 
-// Registro
-router.post('/api/registerPM', userController.registerUser);
+// Rutas para usuarios
+router.get('/', usuarioController.getAll);
+router.get('/:rut', usuarioController.getById);
+router.post('/', usuarioController.create);
+router.put('/:rut', usuarioController.update);
+router.delete('/:rut', usuarioController.delete);
 
-// Login
-router.post('/api/login', userController.loginUser);
-
+// Ruta para autenticación
+router.post('/login', authController.login);
 
 module.exports = router;

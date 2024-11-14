@@ -1,15 +1,43 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('nombre_de_tu_base_de_datos', 'usuario', 'contraseña', {
-  host: 'localhost',
-  dialect: 'postgres',
-});
+require('dotenv').config();
+
+const sequelize = new Sequelize(
+    process.env.DB_NAME, 
+    process.env.DB_USER, 
+    process.env.DB_PASSWORD, 
+    {
+        host: process.env.DB_HOST,
+        dialect: 'mysql',
+        port: process.env.DB_PORT
+    }
+);
 
 // Definición del modelo
-const User = sequelize.define('User', {
+const Usuario = sequelize.define('Usuario', {
   rut: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true, // Asegúrate de que el RUT sea único
+    unique: true, // Verifica que no exista otro usuario con el mismo RUT
+  },
+  nombre: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  apellido_paterno: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  apellido_materno: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  correo: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  telefono: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
   },
   contrasena: {
     type: DataTypes.STRING,
@@ -26,4 +54,4 @@ const User = sequelize.define('User', {
   await sequelize.sync();
 })();
 
-module.exports = User;
+module.exports = Usuario; // Exporta el modelo para poder usarlo en otros archivos
