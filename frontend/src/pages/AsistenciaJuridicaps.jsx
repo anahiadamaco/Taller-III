@@ -203,7 +203,7 @@ function AsistenciaJuridica() {
     );
 
     return (
-        <div className="min-h-screen flex flex-col" style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
+        <div className="min-h-screen flex flex-col overflow-y-hidden" style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
             
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
@@ -219,7 +219,7 @@ function AsistenciaJuridica() {
                 </div>
 
                 <div className="flex-grow p-8 grid grid-cols-3 grid-rows-1 gap-4">
-                    <div className="bg-gray-800 col-span-2 p-6 rounded-lg mx-9 shadow-xl border-2 border-white">
+                    <div className="bg-gray-800 animate-slide-top5 col-span-2 p-6 rounded-lg mx-9 shadow-xl border-2 border-white">
                         <h2 className="text-xl font-bold text-white mb-4 text-center">Gráfico de Atención Mensual</h2>
                         <LineChart className='' width={800} height={300} data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
@@ -232,12 +232,12 @@ function AsistenciaJuridica() {
                     </div>
                     <div className='mx-9 col-start-3 flex flex-col justify-center'>
                         <button
-                            className="bg-gray-800 border w-full text-white font-bold py-1 px-3 rounded hover:bg-gray-600 transition duration-300"
+                            className="bg-gray-800 animate-slide-top border w-full text-white font-bold py-1 px-3 rounded hover:bg-gray-600 transition duration-300"
                             onClick={handleEditHorarios}
                         >   
                             <div className='flex items-center'>
                                 <img src={EditHorario} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto'>
+                                <div className='mx-auto text-xl'>
                                     Editar Horarios
                                 </div>
                                 <img src={EditHorario} alt="" className="w-10 h-10"/>
@@ -245,12 +245,12 @@ function AsistenciaJuridica() {
                         </button>
 
                         <button
-                            className="bg-gray-800 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                            className="bg-gray-800 animate-slide-top2 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
                             onClick={handleEditCitas}
                         >
                             <div className='flex items-center'>
                                 <img src={EditCitas} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto'>
+                                <div className='mx-auto text-xl'>
                                     Editar Citas
                                 </div>
                                 <img src={EditCitas} alt="" className="w-10 h-10"/>
@@ -259,12 +259,12 @@ function AsistenciaJuridica() {
                         </button>
 
                         <button
-                            className="bg-gray-800 border w-full text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                            className="bg-gray-800 animate-slide-top3 border w-full text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
                             onClick={ ()=> handleEditPerfil()}
                         >
                             <div className='flex items-center'>
                                 <img src={EditPerfil} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto'>
+                                <div className='mx-auto text-xl'>
                                     Editar Perfil
                                 </div>
                                 <img src={EditPerfil} alt="" className="w-10 h-10"/>
@@ -275,24 +275,26 @@ function AsistenciaJuridica() {
 
                         <button
                             onClick={toggleCalendar}
-                            className="bg-gray-800 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                            className="bg-gray-800 animate-slide-top4 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
                         >
                             <div className='flex items-center'>
                                 <img src={VerCalendario} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto'>
+                                <div className='mx-auto text-xl'>
                                     Ver Calendario
                                 </div>
                                 <img src={VerCalendario} alt="" className="w-10 h-10"/>
                             </div>
                         </button>
                     </div>
-                    
-                </div>
 
-                
-                <footer className=''>
-                    <FooterPS/>
-                </footer>
+                </div>
+                    <div className='mt-auto'>
+                        <footer className='mt-2'>
+                            <FooterPS/> 
+                        </footer>
+
+                    </div>
+
 
                 {isModalCitasOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
