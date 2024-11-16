@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
 
 
@@ -203,99 +203,111 @@ function AsistenciaJuridica() {
     );
 
     return (
-        <div className="min-h-screen flex flex-col overflow-y-hidden" style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
+        <div className="min-h-screen flex flex-col relative" >
+            <header>
+                <HeaderLog />
+            </header>
             
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-            <div className="bg-slate-900 z-10 flex-grow max-w-screen-2xl mx-auto w-full">
-                <header>
-                    <HeaderLog />
-                </header>
+            <main className='flex-1 flex justify-center relative' style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                 
 
-                <div className=" text-white text-center py-8">
-                    <h1 className="text-4xl font-bold mb-4">Administración de Asistencia Jurídica</h1>
-                    <p>Bienvenido (nombre)</p>
+                <div className='bg-slate-900 h-full w-full max-w-screen-2xl mx-auto p-10 shadow-lg z-10 flex items-center relative'>
+                
+                    <div className='w-full p-10'>
+                        <div >
+                            <h1 className='text-center text-white text-4xl font-bold mb-6'>Administración de Asistencia Jurídica</h1>
+
+                        </div>
+                        
+                        
+                        <div className="py-8 grid grid-cols-3 grid-rows-1 gap-8">
+              
+                            {/* Columna izquierda */}
+                            <div className="rounded-lg col-span-2 shadow-lg col-start-1 ">   
+
+                                <div className="bg-gray-800 animate-slide-top5 p-6 rounded-lg shadow-xl border-2">
+                                    <h2 className="text-xl font-bold text-white mb-4 text-center">Gráfico de Atención Mensual</h2>
+                                    <div className=' h-64'>
+                                        <ResponsiveContainer width="95%" height="100%">
+                                            <LineChart  data={data}>
+                                                <CartesianGrid strokeDasharray="3 3" />
+                                                <XAxis dataKey="day" />
+                                                <YAxis />
+                                                <Tooltip />
+                                                <Legend />
+                                                <Line type="monotone" dataKey="count" stroke="#8884d8" />
+                                            </LineChart>
+
+                                        </ResponsiveContainer>
+                                    </div>
+                                </div>              
+                            </div>
+
+                            <div className="my-auto lg:col-start-3 sm:col-span-2">
+
+                                <button
+                                    className="bg-gray-800 animate-slide-top border w-full text-white font-bold py-1 px-3 rounded hover:bg-gray-600 transition duration-300"
+                                    onClick={handleEditHorarios}
+                                >   
+                                    <div className='flex items-center'>
+                                        <img src={EditHorario} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Editar Horarios
+                                        </div>
+                                        <img src={EditHorario} alt="" className="w-10 h-10"/>
+                                    </div>
+                                </button>
+
+                                <button
+                                    className="bg-gray-800 animate-slide-top2 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                                    onClick={handleEditCitas}
+                                >
+                                    <div className='flex items-center'>
+                                        <img src={EditCitas} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Editar Citas
+                                        </div>
+                                        <img src={EditCitas} alt="" className="w-10 h-10"/>                             
+                                    </div>
+                                </button>
+
+                                <button
+                                    className="bg-gray-800 animate-slide-top3 border w-full text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                                    onClick={ ()=> handleEditPerfil()}
+                                >
+                                    <div className='flex items-center'>
+                                        <img src={EditPerfil} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Editar Perfil
+                                        </div>
+                                        <img src={EditPerfil} alt="" className="w-10 h-10"/> 
+                                    </div>
+                                </button>
+
+                                <button
+                                    onClick={toggleCalendar}
+                                    className="bg-gray-800 animate-slide-top4 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                                >
+                                    <div className='flex items-center'>
+                                        <img src={VerCalendario} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Ver Calendario
+                                        </div>
+                                        <img src={VerCalendario} alt="" className="w-10 h-10"/>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div className="flex-grow p-8 grid grid-cols-3 grid-rows-1 gap-4">
-                    <div className="bg-gray-800 animate-slide-top5 col-span-2 p-6 rounded-lg mx-9 shadow-xl border-2 border-white">
-                        <h2 className="text-xl font-bold text-white mb-4 text-center">Gráfico de Atención Mensual</h2>
-                        <LineChart className='' width={800} height={300} data={data}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="day" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="count" stroke="#8884d8" />
-                        </LineChart>
-                    </div>
-                    <div className='mx-9 col-start-3 flex flex-col justify-center'>
-                        <button
-                            className="bg-gray-800 animate-slide-top border w-full text-white font-bold py-1 px-3 rounded hover:bg-gray-600 transition duration-300"
-                            onClick={handleEditHorarios}
-                        >   
-                            <div className='flex items-center'>
-                                <img src={EditHorario} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto text-xl'>
-                                    Editar Horarios
-                                </div>
-                                <img src={EditHorario} alt="" className="w-10 h-10"/>
-                            </div>
-                        </button>
-
-                        <button
-                            className="bg-gray-800 animate-slide-top2 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
-                            onClick={handleEditCitas}
-                        >
-                            <div className='flex items-center'>
-                                <img src={EditCitas} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto text-xl'>
-                                    Editar Citas
-                                </div>
-                                <img src={EditCitas} alt="" className="w-10 h-10"/>
-                                
-                            </div>
-                        </button>
-
-                        <button
-                            className="bg-gray-800 animate-slide-top3 border w-full text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
-                            onClick={ ()=> handleEditPerfil()}
-                        >
-                            <div className='flex items-center'>
-                                <img src={EditPerfil} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto text-xl'>
-                                    Editar Perfil
-                                </div>
-                                <img src={EditPerfil} alt="" className="w-10 h-10"/>
-                                
-                            </div>
-                            
-                        </button>
-
-                        <button
-                            onClick={toggleCalendar}
-                            className="bg-gray-800 animate-slide-top4 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
-                        >
-                            <div className='flex items-center'>
-                                <img src={VerCalendario} alt="" className="w-10 h-10 my-1"/>
-                                <div className='mx-auto text-xl'>
-                                    Ver Calendario
-                                </div>
-                                <img src={VerCalendario} alt="" className="w-10 h-10"/>
-                            </div>
-                        </button>
-                    </div>
-
-                </div>
-                    <div className='mt-auto'>
-                        <footer className='mt-2'>
-                            <FooterPS/> 
-                        </footer>
-
-                    </div>
-
-
+            </main>
+            <footer>
+                <FooterPS/> 
+            </footer>
+            
+  
+            <div className="z-10">
                 {isModalCitasOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
