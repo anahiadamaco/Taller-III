@@ -33,13 +33,23 @@ function FooterPM() {
                     </ul>
                 </div>
 
+<<<<<<< HEAD
                 <div className="my-2">
                     <div className="flex items-center">
+=======
+                
+            </div>
+
+            <div className=" items-start justify-center h-24">
+                <div className="my-4">
+                        <div className="flex items-center">
+>>>>>>> Catalina
                         <img className="h-6 w-6" src={Gmailicon} alt="" />
                         <p className="text-white mx-4">munitco@temuco.cl (correo oficial)</p>
                     </div>
                     <p className="text-white mx-10">webmaster@temuco.cl (exclusivo para temas técnicos y de contenido)</p>
                 </div>
+<<<<<<< HEAD
             </div>
 
             <div className="flex flex-col items-start mx-8 my-2">
@@ -62,6 +72,9 @@ function FooterPM() {
                         temucowebvideos
                     </li>
                 </ul>
+=======
+                
+>>>>>>> Catalina
             </div>
 
             <div className="flex items-start justify-start space-x-4">

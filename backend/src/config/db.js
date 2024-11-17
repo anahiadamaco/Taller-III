@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('dotenv').config(); // Cargar las variables de entorno desde el archivo .env
 
 // Mostrar las variables de entorno para confirmar que se cargaron correctamente
@@ -10,11 +11,18 @@ console.log('DB_PORT:', process.env.DB_PORT);
 const mysql = require('mysql2');
 
 // Crear un pool de conexiones utilizando las variables de entorno
+=======
+require('dotenv').config();
+
+const mysql = require('mysql');
+
+>>>>>>> Catalina
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+<<<<<<< HEAD
     port: process.env.DB_PORT, // Asegúrate de que el puerto sea el correcto
     waitForConnections: true,
     connectionLimit: 10,
@@ -48,3 +56,26 @@ function closePool() {
 
 // Exportar el promisePool para su uso en otros módulos
 module.exports = promisePool;
+=======
+    port: process.env.DB_PORT
+});
+
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('Error al conectar a la base de datos:');
+        console.error('Código:', err.code);
+        console.error('Mensaje:', err.message);
+        return;
+    }
+
+    console.log('Conexión establecida correctamente:', !!connection);
+
+    if (connection) {
+        connection.release();
+        console.log('Conexión liberada.');
+    }
+});
+
+module.exports = pool;
+
+>>>>>>> Catalina
