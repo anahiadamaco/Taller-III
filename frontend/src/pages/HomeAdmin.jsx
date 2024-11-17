@@ -1,7 +1,6 @@
 import React from "react";
 import HeaderLog from '../component/NavLog.jsx';
-import { Link } from "react-router-dom";
-import Graf from '../component/Grafico'; 
+import { Link } from "react-router-dom"; 
 
 function HomeAdmin() {
   return (
@@ -20,13 +19,13 @@ function HomeAdmin() {
         {/* Botones de gestión */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Link
-            to="/admin/GestionarPS"
+            to="/GestionarPS"
             className="p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
             Gestionar Prestadores
           </Link>
           <Link
-            to="/admin/Servicios"
+            to="/Servicios"
             className="p-6 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
             Administrar Servicios
@@ -54,10 +53,11 @@ function HomeAdmin() {
                         </div>
                         <div className="p-4 bg-white rounded-lg shadow-md">
                             <h3 className="text-lg font-bold mb-2 text-center">Uso del Servicio por Prestador</h3>
+
                             {/*gráfico de líneas aquí */}
                             <div className="h-64 bg-gray-200">Gráfico de líneas</div>
                             <div>
-                                <Graf/>
+                                
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPS.jsx'
 
 function Peluqueria() {
     
@@ -193,13 +194,13 @@ function Peluqueria() {
 
             <div className="bg-sky-600 text-white text-center py-16">
                 <h1 className="text-4xl font-bold mb-4">Administrador de Peluquería</h1>
-                <p className="text-xl">Gestión de servicios y especialistas.</p>
+                <p className="text-2xl">Gestión de servicios y especialistas.</p>
             </div>
 
             <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Gráfico de Atención Mensual */}
                 <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600">
-                    <h2 className="text-xl font-bold text-sky-700 mb-4">Gráfico de Atención Mensual</h2>
+                    <h2 className="text-2xl font-bold text-sky-700 mb-4">Gráfico de Atención Mensual</h2>
                     <LineChart width={500} height={300} data={data}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
@@ -212,8 +213,8 @@ function Peluqueria() {
 
                 {/* Perfil del prestador de servicio */}
                 <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600">
-                    <h2 className="text-xl font-bold text-sky-700 mb-4">Perfil del Prestador de Servicio</h2>
-                    <div>
+                    <h2 className="text-2xl font-bold text-sky-700 mb-4">Perfil del Prestador de Servicio</h2>
+                    <div className='text-3xl'>
                         <h4><strong>Nombre:</strong> Julia Martínez</h4>
                         <h4><strong>RUT:</strong> 12.345.678-9</h4>
                         <h4><strong>Correo:</strong> julia.martinez@example.com</h4>
@@ -226,33 +227,33 @@ function Peluqueria() {
             {/* Botones de acción */}
             <div className="p-8 grid grid-cols-1 md:grid-cols-4 gap-4">
                 <button
-                    className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
+                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
                     onClick={handleEditHorarios}
                 >
                     Editar Horarios
                 </button>
                 <button
-                    className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
+                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
                     onClick={handleEditCitas}
                 >
                     Editar Citas
                 </button>
                 <button
-                    className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
+                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
                     onClick={ ()=> handleEditPerfil()}
                 >
                     Editar Perfil
                 </button>
                 <button
                     onClick={toggleCalendar}
-                    className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
+                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
                 >
                     Ver Calendario
                 </button>
             </div>
 
-            <footer className="bg-sky-600 text-white text-center p-6">
-                <p>© 2024 Municipalidad - Peluquería</p>
+            <footer className="mt-auto">
+                <Footer />
             </footer>
 
             {isModalCitasOpen && (

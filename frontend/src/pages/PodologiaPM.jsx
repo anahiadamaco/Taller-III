@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const Podologia = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -24,13 +25,13 @@ const Podologia = () => {
 
       <div className="bg-sky-600 text-white text-center py-16">
         <h1 className="text-4xl font-bold mb-4">Bienvenido a Podología</h1>
-        <p className="text-xl">Cuidado y atención especializada para la salud de tus pies.</p>
+        <p className="text-2xl">Cuidado y atención especializada para la salud de tus pies.</p>
       </div>
 
       <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600">
           <h1 className="text-2xl font-bold mb-4 text-sky-700">Podología</h1>
-          <p className="text-gray-700 mb-4">
+          <p className="text-2xl text-gray-700 mb-4">
             Ofrecemos tratamientos podológicos para mejorar la salud de tus pies, brindando atención personalizada en diversas áreas.
           </p>
         </div>
@@ -39,7 +40,7 @@ const Podologia = () => {
           <h2 className="text-xl font-bold text-sky-700 mb-2">Seleccionar Horario</h2>
           <button
             onClick={toggleCalendar}
-            className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
+            className="text-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
           >
             Ver Calendario
           </button>
@@ -47,7 +48,7 @@ const Podologia = () => {
 
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600">
           <h2 className="text-xl font-bold text-sky-700 mb-2">Servicios Podológicos Disponibles</h2>
-          <ul className="list-disc list-inside text-gray-700">
+          <ul className="text-2xl list-disc list-inside text-gray-700">
             <li>Cuidado de pies diabéticos</li>
             <li>Tratamiento de uñas encarnadas</li>
             <li>Podología deportiva</li>
@@ -57,7 +58,7 @@ const Podologia = () => {
 
         <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-sky-600 md:col-span-1 h-64 overflow-y-scroll">
           <h2 className="text-xl font-bold text-sky-700 mb-4">Especialistas</h2>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="text-2xl grid grid-cols-1 gap-4">
             {personas.map((persona, index) => (
               <div key={index} className="flex items-center gap-4">
                 <div className="bg-sky-200 h-12 w-12 rounded-full"></div> {/* Avatar circle */}
@@ -95,6 +96,10 @@ const Podologia = () => {
           </div>
         </div>
       )}
+
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };
