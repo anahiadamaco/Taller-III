@@ -1,6 +1,6 @@
 // Importar módulos necesarios
 const express = require('express');
-const pool = require('./db'); // Importar la configuración del pool
+const pool = require('./config/db'); // Importar la configuración del pool
 require('dotenv').config(); // Cargar variables de entorno
 
 // Verificar las variables de entorno
