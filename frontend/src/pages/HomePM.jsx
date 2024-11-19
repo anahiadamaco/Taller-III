@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderLog from '../component/NavLog';
 import Footer from '../component/FooterPM';
-import Fondo from '../img/fondologin.webp'; // Importa tu imagen aquí
+import Fondo from '../img/fondologin.webp';
 import { useNavigate } from 'react-router-dom';
-
 
 function Home() {
     const navigate = useNavigate();
+    const [nombre, setNombre] = useState(''); // Estado para almacenar el nombre del usuario
+
+    // Llama a la API para obtener el nombre
+    useEffect(() => {
+        const fetchNombre = async () => {
+            try {
+                const response = await fetch('/api/usuario'); // Asegúrate de que la ruta sea correcta
+                if (response.ok) {
+                    const data = await response.json();
+                    setNombre(data.nombre);
+                } else {
+                    console.error('Error al obtener el nombre');
+                }
+            } catch (error) {
+                console.error('Error al conectar con la API:', error);
+            }
+        };
+
+        fetchNombre();
+    }, []);
 
     const handleGuia = () => {
         navigate('/Guia');
     };
 
     const handlePerfil = () => {
-        navigate('/Perf')
+        navigate('/Perf');
     };
 
     return (
         <div className="min-h-screen flex flex-col relative">
-            {/* Navbar con z-index alto */}
             <header className="relative z-20">
                 <HeaderLog />
             </header>
@@ -30,25 +48,20 @@ function Home() {
                     backgroundSize: 'cover', 
                     backgroundPosition: 'center'
                 }}>
-                {/* Superposición oscura solo sobre el contenido central */}
                 <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
 
-                {/* Contenedor blanco central sin espacios arriba y abajo */}
                 <div className="bg-white h-full w-full max-w-5xl mx-auto p-10 rounded-lg shadow-lg z-10 flex items-center relative">
                     <div className="w-full p-10">
-                        <h1 className="text-center text-2xl font-bold mb-6">Bienvenido al Programa Protección Mayor</h1>
+                        {/* Muestra el nombre del usuario */}
+                        <h1 className="text-center text-2xl font-bold mb-6">
+                            Bienvenido {nombre ? `, ${nombre}` : ''} al Programa Protección Mayor
+                        </h1>
 
-                        {/* Contenedor en columna */}
                         <div className="flex flex-col gap-6">
-                            
-                            {/* Contenedor de Citas Próximas y Guía en fila */}
                             <div className="flex gap-6">
-                                
-                                {/* Sección de Citas Próximas */}
                                 <div className="bg-gray-200 p-6 rounded-lg shadow-md flex-1">
                                     <h1 className="text-xl font-semibold mb-4 text-black">Citas Próximas</h1>
                                     <ul>
-                                        {/* Aquí podrías mapear las citas próximas */}
                                         <li className="mb-4 p-4 bg-white rounded-lg shadow-sm">
                                             <p className="text-gray-800 font-medium">Servicio: Kinesiología</p>
                                             <p className="text-gray-800">Fecha: 2024-11-15</p>
@@ -61,8 +74,7 @@ function Home() {
                                         </li>
                                     </ul>
                                 </div>
-                                
-                                {/* Sección de Guía de Página */}
+
                                 <div className="bg-gray-100 p-6 rounded-lg shadow-md flex-[0.75]">
                                     <h1 className="text-xl font-semibold mb-4 text-black">Guía de Página</h1>
                                     <p className="text-gray-700 mb-4">
@@ -76,7 +88,7 @@ function Home() {
                             <div className="bg-gray-200 p-4 rounded-lg shadow-md flex items-center gap-4">
                                 <button 
                                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                                    onClick={handlePerfil} // Botón para el Perfil
+                                    onClick={handlePerfil}
                                 >
                                     Ir al Perfil
                                 </button>
@@ -85,11 +97,9 @@ function Home() {
                                 </p>
                             </div>
 
-                            {/* Sección de Servicios (debajo de Citas y Guía) */}
                             <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-6">
                                 <h1 className="text-xl font-semibold mb-4 text-black">Nuestros Servicios</h1>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {/* Servicios de Estética */}
                                     <div>
                                         <h2 className="text-lg font-semibold text-gray-800">Servicios de Estética</h2>
                                         <ul className="text-gray-700 list-disc ml-5">
@@ -97,8 +107,6 @@ function Home() {
                                             <li>Podología</li>
                                         </ul>
                                     </div>
-
-                                    {/* Atenciones Médicas */}
                                     <div>
                                         <h2 className="text-lg font-semibold text-gray-800">Atenciones Médicas</h2>
                                         <ul className="text-gray-700 list-disc ml-5">
@@ -106,8 +114,6 @@ function Home() {
                                             <li>Psicología</li>
                                         </ul>
                                     </div>
-
-                                    {/* Asistencias */}
                                     <div>
                                         <h2 className="text-lg font-semibold text-gray-800">Asistencias</h2>
                                         <ul className="text-gray-700 list-disc ml-5">
@@ -122,10 +128,8 @@ function Home() {
                 </div>
             </main>
 
-            {/* Footer */}
             <footer className="relative z-10">
                 <Footer />
-
             </footer>
         </div>
     );

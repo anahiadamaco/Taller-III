@@ -121,6 +121,22 @@ app.post('/api/citas', async (req, res) => {
     res.status(500).json({ message: 'Error al reservar la cita', error: err });
   }
 });
+
+// Ruta en Node.js para obtener el nombre del usuario
+app.get('/api/usuario', (req, res) => {
+  const userId = req.user.id; // Suponiendo que usas autenticación y tienes el ID del usuario
+  const query = 'SELECT nombre FROM personas_mayores WHERE id = ?';
+  
+  db.query(query, [userId], (error, results) => {
+    if (error) return res.status(500).json({ error: 'Error al obtener el nombre' });
+    if (results.length > 0) {
+      res.json({ nombre: results[0].nombre });
+    } else {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+  });
+});
+
 // Puerto del servidor
 const PORT = process.env.PORT || 3308;
 app.listen(PORT, () => {
