@@ -11,25 +11,42 @@ const FormularioImagen = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagen(reader.result);
+        setImagen(reader.result); // Para previsualización
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!imagen) {
+
+    // Verificar si se ha seleccionado una imagen
+    const file = e.target.querySelector('input[type="file"]').files[0];
+    if (!file) {
       setMensaje('Por favor, selecciona una imagen.');
       return;
     }
-    
-    // Aquí puedes manejar la subida de la imagen a tu backend
-    console.log('Imagen lista para enviar:', imagen);
-    setMensaje('Imagen cargada con éxito!');
-    setImagen(null); // Reinicia el estado si es necesario
-  };
 
+    // Crear FormData para enviar la imagen al backend
+    const formData = new FormData();
+    formData.append('image', file); // Enviar el archivo real
+
+    try {
+      const response = await fetch('http://localhost:3308/api/receive-image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        setMensaje('Imagen subida correctamente.');
+        setImagen(null); // Reinicia el estado de la imagen
+      } else {
+        setMensaje('Hubo un error al subir la imagen.');
+      }
+    } catch (error) {
+      setMensaje('Error de conexión.');
+    }
+  };
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
