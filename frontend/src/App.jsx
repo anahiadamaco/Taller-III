@@ -6,49 +6,89 @@ import Login from './pages/Login';
 /* Rutas Administrador */
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
+<<<<<<< HEAD
+import Servicios from './pages/Admin_Servicios';
+=======
 import Servicios from './pages/Admin_servicios';
+>>>>>>> Catalina
 import GenerarReportes from "./pages/generador_reportes";
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
+<<<<<<< HEAD
+import AsJuPS from './pages/AsistenciaJuridicaPS';
+import AsSoPS from './pages/AsistenciaSocialPS';
+import FonoPS from './pages/FonoaudiologiaPS';
+import KinePS from './pages/KinesiologiaPS';
+
+import PeluPS from './pages/PeluqueriaPS';
+
+import PodoPS from './pages/PodologiaPS';
+=======
 import AsJuPS from './pages/AsistenciaJuridicaps';
 import AsSoPS from './pages/AsistenciaSocialPS';
 import FonoPS from './pages/FonoaudiologiaPS';
 import KinePS from './pages/KinesiologiaPS';
 import PeluPS from './pages/PeluqueriaPS';
 import PodoPS from './pages/Podologiaps';
+>>>>>>> Catalina
 import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
-import RegiPM from './pages/Registropm';
+import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
+<<<<<<< HEAD
+
 import AsSoPM from './pages/AsistenicaSocialPM';
+
+=======
+import AsSoPM from './pages/AsistenicaSocialPM';
+>>>>>>> Catalina
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/Peluqueriapm';
+import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/Psicologiapm';
+import PsicPM from './pages/PsicologiaPM';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Catalina
 /* Para probar funcionamiento */
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
+<<<<<<< HEAD
+
 import RegisSoc from './pages/RegistroSocialHogar';
+
+=======
+import RegisSoc from './pages/RegistroSocialHogar';
+>>>>>>> Catalina
 import PerPS from './pages/PerfilPrestadorServicios';
 import FormAV from './component/FormAggVac';
 import FormEPPS from './component/FormEdPerfPS';
 import FormEPPM from './component/FormEdPerfPM';
+<<<<<<< HEAD
+
+import EvaluacionServicios from "./component/Evaluacion_servicio"; 
+=======
 import Evaluacion_Servicios from "./component/Evaluacion_servicio"; 
+>>>>>>> Catalina
 
 
 function App() {
     return (
         <Router>
             <Routes>
+<<<<<<< HEAD
+
+                <Route path="/EvaluacionServicios" element={<EvaluacionServicios/>}/>
+=======
                 <Route path="/EvaluacionServicios" element={<Evaluacion_Servicios/>}/>
+>>>>>>> Catalina
 
                 <Route path="/" element={<Login />} />
 
@@ -72,6 +112,10 @@ function App() {
                 <Route path="/HPM" element={<HomePM />} />
                 <Route path="/RPM" element={<RegiPM />} />
                 <Route path="/AJPM" element={<AsJuPM />} />
+<<<<<<< HEAD
+
+=======
+>>>>>>> Catalina
                 <Route path="/ASPM" element={<AsSoPM />} /> 
                 <Route path="/FPM" element={<FonoPM />} />
                 <Route path="/KPM" element={<KinePM />} />
