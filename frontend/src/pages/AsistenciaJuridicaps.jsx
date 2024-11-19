@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
-<<<<<<< HEAD
-=======
-import Footer from '../component/FooterPS.jsx';
-
->>>>>>> Catalina
 import FooterPS from '../component/FooterPS.jsx';
 
 function AsistenciaJuridica() {

@@ -1,12 +1,8 @@
 import React from "react";
-<<<<<<< HEAD
 import HeaderAdmin from '../component/NavAdmin.jsx';
 import { Link } from "react-router-dom"; 
 import Footer from "../component/FooterPM.jsx";
-=======
-import HeaderLog from '../component/NavLog.jsx';
-import { Link } from "react-router-dom"; 
->>>>>>> Catalina
+
 
 function HomeAdmin() {
   return (
@@ -25,11 +21,9 @@ function HomeAdmin() {
         {/* Botones de gestión */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Link
-<<<<<<< HEAD
+
             to="/Admin/GestionarPS"
-=======
-            to="/GestionarPS"
->>>>>>> Catalina
+
             className="p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
             Gestionar Prestadores
