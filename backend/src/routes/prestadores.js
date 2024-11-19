@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db'); 
+const pool = require('../config/db'); 
 
 // Crear un nuevo prestador
 router.post('/crear', async (req, res) => {

@@ -1,17 +1,18 @@
 package com.example.intregra3
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.tooling.preview.Preview
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,206 +34,172 @@ class Podologia : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PodologiaScreen() {
+    var servicio by remember { mutableStateOf("") }
+    var fecha by remember { mutableStateOf("") }
+    var hora by remember { mutableStateOf("") }
+    val context = LocalContext.current
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Servicios de Podología") },
+                title = { Text("Reserva de Podología") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF03A9F4))
             )
         }
-    ) { paddingValues ->
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .padding(padding)
+                .padding(16.dp)
+                .background(Color(0xFFE3F2FD)),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            HeaderSection()
-            ServiceList()
-            ScheduleSection()
+            Text(
+                text = "Bienvenido a nuestra clínica podológica",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                color = Color(0xFF1E88E5)
+            )
+
+            ServicioSelector { servicioSeleccionado -> servicio = servicioSeleccionado }
+
+            FechaSelector { fechaSeleccionada -> fecha = fechaSeleccionada }
+
+            if (servicio.isNotEmpty() && fecha.isNotEmpty()) {
+                HoraSelector(servicio) { horaSeleccionada -> hora = horaSeleccionada }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    if (servicio.isNotEmpty() && fecha.isNotEmpty() && hora.isNotEmpty()) {
+                        Toast.makeText(context, "Reserva Confirmada", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(text = "Confirmar Reserva", color = Color.White, fontSize = 18.sp)
+            }
         }
     }
 }
 
 @Composable
-fun HeaderSection() {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+fun ServicioSelector(onServicioSeleccionado: (String) -> Unit) {
+    val servicios = listOf("Consulta General", "Limpieza Podológica", "Tratamiento de Uñas Encarnadas")
+    var servicioSeleccionado by remember { mutableStateOf("") }
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("Seleccione un servicio:", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+
+        servicios.forEach { servicio ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable {
+                        servicioSeleccionado = servicio
+                        onServicioSeleccionado(servicio)
+                    },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = servicioSeleccionado == servicio,
+                    onClick = {
+                        servicioSeleccionado = servicio
+                        onServicioSeleccionado(servicio)
+                    }
+                )
+                Text(text = servicio, modifier = Modifier.padding(start = 8.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun FechaSelector(onFechaSeleccionada: (String) -> Unit) {
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+    var fechaSeleccionada by remember { mutableStateOf("") }
+
+    Button(
+        onClick = {
+            DatePickerDialog(
+                context,
+                { _, year, month, dayOfMonth ->
+                    val fecha = Calendar.getInstance().apply {
+                        set(year, month, dayOfMonth)
+                    }
+                    if (fecha.timeInMillis < System.currentTimeMillis()) {
+                        Toast.makeText(context, "Fecha no válida", Toast.LENGTH_SHORT).show()
+                    } else {
+                        fechaSeleccionada = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha.time)
+                        onFechaSeleccionada(fechaSeleccionada)
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        },
+        modifier = Modifier.fillMaxWidth(),
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF03A9F4)),
+        shape = RoundedCornerShape(12.dp)
     ) {
         Text(
-            text = "Bienvenido a nuestra clínica podológica",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
+            text = if (fechaSeleccionada.isEmpty()) "Seleccionar Fecha" else "Fecha: $fechaSeleccionada",
+            color = Color.White
         )
     }
 }
 
 @Composable
-fun ServiceList() {
-    val servicios = listOf(
-        "Consulta General" to "Examen básico de los pies.",
-        "Limpieza Podológica" to "Eliminación de callos y durezas.",
-        "Tratamiento de Uñas Encarnadas" to "Alivio y prevención de uñas encarnadas."
-    )
-
-    var servicioSeleccionado by remember { mutableStateOf<String?>(null) }
-
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        servicios.forEach { (titulo, descripcion) ->
-            ServiceItem(titulo, descripcion) {
-                servicioSeleccionado = titulo
-            }
-        }
-        servicioSeleccionado?.let {
-            Text(
-                "Servicio Seleccionado: $it",
-                fontWeight = FontWeight.Bold,
-                color = Color.Green
-            )
-        }
-    }
-}
-
-@Composable
-fun ServiceItem(titulo: String, descripcion: String, onClick: () -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() },
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFE1F5FE))
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = titulo, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = descripcion, fontSize = 14.sp, color = Color.Gray)
-        }
-    }
-}
-
-@Composable
-fun ScheduleSection() {
-    val context = LocalContext.current
-    val calendar = Calendar.getInstance()
-
-    // Estados para la fecha, hora y control del diálogo
-    var fechaSeleccionada by remember { mutableStateOf("") }
+fun HoraSelector(servicio: String, onHoraSeleccionada: (String) -> Unit) {
+    val horarios = getHorariosDisponibles(servicio)
     var horaSeleccionada by remember { mutableStateOf("") }
-    var mostrarDialogo by remember { mutableStateOf(false) }
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        // Botón para seleccionar fecha
-        Button(
-            onClick = {
-                DatePickerDialog(
-                    context,
-                    { _, year, month, dayOfMonth ->
-                        val fecha = Calendar.getInstance().apply {
-                            set(year, month, dayOfMonth)
-                        }
-                        if (fecha.timeInMillis < System.currentTimeMillis()) {
-                            Toast.makeText(context, "La fecha seleccionada no es válida", Toast.LENGTH_SHORT).show()
-                        } else {
-                            fechaSeleccionada = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha.time)
-                        }
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("Seleccione un horario:", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+
+        horarios.forEach { hora ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable {
+                        horaSeleccionada = hora
+                        onHoraSeleccionada(hora)
                     },
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-                ).show()
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-            shape = RoundedCornerShape(8.dp)
-        ) {
-            Text(text = if (fechaSeleccionada.isEmpty()) "Seleccionar Fecha" else "Fecha: $fechaSeleccionada")
-        }
-
-        // Botón para seleccionar hora
-        Button(
-            onClick = {
-                TimePickerDialog(
-                    context,
-                    { _, hourOfDay, minute ->
-                        horaSeleccionada = String.format("%02d:%02d", hourOfDay, minute)
-                    },
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
-                    true
-                ).show()
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-            shape = RoundedCornerShape(8.dp)
-        ) {
-            Text(text = if (horaSeleccionada.isEmpty()) "Seleccionar Hora" else "Hora: $horaSeleccionada")
-        }
-
-        // Botón para confirmar reserva
-        Button(
-            onClick = {
-                if (fechaSeleccionada.isNotEmpty() && horaSeleccionada.isNotEmpty()) {
-                    mostrarDialogo = true // Activar el diálogo
-                } else {
-                    Toast.makeText(context, "Por favor, selecciona una fecha y una hora", Toast.LENGTH_SHORT).show()
-                }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            shape = RoundedCornerShape(8.dp)
-        ) {
-            Text(text = "Confirmar Reserva", fontSize = 16.sp)
-        }
-
-        // Mostrar el AlertDialog si `mostrarDialogo` es verdadero
-        if (mostrarDialogo) {
-            ConfirmacionDialogo(
-                fecha = fechaSeleccionada,
-                hora = horaSeleccionada,
-                onConfirm = {
-                    Toast.makeText(context, "Reserva Confirmada", Toast.LENGTH_LONG).show()
-                    context.startActivity(Intent(context, MainActivity::class.java))
-                    mostrarDialogo = false // Cerrar el diálogo
-                },
-                onDismiss = { mostrarDialogo = false }
-            )
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = horaSeleccionada == hora,
+                    onClick = {
+                        horaSeleccionada = hora
+                        onHoraSeleccionada(hora)
+                    }
+                )
+                Text(text = hora, modifier = Modifier.padding(start = 8.dp))
+            }
         }
     }
 }
 
-@Composable
-fun ConfirmacionDialogo(
-    fecha: String,
-    hora: String,
-    onConfirm: () -> Unit,
-    onDismiss: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {
-            TextButton(onClick = onConfirm) {
-                Text("Aceptar")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancelar")
-            }
-        },
-        title = { Text("Confirmar Reserva") },
-        text = {
-            Text("¿Confirmar reserva para el $fecha a las $hora?")
-        }
-    )
+fun getHorariosDisponibles(servicio: String): List<String> {
+    return when (servicio) {
+        "Consulta General" -> listOf("10:00", "11:00", "14:00", "15:00")
+        "Limpieza Podológica" -> listOf("09:00", "11:30", "14:30", "16:00")
+        "Tratamiento de Uñas Encarnadas" -> listOf("09:30", "10:30", "13:00", "15:30")
+        else -> emptyList()
+    }
 }
 
 @Preview(showBackground = true)

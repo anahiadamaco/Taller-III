@@ -8,15 +8,21 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Build // Importa el ícono adicional
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,116 +40,180 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        createNotificationChannel() // Crear canal de notificación
-
-        // Se solicita el permiso de notificación al inicio, si es necesario
-        Permisonotificacion()
-
-        setContent {
-            ServiciosScreen()
-        }
+        createNotificationChannel()
+        solicitarPermisoNotificacion()
+        setContent { MainScreen() }
     }
 
-    // Verificar y solicitar el permiso de notificaciones (API 33+)
-    private fun Permisonotificacion() {
+    private fun solicitarPermisoNotificacion() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permission = Manifest.permission.POST_NOTIFICATIONS
-
-            // Verifica si el permiso ya está concedido
             if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
-                // Registrar el lanzador para solicitar el permiso
-                launcherpermiso.launch(permission)
+                launcherPermiso.launch(permission)
             }
         }
     }
 
-    // Lanzador para manejar la solicitud del permiso de notificación
-    private val launcherpermiso =
+    private val launcherPermiso =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (!isGranted) {
-                println("Permiso de notificaciones rechazado.")
+                Log.w("ServiciosApp", "Permiso de notificaciones rechazado.")
             }
         }
 
-    // Crear un canal de notificación (API 26+)
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Servicios"
-            val descriptionText = "Notificaciones de selección de servicios"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel("servicios_channel", name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val channel = NotificationChannel(
+                "servicios_channel", "Servicios", NotificationManager.IMPORTANCE_DEFAULT
+            ).apply { description = "Notificaciones de selección de servicios" }
+
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
 }
 
 @Composable
-fun ServiciosScreen() {
-    val context = LocalContext.current
-    val servicios = remember {
-        listOf(
-            "Podología" to Color(0xFF4CAF50),
-            "Asistencia Jurídica" to Color(0xFFFF5722),
-            "Psicología" to Color(0xFF2196F3),
-            "Peluquería" to Color(0xFFFFC107)
+fun MainScreen() {
+    var selectedTab by remember { mutableStateOf(0) }
+
+    Scaffold(
+        bottomBar = { BottomNavigationBar(selectedTab, onTabSelected = { selectedTab = it }) }
+    ) { paddingValues ->
+        when (selectedTab) {
+            0 -> ServiciosScreen(Modifier.padding(paddingValues))
+            1 -> CuentaScreen(Modifier.padding(paddingValues))
+            2 -> NewScreen(Modifier.padding(paddingValues)) // Nueva pantalla
+        }
+    }
+}
+
+@Composable
+fun BottomNavigationBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
+    NavigationBar {
+        NavigationBarItem(
+            icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
+            label = { Text("Inicio") },
+            selected = selectedTab == 0,
+            onClick = { onTabSelected(0) }
+        )
+        NavigationBarItem(
+            icon = { Icon(Icons.Default.Person, contentDescription = "Cuenta") },
+            label = { Text("Cuenta") },
+            selected = selectedTab == 1,
+            onClick = { onTabSelected(1) }
+        )
+        NavigationBarItem(
+            icon = { Icon(Icons.Default.Build, contentDescription = "Servicios") }, // Ícono adicional
+            label = { Text("Servicios") },
+            selected = selectedTab == 2,
+            onClick = { onTabSelected(2) }
         )
     }
+}
 
-    // Estado para controlar el Snackbar
-    var Mwnsajeapp by remember { mutableStateOf<String?>(null) }
+@Composable
+fun ServiciosScreen(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val servicios = listOf(
+        "Podología" to Color(0xFF4CAF50),
+        "Asistencia Jurídica" to Color(0xFFFF5722),
+        "Psicología" to Color(0xFF2196F3),
+        "Peluquería" to Color(0xFFFFC107)
+    )
+
+    var mensajeApp by remember { mutableStateOf<String?>(null) }
+    var servicioSeleccionado by remember { mutableStateOf<String?>(null) }
+    var mostrarDialogo by remember { mutableStateOf(false) }
+
     val snackbarHostState = remember { SnackbarHostState() }
 
-    // Mostrar Snackbar cuando se selecciona un servicio
-    LaunchedEffect(Mwnsajeapp) {
-        Mwnsajeapp?.let {
+    LaunchedEffect(mensajeApp) {
+        mensajeApp?.let {
             snackbarHostState.showSnackbar(it)
-            Mwnsajeapp = null //  Resetear mensaje después de mostrarlo
+            mensajeApp = null
         }
     }
 
-    Scaffold(
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(servicios) { (title, color) ->
-                ServiceBlock(title, color) {
-                    Mwnsajeapp = "Seleccionaste: $title" // Mostrar mensaje en App
-                    MostrarNotification(context, title) // Mostrar notificación
-                    navigarservicios(context, title) // Cambiar de actividad
-                }
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(servicios) { (title, color) ->
+            ServiceBlock(title, color) {
+                servicioSeleccionado = title
+                mensajeApp = "Seleccionaste: $title"
+                mostrarDialogo = true
             }
         }
     }
-}
 
-// Mostrar notificación localmente
-fun MostrarNotification(context: Context, serviceName: String) {
-    val builder = NotificationCompat.Builder(context, "servicios_channel")
-        .setSmallIcon(android.R.drawable.ic_dialog_info)
-        .setContentTitle("Servicio Seleccionado")
-        .setContentText("Has seleccionado el servicio de $serviceName.")
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-    if (NotificationManagerCompat.from(context).areNotificationsEnabled()) {
-        with(NotificationManagerCompat.from(context)) {
-            notify(serviceName.hashCode(), builder.build())
-        }
-    } else {
-        println("Las notificaciones están desactivadas.")
+    if (mostrarDialogo && servicioSeleccionado != null) {
+        ConfirmacionDialogo(
+            servicio = servicioSeleccionado!!,
+            onConfirm = {
+                mostrarDialogo = false
+                navegarServicios(context, servicioSeleccionado!!)
+            },
+            onDismiss = { mostrarDialogo = false }
+        )
     }
 }
 
-// Cambiar a la actividad correspondiente según el servicio seleccionado
-fun navigarservicios(context: Context, serviceName: String) {
+@Composable
+fun CuentaScreen(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Pantalla de Cuenta",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
+fun NewScreen(modifier: Modifier = Modifier) { // Nueva pantalla
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Pantalla de Servicios",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
+fun ConfirmacionDialogo(servicio: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = { onDismiss() },
+        title = { Text("Confirmación") },
+        text = { Text("¿Estás seguro de que deseas seleccionar $servicio?") },
+        confirmButton = {
+            TextButton(onClick = onConfirm) {
+                Text("Sí")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancelar")
+            }
+        }
+    )
+}
+
+fun navegarServicios(context: Context, serviceName: String) {
     val intent = when (serviceName) {
         "Asistencia Jurídica" -> Intent(context, AsocialPs::class.java)
         "Podología" -> Intent(context, Podologia::class.java)
@@ -156,12 +226,20 @@ fun navigarservicios(context: Context, serviceName: String) {
 
 @Composable
 fun ServiceBlock(title: String, color: Color, onClick: () -> Unit) {
+    var isClicked by remember { mutableStateOf(false) }
+    val backgroundColor by animateColorAsState(
+        if (isClicked) color.copy(alpha = 0.7f) else color
+    )
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(80.dp)
-            .background(color, shape = RoundedCornerShape(8.dp))
-            .clickable { onClick() }
+            .background(backgroundColor, shape = RoundedCornerShape(8.dp))
+            .clickable {
+                isClicked = !isClicked
+                onClick()
+            }
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {

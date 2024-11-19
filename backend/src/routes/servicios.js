@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db'); // Ajusta la importación de tu conexión a la base de datos
+const pool = require('../config/db'); // Ajusta la importación de tu conexión a la base de datos
 
 // Obtener todos los servicios
 router.get('/api/Admin/Servicios', async (req, res) => {
