@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import HeaderLog from '../component/NavLog.jsx';
 import FooterPM from '../component/FooterPM.jsx';
 import ImgPerf from '../img/Perfil.png';
-import axios from 'axios';
 
 const PerfilPrestadorServicios = () => {
     const [prestador, setPrestador] = useState(null);
@@ -26,7 +26,7 @@ const PerfilPrestadorServicios = () => {
             <header>
                 <HeaderLog />
             </header>
-            
+
             {/* Contenido principal */}
             <div className="flex-grow">
                 {/* Datos personales */}
@@ -43,7 +43,7 @@ const PerfilPrestadorServicios = () => {
                             <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong>{prestador.CorreoElectronico}</div>
                             <div className="text-2xl text-black mb-2"><strong> Especialidad: </strong>{prestador.Especialidad}</div>
                         </div>
-                        
+
                         {/* Foto de perfil */}
                         <div className="flex justify-center items-center ml-6">
                             <div className="w-64 h-64 rounded-full border-4 border-black overflow-hidden shadow-lg flex justify-center items-center">
@@ -56,27 +56,6 @@ const PerfilPrestadorServicios = () => {
                         className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
                         Editar Información
                     </Link>
-                </div>
-
-                <div className="flex justify-around">
-                    {/* Citas pendientes semanales */}
-                    <div className="bg-white border border-green-600 shadow-md rounded-lg p-6 m-6 w-1/2">
-                        <h2 className="text-4xl font-bold text-green-600 text-center mb-4">Citas pendientes</h2>
-                        <div className="text-2xl text-black text-center">Aún no tienes citas pendientes</div>
-                    </div>
-
-                    {/* Vacaciones */}
-                    <div className="bg-white border border-green-600 shadow-md rounded-lg p-6 m-6 w-1/2">
-                        <div className="flex justify-around">
-                            <h2 className="text-4xl font-bold text-green-600 text-center mb-4">Inactividad por vacaciones</h2>
-                            <Link 
-                                to={"FAV"}
-                                className="bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-800">
-                                Agregar vacaciones
-                            </Link>
-                        </div>
-                        <div className="text-2xl text-black text-center">No hay vacaciones programadas</div>
-                    </div>
                 </div>
             </div>
 
