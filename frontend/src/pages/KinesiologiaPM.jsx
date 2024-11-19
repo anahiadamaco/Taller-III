@@ -1,103 +1,188 @@
+import HeaderNoLog from '../component/NavNoLog';
 import React, { useState } from 'react';
-import HeaderLog from '../component/NavLog.jsx';
-import Footer from '../component/FooterPM.jsx';
-import Fondo from '../img/fondologin.webp'; 
-import Calendar from 'react-calendar'; // Importa el calendario
-import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
+import { useNavigate } from 'react-router-dom';
+import Fondo from '../img/fondologin.webp'; // Importa la imagen de fondo
+import FooterPM from '../component/FooterPM';
 
-const Kinesiologia = () => {
-  const [date, setDate] = useState(new Date()); // Estado para la fecha seleccionada
-  
-  const handleDateChange = (newDate) => {
-    setDate(newDate); // Actualiza la fecha seleccionada
+function Login() {
+  const [rut, setRut] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const [email, setEmail] = useState(''); // Estado para el correo en recuperación de contraseña
+  const [showRecovery, setShowRecovery] = useState(false); // Estado para mostrar u ocultar la recuperación de contraseña
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch('http://localhost:3001/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ rut, contrasena }),
+    });
+
+    if (!response.ok) {
+      console.error('Error en la solicitud');
+      return;
+    }
+
+    const data = await response.json();
+    const { rol } = data.rol;
+
+    // Redirigir según el rol
+    if (rol === 1) {
+      navigate('/Admin');
+    } else if (rol === 2) {
+      navigate('/HPS');
+    } else if (rol === 3) {
+      navigate('/HPM');
+    }
+  };
+
+  const handlePasswordRecovery = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3000/api/recuperar-contrasena', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la recuperación de contraseña');
+      }
+
+      alert('Se ha enviado un correo con las instrucciones para recuperar la contraseña.');
+    } catch (error) {
+      console.error('Error en la recuperación de contraseña', error);
+      alert('Error al enviar el correo de recuperación.');
+    }
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative">
-      <header className='relative z-20'>
-        <HeaderLog />
-      </header>
+    <div
+      className="min-h-screen flex flex-col justify-between bg-cover bg-center"
+      style={{ backgroundImage: `url(${Fondo})` }} // Aplica la imagen de fondo
+    >
+      {/* Filtro oscuro */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      <main className="flex-1 flex justify-center relative" style={{ backgroundImage: `url(${Fondo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        {/* Superposición oscura solo sobre el contenido central */}
-        <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+      {/* Contenido principal */}
+      <div className="relative z-10 flex flex-col flex-grow">
+        <header>
+          <HeaderNoLog />
+        </header>
 
-        <div className='bg-white h-full w-full max-w-5xl mx-auto p-10 rounded-lg shadow-lg z-10 flex items-center relative'>
-          <div className='w-full p-10'>
-            <h1 className='text-center text-2xl font-bold mb-6'>Servicio de Kinesiología</h1>
-            
-            {/* Descripción centrada */}
-            <p className="text-center mb-6 text-lg text-gray-700">
-              Nuestro servicio de kinesiología está diseñado para ayudarte en la rehabilitación física y mejora de tu movilidad.
-            </p>
-            
-            {/* Contenedor en dos columnas */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
-              {/* Columna izquierda */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-                <div className="mb-6">
-                  <h2 className="text-lg font-semibold mb-4 text-blue-600">Reserva de Hora</h2>
-                  <p className="text-gray-700 mb-4">Selecciona un día para tu reserva:</p>
-                  
-                  {/* Calendario para seleccionar la fecha */}
-                  <div className="mt-4">
-                    <Calendar 
-                      onChange={handleDateChange} 
-                      value={date}
-                      className="shadow-xl rounded-lg border-2 border-blue-500"
-                    />
-                  </div>
+        <div className="container mx-auto w-full my-20 flex justify-center">
+          <div className="bg-white p-10 rounded-md shadow-xl flex flex-col items-center">
+            <h1 className="text-2xl font-bold text-black text-center">Bienvenido</h1>
+            <h2 className="text-black text-center">Por favor inicie sesión</h2>
+            <hr className="mt-2 bg-black shadow w-full" />
+
+            {/* Formulario de inicio de sesión */}
+            {!showRecovery ? (
+              <form
+                className="flex flex-col space-y-6 bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+                onSubmit={handleLogin}
+              >
+                <div>
+                  <label htmlFor="rut" className="text-gray-700 font-semibold text-lg">
+                    Rut:
+                  </label>
+                  <input
+                    id="rut"
+                    type="text"
+                    placeholder="12345678-9"
+                    className="w-full mt-2 p-4 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-lg"
+                    autoComplete="off"
+                    value={rut}
+                    onChange={(e) => setRut(e.target.value)}
+                    aria-label="Ingrese su Rut"
+                  />
                 </div>
 
-                {/* Horas disponibles */}
-                <div className="mb-6">
-                  <h2 className="text-lg font-semibold mb-4 text-blue-600">Horas Disponibles</h2>
-                  <p className="text-gray-700 mb-4">Seleccione un horario disponible para su cita.</p>
-                  <div className="flex gap-4 mt-4">
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">10:00 AM</button>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">11:00 AM</button>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">2:00 PM</button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Columna derecha */}
-              <div className="space-y-8">
-                
-                {/* Caja de Prestadores */}
-                <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-                  <h2 className="text-lg font-semibold mb-4 text-blue-600">Prestadores</h2>
-                  <ul className="list-disc pl-5 text-gray-700">
-                    <li>Dr. Juan Torres - Especialista en Rehabilitación Física</li>
-                    <li>Lic. Laura Pérez - Terapia de Movimiento</li>
-                    <li>Lic. Miguel Rojas - Kinesiología Deportiva</li>
-                  </ul>
+                <div>
+                  <label htmlFor="password" className="text-gray-700 font-semibold text-lg">
+                    Contraseña:
+                  </label>
+                  <input
+                    id="password"
+                    type="password"
+                    placeholder="********"
+                    className="w-full mt-2 p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-lg"
+                    autoComplete="off"
+                    value={contrasena}
+                    onChange={(e) => setContrasena(e.target.value)}
+                    aria-label="Ingrese su contraseña"
+                  />
                 </div>
 
-                {/* Caja de Servicios */}
-                <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-                  <h2 className="text-lg font-semibold mb-4 text-blue-600">Servicios</h2>
-                  <ul className="list-disc pl-5 text-gray-700">
-                    <li>Rehabilitación Postquirúrgica</li>
-                    <li>Ejercicios Terapéuticos</li>
-                    <li>Manejo de Dolor Crónico</li>
-                    <li>Kinesiología Deportiva</li>
-                  </ul>
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-blue-600 text-white font-bold rounded-md shadow-lg hover:bg-blue-700 transition duration-300 text-lg"
+                  aria-label="Iniciar sesión"
+                >
+                  Iniciar Sesión
+                </button>
+
+                <p
+                  className="text-blue-500 text-center cursor-pointer"
+                  onClick={() => setShowRecovery(true)}
+                >
+                  ¿Olvidaste tu contraseña?
+                </p>
+              </form>
+            ) : (
+              // Formulario de recuperación de contraseña
+              <form
+                className="grid gap-4"
+                onSubmit={handlePasswordRecovery}
+              >
+                <div className="grid gap-2">
+                  <label className="text-2xl text-black font-bold" htmlFor="email">
+                    Recuperación de contraseña
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    className="bg-white border border-black text-black px-4 py-2 rounded-md w-full"
+                    autoComplete="off"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
 
-              </div>
+                <div className="grid place-items-center">
+                  <button
+                    type="submit"
+                    className="border border-black rounded-md w-40 h-10 bg-green-200 hover:bg-green-300 text-center whitespace-nowrap"
+                  >
+                    Recuperar contraseña
+                  </button>
+                </div>
 
-            </div>
+                <p
+                  className="text-2xl mt-4 text-blue-500 text-center cursor-pointer"
+                  onClick={() => setShowRecovery(false)}
+                >
+                  Volver al inicio de sesión
+                </p>
+              </form>
+            )}
           </div>
         </div>
-      </main>
+      </div>
 
-      <footer>
-        <Footer />
+      {/* Footer en la parte inferior */}
+      <footer className="relative z-10">
+        <FooterPM />
       </footer>
     </div>
   );
-};
+}
 
-export default Kinesiologia;
+export default Login;

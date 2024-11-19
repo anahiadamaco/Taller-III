@@ -13,56 +13,23 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const response = await fetch('http://localhost:3001/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ rut, contrasena }),
-    });
-    
-    if (!response.ok) {
-      console.error('Error en la solicitud');
-      return;
-    }
-
-
-      const data = await response.json();
-      const { rol } = data.rol;
-
-      // Redirigir según el rol
-      if (rol === 1) {
-        navigate('/Admin');
-      } else if (rol === 2) {
-        navigate('/HPS');
-      } else if (rol === 3) {
-        navigate('/HPM');
-      }
-  };
-
-  const handlePasswordRecovery = async (e) => {
-    e.preventDefault();
-
+  
     try {
-      const response = await fetch('http://localhost:3000/api/recuperar-contrasena', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
+      const response = await axios.post("http://localhost:3308/api/login", {
+        rut,
+        contrasena,
       });
-
-      if (!response.ok) {
-        throw new Error('Error en la recuperación de contraseña');
-      }
-
-      alert('Se ha enviado un correo con las instrucciones para recuperar la contraseña.');
-    } catch (error) {
-      console.error('Error en la recuperación de contraseña', error);
-      alert('Error al enviar el correo de recuperación.');
+  
+      console.log("Usuario autenticado:", response.data.usuario);
+      setMensaje("Inicio de sesión exitoso");
+    } catch (err) {
+      console.error("Error en el inicio de sesión:", err);
+      setError(err.response?.data?.error || "Error al iniciar sesión");
     }
   };
+  
+
+     
 
   return (
 
