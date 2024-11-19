@@ -204,6 +204,7 @@ function Fonoaudiologia() {
 
     return (
         <div className="min-h-screen flex flex-col relative" >
+            {/* Encabezado de la página */}
             <header>
                 <HeaderLog />
             </header>
