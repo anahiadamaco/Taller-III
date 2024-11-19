@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderLog from '../component/NavLog.jsx';
 import FooterPM from '../component/FooterPM.jsx';
 import ImgPerf from '../img/Perfil.png';
+import axios from 'axios';
 
 const PerfilPrestadorServicios = () => {
+    const [prestador, setPrestador] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/prestador-servicios')
+            .then((response) => {
+                setPrestador(response.data[0]);
+            })
+            .catch((error) => console.error('Error al cargar los datos:', error));
+    }, []);
+
+    if (!prestador) {
+        return <div>Cargando datos...</div>;
+    }
+
     return (
         <div className="min-h-screen flex flex-col justify-between bg-gray-50">
             {/* Header */}
@@ -20,19 +35,19 @@ const PerfilPrestadorServicios = () => {
                     <div className="flex justify-between items-center">
                         {/* Datos */}
                         <div className="flex-1">
-                            <div className="text-2xl text-black mb-2"><strong> Nombre: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> RUT: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Fecha de nacimiento: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Número telefónico: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Número oficina: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong></div>
-                            <div className="text-2xl text-black mb-2"><strong> Especialidad: </strong></div>
+                            <div className="text-2xl text-black mb-2"><strong> Nombre: </strong>{prestador.Nombre}</div>
+                            <div className="text-2xl text-black mb-2"><strong> RUT: </strong>{prestador.RUT}</div>
+                            <div className="text-2xl text-black mb-2"><strong> Fecha de nacimiento: </strong>{prestador.FechaNacimiento}</div>
+                            <div className="text-2xl text-black mb-2"><strong> Número telefónico: </strong>{prestador.NumeroTelefonico}</div>
+                            <div className="text-2xl text-black mb-2"><strong> Número oficina: </strong>{prestador.NumeroOficina || 'No asignado'}</div>
+                            <div className="text-2xl text-black mb-2"><strong> Correo electrónico: </strong>{prestador.CorreoElectronico}</div>
+                            <div className="text-2xl text-black mb-2"><strong> Especialidad: </strong>{prestador.Especialidad}</div>
                         </div>
                         
                         {/* Foto de perfil */}
                         <div className="flex justify-center items-center ml-6">
                             <div className="w-64 h-64 rounded-full border-4 border-black overflow-hidden shadow-lg flex justify-center items-center">
-                                <img src={ImgPerf} alt="Foto de perfil" className="w-full h-full"/>
+                                <img src={ImgPerf} alt="Foto de perfil" className="w-full h-full" />
                             </div>
                         </div>
                     </div>

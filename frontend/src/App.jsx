@@ -41,7 +41,7 @@ import FormAV from './component/FormAggVac';
 import FormEPPS from './component/FormEdPerfPS';
 import FormEPPM from './component/FormEdPerfPM';
 import Evaluacion_Servicios from "./component/Evaluacion_servicio"; 
-
+import Sug from './component/Sugerencias';
 
 function App() {
     return (
@@ -89,7 +89,7 @@ function App() {
                 <Route path="PerfPS/FAV" element={<FormAV />} />
                 <Route path="PerfPS/FEPPS" element={<FormEPPS />} />
                 <Route path="PerfPM/FEPPM" element={<FormEPPM />} />
-
+                <Route path="Sug" element={<Sug />} />
             </Routes>
         </Router>
     );
