@@ -23,7 +23,7 @@ import PsicPS from './pages/PsicologiaPS';
 import HomePM from './pages/HomePM';
 import RegiPM from './pages/Registropm';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
-import AsSoPM from './pages/AsistenicaSocialPM';
+import AsSoPM from './pages/AsistenciaSocialPM';
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
 import PeluPM from './pages/Peluqueriapm';
