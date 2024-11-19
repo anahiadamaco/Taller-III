@@ -327,7 +327,7 @@ function PsicPS() {
                                     <div>
                                         <label className="block text-gray-700">Fecha:</label>
                                         <input
-                                            type="text"
+                                            type="date"
                                             value={editedCita.fecha}
                                             onChange={(e) => handleCitaChange(e, 'fecha')}
                                             className="w-full p-2 border border-gray-300 rounded"
