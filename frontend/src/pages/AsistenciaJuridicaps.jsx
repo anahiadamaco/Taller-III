@@ -236,7 +236,7 @@ function AsistenciaJuridica() {
                                                 <YAxis />
                                                 <Tooltip />
                                                 <Legend />
-                                                <Line type="monotone" dataKey="count" stroke="#8884d8" />
+                                                <Line type="monotone" dataKey="count" stroke="#ffff" />
                                             </LineChart>
 
                                         </ResponsiveContainer>
@@ -307,15 +307,15 @@ function AsistenciaJuridica() {
             </footer>
             
   
-            <div className="z-10">
-                {isModalCitasOpen && (
+        <div className="z-10">
+            {isModalCitasOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                    <div className="bg-slate-800 border  animate-slide-top p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
                         <div className="absolute top-4 right-4 flex space-x-2">
                             <button onClick={handleAddCita} className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600">+</button>
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
-                        <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Citas</h2>
+                        <h2 className="text-2xl font-bold text-white text-center mb-4">Lista de Citas</h2>
                         <div className="mb-4">
                             <input
                                 type="text"
@@ -325,26 +325,26 @@ function AsistenciaJuridica() {
                                 className="w-full p-2 border border-gray-300 rounded"
                             />
                         </div>
-                        <table className="w-full border-collapse">
+                        <table className="w-full border-separate border-spacing-0 ">
                             <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-2">Proveedor</th>
-                                    <th className="border border-gray-300 p-2">Especialidad</th>
-                                    <th className="border border-gray-300 p-2">Fecha</th>
-                                    <th className="border border-gray-300 p-2">Hora</th>
-                                    <th className="border border-gray-300 p-2">Usuario</th>
-                                    <th className="border border-gray-300 p-2">Acciones</th>
+                                <tr className="bg-slate-800 ">
+                                    <th className="text-white border  p-2 mx-auto">Proveedor</th>
+                                    <th className="text-white border p-2">Especialidad</th>
+                                    <th className="text-white border p-2">Fecha</th>
+                                    <th className="text-white border p-2">Hora</th>
+                                    <th className="text-white border p-2">Usuario</th>
+                                    <th className="text-white border p-2">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className=''>
                                 {filteredCitas.map((cita, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
-                                        <td className="border border-gray-300 p-2">{cita.proveedor}</td>
-                                        <td className="border border-gray-300 p-2">{cita.especialidad}</td>
-                                        <td className="border border-gray-300 p-2">{cita.fecha}</td>
-                                        <td className="border border-gray-300 p-2">{cita.hora}</td>
-                                        <td className="border border-gray-300 p-2">{cita.usuario}</td>
-                                        <td className="border border-gray-300 p-2 flex space-x-2">
+                                    <tr key={index} className="hover:bg-slate-700">
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.proveedor}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.especialidad}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.fecha}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.hora}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.usuario}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2 flex space-x-2">
                                             <button onClick={() => handleEditCitaClick(index)} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Editar</button>
                                             <button onClick={() => handleDeleteCita(index)} className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600">Borrar</button>
                                         </td>
@@ -355,10 +355,10 @@ function AsistenciaJuridica() {
 
                         {editedCita && (
                             <div className="mt-4">
-                                <h3 className="text-lg font-bold mb-2">Editar Cita</h3>
+                                <h3 className="text-lg font-bold mb-2 text-center text-white">Editar Cita</h3>
                                 <div className="space-y-2">
                                     <div>
-                                        <label className="block text-gray-700">Proveedor:</label>
+                                        <label className="block text-white my-2">Proveedor:</label>
                                         <input
                                             type="text"
                                             value={editedCita.proveedor}
@@ -367,7 +367,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Especialidad:</label>
+                                        <label className="block text-white my-2">Especialidad:</label>
                                         <input
                                             type="text"
                                             value={editedCita.especialidad}
@@ -376,7 +376,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Fecha:</label>
+                                        <label className="block text-white my-2">Fecha:</label>
                                         <input
                                             type="text"
                                             value={editedCita.fecha}
@@ -385,7 +385,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Hora:</label>
+                                        <label className="block text-white my-2">Hora:</label>
                                         <input
                                             type="text"
                                             value={editedCita.hora}
@@ -394,7 +394,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Usuario:</label>
+                                        <label className="block text-white my-2">Usuario:</label>
                                         <input
                                             type="text"
                                             value={editedCita.usuario}
@@ -415,12 +415,12 @@ function AsistenciaJuridica() {
 
             {isModalHorariosOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                    <div className="bg-slate-800 p-6 border animate-slide-top rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
                         <div className="absolute top-4 right-4 flex space-x-2">
                             <button onClick={handleAddHorario} className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600">+</button>
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
-                        <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Horarios</h2>
+                        <h2 className="text-2xl font-bold text-white text-center mb-4">Lista de Horarios</h2>
                         <div className="mb-4">
                             <input
                                 type="text"
@@ -430,25 +430,24 @@ function AsistenciaJuridica() {
                                 className="w-full p-2 border border-gray-300 rounded"
                             />
                         </div>
-                        <table className="w-full border-collapse">
+                        <table className="w-full border-separate border-spacing-0 ">
                             <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-2">Proveedor</th>
-                                    <th className="border border-gray-300 p-2">Especialidad</th>
-                                    <th className="border border-gray-300 p-2">Día</th>
-                                    <th className="border border-gray-300 p-2">Horas</th>
-                                    <th className="border border-gray-300 p-2">Acciones</th>
+                                <tr className="bg-slate-800 ">
+                                    <th className="text-white border  p-2 mx-auto">Proveedor</th>
+                                    <th className="text-white border p-2">Especialidad</th>
+                                    <th className="text-white border p-2">Fecha</th>
+                                    <th className="text-white border p-2">Hora</th>
+                                    <th className="text-white border p-2">Usuario</th>
                                 </tr>
                             </thead>
-                            
                             <tbody>
-                                {filteredHorarios.map((horario, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
-                                        <td className="border border-gray-300 p-2">{horario.proveedor}</td>
-                                        <td className="border border-gray-300 p-2">{horario.especialidad}</td>
-                                        <td className="border border-gray-300 p-2">{horario.horarios.map(h => h.dia).join(', ')}</td>
-                                        <td className="border border-gray-300 p-2">{horario.horarios.map(h => h.horas).join(', ')}</td>
-                                        <td className="border border-gray-300 p-2 flex space-x-2">
+                            {filteredHorarios.map((horario, index) => (
+                                    <tr key={index} className="hover:bg-slate-700">
+                                        <td className="border hover:border-red-700 p-2 text-white">{horario.proveedor}</td>
+                                        <td className="border hover:border-red-700 text-white p-2">{horario.especialidad}</td>
+                                        <td className="border hover:border-red-700 text-white p-2">{horario.horarios.map(h => h.dia).join(', ')}</td>
+                                        <td className="border hover:border-red-700 text-white p-2">{horario.horarios.map(h => h.horas).join(', ')}</td>
+                                        <td className="border hover:border-red-700 text-white p-2 flex space-x-2">
                                             <button onClick={() => handleEditHorarioClick(index)} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Editar</button>
                                             <button onClick={() => handleDeleteHorario(index)} className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600">Borrar</button>
                                         </td>
@@ -459,10 +458,10 @@ function AsistenciaJuridica() {
 
                         {editedHorario && (
                             <div className="mt-4">
-                                <h3 className="text-lg font-bold mb-2">Editar Horario</h3>
+                                <h3 className="text-white  text-center text-lg font-bold mb-2">Editar Horario</h3>
                                 <div className="space-y-2">
                                     <div>
-                                        <label className="block text-gray-700">Proveedor:</label>
+                                        <label className="block text-white my-2">Proveedor:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.proveedor}
@@ -471,7 +470,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Especialidad:</label>
+                                        <label className="block text-white my-2">Especialidad:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.especialidad}
@@ -480,7 +479,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Día:</label>
+                                        <label className="block text-white my-2">Día:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.horarios.map(h => h.dia).join(', ')}
@@ -489,7 +488,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Horas:</label>
+                                        <label className="block text-white my-2">Horas:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.horarios.map(h => h.horas).join(', ')}
@@ -510,13 +509,13 @@ function AsistenciaJuridica() {
 
             {isModalPerfilOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                    <div className="bg-slate-800 border animate-slide-top p-3 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
                         <div className="absolute top-4 right-4 flex space-x-2">
                             <button onClick={handleAddPerfil} className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600">+</button>
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
-                        <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Perfil</h2>
-                        <div className="mb-4">
+                        <h2 className="text-2xl font-bold text-white text-center mb-4">Perfiles</h2>
+                        <div className="mb-4 ">
                             <input
                                 type="text"
                                 placeholder="Buscar Perfil..."
@@ -525,26 +524,26 @@ function AsistenciaJuridica() {
                                 className="w-full p-2 border border-gray-300 rounded"
                             />
                         </div>
-                        <table className="w-full border-collapse">
+                        <table className="w-full  border-separate border-spacing-0">
                             <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-2">Nombre</th>
-                                    <th className="border border-gray-300 p-2">Tipo</th>
-                                    <th className="border border-gray-300 p-2">RUT</th>
-                                    <th className="border border-gray-300 p-2">Correo</th>
-                                    <th className="border border-gray-300 p-2">Fono</th>
-                                    <th className="border border-gray-300 p-2">Acciones</th>
+                                <tr className="bg-slate-800">
+                                    <th className="border border-gray-300 text-white p-2">Nombre</th>
+                                    <th className="border border-gray-300 text-white p-2">Tipo</th>
+                                    <th className="border border-gray-300 text-white p-2">RUT</th>
+                                    <th className="border border-gray-300 text-white p-2">Correo</th>
+                                    <th className="border border-gray-300 text-white p-2">Fono</th>
+                                    <th className="border border-gray-300 text-white p-2">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredPerfiles.map((perfil, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
-                                        <td className="border border-gray-300 p-2">{perfil.nombre}</td>
-                                        <td className="border border-gray-300 p-2">{perfil.tipo}</td>
-                                        <td className="border border-gray-300 p-2">{perfil.rut}</td>
-                                        <td className="border border-gray-300 p-2">{perfil.correo}</td>
-                                        <td className="border border-gray-300 p-auto">{perfil.fono}</td>
-                                        <td className="border border-gray-300 p-2 flex space-x-2">
+                                    <tr key={index} className="hover:bg-slate-700">
+                                        <td className="border  text-white hover:border-red-700 p-2">{perfil.nombre}</td>
+                                        <td className="border text-white hover:border-red-700 p-2">{perfil.tipo}</td>
+                                        <td className="border text-white hover:border-red-700 p-2">{perfil.rut}</td>
+                                        <td className="border text-white hover:border-red-700 p-2">{perfil.correo}</td>
+                                        <td className="border text-white hover:border-red-700 p-auto">{perfil.fono}</td>
+                                        <td className="border  hover:border-red-700 p-2 flex space-x-2">
                                             <button onClick={() => handleEditPerfilClick(index)} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Editar</button>
                                             <button onClick={() => handleDeletePerfil(index)} className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600">Borrar</button>
                                         </td>
@@ -554,11 +553,11 @@ function AsistenciaJuridica() {
                         </table>
 
                         {editedPerfil && (
-                            <div className="mt-4">
-                                <h3 className="text-lg font-bold mb-2">Editar Perfil</h3>
+                            <div className="mt-4 ">
+                                <h3 className="text-lg font-bold mb-2 text-white text-center">Editar Perfil</h3>
                                 <div className="space-y-2">
                                     <div>
-                                        <label className="block text-gray-700">Nombre:</label>
+                                        <label className="block text-white my-2">Nombre:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.nombre}
@@ -567,7 +566,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Tipo:</label>
+                                        <label className="block text-white my-2">Tipo:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.tipo}
@@ -576,7 +575,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">RUT:</label>
+                                        <label className="block text-white my-2">RUT:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.rut}
@@ -585,7 +584,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Correo:</label>
+                                        <label className="block text-white my-2">Correo:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.correo}
@@ -594,7 +593,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Fono:</label>
+                                        <label className="block text-white my-2">Fono:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.fono}
@@ -614,10 +613,10 @@ function AsistenciaJuridica() {
             )}
 
             {isCalendarOpen && (
-                <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
+                <div className="fixed inset-0 bg-gray-800 animate-slide-top bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-slate-800 border p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
                         <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-2xl font-bold text-red-700">Calendario de Psicología</h2>
+                        <h2 className="mx-auto text-2xl font-bold text-white">Calendario de Asistencia Juridica</h2>
                         <button
                             onClick={toggleCalendar}
                             className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600"
@@ -628,7 +627,7 @@ function AsistenciaJuridica() {
                         <div className="flex-grow overflow-auto">
                             <iframe
                                 src="https://calendar.google.com/calendar/embed?src=eff5da9c280da4b997f8cc2c5e8a649b62fffd71d0be5c347ef755f7e8817192%40group.calendar.google.com&ctz=America%2FSantiago"
-                                className="w-full h-full"
+                                className="w-full h-full rounded border border-green-500"
                                 frameBorder="0"
                                 scrolling="no"
                                 title="Calendario de Psicología"
