@@ -1,13 +1,14 @@
 import React from "react";
-import HeaderLog from '../component/NavLog.jsx';
+import HeaderAdmin from '../component/NavAdmin.jsx';
 import { Link } from "react-router-dom"; 
+import Footer from "../component/FooterPM.jsx";
 
 function HomeAdmin() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Encabezado */}
       <header className="bg-white shadow-md">
-        <HeaderLog />
+        <HeaderAdmin />
       </header>
 
       <main className="container mx-auto p-6"/>
@@ -19,7 +20,7 @@ function HomeAdmin() {
         {/* Botones de gestión */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Link
-            to="/GestionarPS"
+            to="/Admin/GestionarPS"
             className="p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
           >
             Gestionar Prestadores
@@ -61,7 +62,10 @@ function HomeAdmin() {
                             </div>
                         </div>
                     </div>
-                </div>      
+                </div>  
+                <footer>
+                  <Footer />
+                </footer>    
     </div>
   );
 }
