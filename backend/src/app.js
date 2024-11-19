@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config(); // Cargar variables de entorno
+const bodyParser = require('body-parser');
 
 // Verificar las variables de entorno
 console.log('DB_HOST:', process.env.DB_HOST);
@@ -16,32 +17,33 @@ console.log('DB_PORT:', process.env.DB_PORT);
 // Inicializar la aplicación
 const app = express();
 app.use(express.json()); // Middleware para procesar JSON
+app.use(bodyParser.json());
 
 app.use(cors({
-  origin: 'http://localhost:3000',  
-}))
+  origin: 'http://localhost:3000',  // Cambiar por tu front-end si es necesario
+}));
+
 // Verificar conexión a la base de datos
 (async () => {
-    try {
-        const [rows] = await pool.query('SELECT 1 + 1 AS solution');
-        console.log('Conexión exitosa a la base de datos. Prueba:', rows[0].solution);
-    } catch (error) {
-        console.error('Error al conectar a la base de datos:', error.message);
-        process.exit(1); // Detener la aplicación si no puede conectar
-    }
+  try {
+    const [rows] = await pool.query('SELECT 1 + 1 AS solution');
+    console.log('Conexión exitosa a la base de datos. Prueba:', rows[0].solution);
+  } catch (error) {
+    console.error('Error al conectar a la base de datos:', error.message);
+    process.exit(1); // Detener la aplicación si no puede conectar
+  }
 })();
 
 // Ruta raíz para prueba
 app.get('/', async (req, res) => {
-    try {
-        const [rows] = await pool.query('SELECT 1 + 1 AS solution');
-        res.send(`Servidor funcionando correctamente. Resultado: ${rows[0].solution}`);
-    } catch (error) {
-        console.error('Error al realizar la consulta:', error.message);
-        res.status(500).send('Error en la base de datos');
-    }
+  try {
+    const [rows] = await pool.query('SELECT 1 + 1 AS solution');
+    res.send(`Servidor funcionando correctamente. Resultado: ${rows[0].solution}`);
+  } catch (error) {
+    console.error('Error al realizar la consulta:', error.message);
+    res.status(500).send('Error en la base de datos');
+  }
 });
-
 
 // Configuración de multer para almacenar la imagen
 const storage = multer.diskStorage({
@@ -59,7 +61,6 @@ const upload = multer({ storage: storage });
 
 // Ruta para recibir la imagen
 app.post('/api/receive-image', upload.single('image'), (req, res) => {
-  // Verificar si se recibió un archivo
   if (!req.file) {
     return res.status(400).send("No se subió ninguna imagen.");
   }
@@ -68,8 +69,47 @@ app.post('/api/receive-image', upload.single('image'), (req, res) => {
   res.status(200).send("Imagen recibida y almacenada correctamente.");
 });
 
+
+app.post('/api/prestadores/crear', async (req, res) => {
+  const { nombre, correo, id_servicio } = req.body;
+  const query = 'INSERT INTO prestadores (nombre, correo, id_servicio) VALUES (?, ?, ?)';
+  
+  try {
+      const [result] = await pool.query(query, [nombre, correo, id_servicio]);
+      res.json({ id: result.insertId, nombre, correo, id_servicio });  // Respuesta JSON
+  } catch (err) {
+      console.error('Error al crear prestador:', err.message);
+      res.status(500).json({ error: 'Error al crear prestador.' });  // Asegúrate de responder con JSON
+  }
+});
+
+// Obtener todos los prestadores
+app.get('/api/prestadores', async (req, res) => {
+  try {
+    const [results] = await pool.query('SELECT * FROM prestadores');
+    res.json(results);
+  } catch (err) {
+    console.error('Error al obtener prestadores:', err.message);
+    res.status(500).send('Error al obtener prestadores.');
+  }
+});
+
+// Eliminar un prestador
+app.delete('/api/prestadores/eliminar/:id', async (req, res) => {
+  const { id } = req.params;
+  const query = 'DELETE FROM prestadores WHERE id = ?';
+  
+  try {
+    await pool.query(query, [id]);
+    res.sendStatus(204);
+  } catch (err) {
+    console.error('Error al eliminar prestador:', err.message);
+    res.status(500).send('Error al eliminar prestador.');
+  }
+});
+
 // Puerto del servidor
 const PORT = process.env.PORT || 3308;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

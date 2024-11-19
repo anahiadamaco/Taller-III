@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FooterPM from '../component/FooterPM.jsx';
 
-function Registro() {
+function RegiPM () {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [contrasena, setContraseña] = useState('');
@@ -153,4 +153,4 @@ function Registro() {
   );
 }
 
-export default Registro;
+export default RegiPM ;

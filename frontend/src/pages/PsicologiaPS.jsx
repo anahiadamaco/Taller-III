@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import HeaderLog from '../component/NavLog.jsx';
 import FooterPS from '../component/FooterPS.jsx';
 
-function Psicologia() {
+function PsicPS() {
     
     const [isCalendarOpen, setCalendarOpen] = useState(false);
 
@@ -590,4 +590,4 @@ function Psicologia() {
     );
 }
 
-export default Psicologia;
+export default PsicPS;

@@ -5,7 +5,7 @@ import Fondo from '../img/fondologin.webp';
 import Calendar from 'react-calendar'; // Importa el calendario
 import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
 
-const Psicologia = () => {
+const PsicPM  = () => {
   const [date, setDate] = useState(new Date()); // Estado para la fecha seleccionada
   
   const handleDateChange = (newDate) => {
@@ -100,4 +100,4 @@ const Psicologia = () => {
   );
 };
 
-export default Psicologia;
+export default PsicPM ;
