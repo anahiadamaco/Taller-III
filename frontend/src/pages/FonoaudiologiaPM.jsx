@@ -4,7 +4,6 @@ import Footer from '../component/FooterPM.jsx';
 import Fondo from '../img/fondologin.webp'; 
 import Calendar from 'react-calendar'; // Importa el calendario
 import 'react-calendar/dist/Calendar.css'; // Estilos del calendario
-talina
 
 const Fonoaudiologia = () => {
   const [date, setDate] = useState(new Date()); // Estado para la fecha seleccionada
