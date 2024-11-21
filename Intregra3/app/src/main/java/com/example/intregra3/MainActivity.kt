@@ -89,7 +89,12 @@ fun ServiciosScreen() {
             "Podología" to Color(0xFF4CAF50),
             "Asistencia Jurídica" to Color(0xFFFF5722),
             "Psicología" to Color(0xFF2196F3),
-            "Peluquería" to Color(0xFFFFC107)
+            "Peluquería" to Color(0xFFFFC107),
+            "Condiciones Médicas" to Color(0xFF9C27B0),
+            "Formulario Movilidad" to Color(0xFF03A9F4),
+            "Formulario RSH" to Color(0xFFFF9800),
+            "Perfil Móvil" to Color(0xFF8BC34A),
+            "Servicios Admin" to Color(0xFF607D8B)
         )
     }
 
@@ -101,7 +106,7 @@ fun ServiciosScreen() {
     LaunchedEffect(Mwnsajeapp) {
         Mwnsajeapp?.let {
             snackbarHostState.showSnackbar(it)
-            Mwnsajeapp = null //  Resetear mensaje después de mostrarlo
+            Mwnsajeapp = null // Resetear mensaje después de mostrarlo
         }
     }
 
@@ -149,10 +154,16 @@ fun navigarservicios(context: Context, serviceName: String) {
         "Podología" -> Intent(context, Podologia::class.java)
         "Psicología" -> Intent(context, PsicologiaPs::class.java)
         "Peluquería" -> Intent(context, Peluqueria::class.java)
+        "Condiciones Médicas" -> Intent(context, Condicionesmedicas::class.java)
+        "Formulario Movilidad" -> Intent(context, FormularioMovilidad::class.java)
+        "Formulario RSH" -> Intent(context, FormularioRSH::class.java)
+        "Perfil Móvil" -> Intent(context, Perfilmovil::class.java)
+        "Servicios Admin" -> Intent(context, ServiciosAdmin::class.java)
         else -> return
     }
     context.startActivity(intent)
 }
+
 
 @Composable
 fun ServiceBlock(title: String, color: Color, onClick: () -> Unit) {

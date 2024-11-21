@@ -1,6 +1,6 @@
-const pool = require('../db');
+const pool = require('../config/db');
 const bcrypt = require('bcrypt');
-const sequelize = require('../db'); 
+const sequelize = require('../config/db'); 
 const User = require('../models/User');
 
 // Registro de usuario
