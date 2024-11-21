@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const ReviewPage = () => {
   // Estado con reseñas de ejemplo
@@ -50,6 +52,7 @@ const ReviewPage = () => {
   };
 
   return (
+    
     <div className="p-6 max-w-2xl mx-auto">
       {/* Encabezado con promedio de calificaciones */}
       <div className="text-center">
@@ -156,6 +159,9 @@ const ReviewPage = () => {
           </div>
         ))}
       </div>
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { FiEdit3, FiMail, FiPhone, FiUser } from 'react-icons/fi'; // Íconos de react-icons
+import HeaderLog from '../component/NavLog.jsx';
+import Footer from '../component/FooterPM.jsx';
 
 const UserProfile = () => {
   // Estado para almacenar la información del usuario y el modo de edición
@@ -115,6 +117,9 @@ const UserProfile = () => {
           Guardar Cambios
         </button>
       )}
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 };
