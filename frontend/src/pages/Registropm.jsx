@@ -119,12 +119,12 @@ function Registro() {
 
           {/* Contenedor Contrasena */}
           <div className="bg-white border border-gray-300 p-6 rounded-md shadow-xl w-full md:w-1/3">
-            <h3 className="text-lg font-semibold text-black">Contrasena</h3>
+            <h3 className="text-lg font-semibold text-black">Contraseña</h3>
             <form onSubmit={handleSubmit}>
-              <p className="text-black mt-2">Ingrese su Contrasena:</p>
+              <p className="text-black mt-2">Ingrese su Contraseña:</p>
               <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-2 w-full" autoComplete="off" />
 
-              <p className="text-black mt-2">Confirme su Contrasena:</p>
+              <p className="text-black mt-2">Confirme su Contraseña:</p>
               <input type="password" value={confirmarContrasena} onChange={(e) => setConfirmarContrasena(e.target.value)} required className="bg-white border border-black text-black px-4 py-2 rounded-md my-2 w-full" autoComplete="off" />
 
               <div className="flex justify-center mt-4">
