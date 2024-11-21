@@ -94,7 +94,7 @@ fun ButtonPeluqueria() {
 
     Button(
         onClick = {
-            val intent = Intent(context, PsicologiaPs::class.java) // Crea el Intent para navegar a PsicologiaPs
+            val intent = Intent(context, GraficoAtencion::class.java) // Crea el Intent para navegar a PsicologiaPs
             context.startActivity(intent) // Inicia la nueva actividad
         },
         modifier = Modifier

@@ -33,10 +33,14 @@ function FooterPM() {
                     </ul>
                 </div>
 
-
                 <div className="my-2">
-                    <div className="flex items-center">
+                    <div className="flex items-center"></div>
+                </div>
+            </div>
 
+            <div className=" items-start justify-center h-24">
+                <div className="my-4">
+                        <div className="flex items-center">
                         <img className="h-6 w-6" src={Gmailicon} alt="" />
                         <p className="text-white mx-4">munitco@temuco.cl (correo oficial)</p>
                     </div>

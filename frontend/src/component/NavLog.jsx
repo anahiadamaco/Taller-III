@@ -76,7 +76,6 @@ function HeaderLog() {
                     element.classList.remove('hidden');
                     boton.classList.add('hidden');
                 }
-
             }
         }
 
@@ -95,6 +94,7 @@ function HeaderLog() {
                     <div className="flex items-center">
                         <img src={logo} alt="Logo" className="h-12 w-auto" />
                     </div>
+
 
                     {/* Navegación principal */}
                     <nav id="Menu1" className="ml-auto flex items-center space-x-8 text-xl">
@@ -200,7 +200,6 @@ function HeaderLog() {
                         >
                             Cerrar Sesión
                         </Link>
-
                     </nav>
                 </header>
                 <Outlet />

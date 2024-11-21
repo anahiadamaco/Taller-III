@@ -1,44 +1,66 @@
 import React, { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
+
+
 import FooterPS from '../component/FooterPS.jsx';
 
-function AsistenciaJuridica() {
+//Importacion de imagenes
+import Fondo from '../img/fondologin.webp';
+import EditHorario from '../img/edithorario.png';
+import EditCitas from '../img/editcitas.png';
+import EditPerfil from '../img/editperfil.png';
+import VerCalendario from '../img/vercalendario.png';
 
+function AsistenciaJuridica() {
+    {/* Estados para controlar la apertura y cierre del calendario */}
     const [isCalendarOpen, setCalendarOpen] = useState(false);
 
     const toggleCalendar = () => {
         setCalendarOpen(!isCalendarOpen);
     };
 
+    {/* Datos de ejemplo para el gráfico */}
     const data = [
-        { day: '01', count: 0 },
-        { day: '02', count: 0 },
-        { day: '03', count: 0 },
-        // ... (más datos)
-        { day: '30', count: 0 },
-        { day: '31', count: 0 }
+        { day: '0', count: 0 },
+        { day: 'Ene', count: 0 },
+        { day: 'Feb', count: 0 },
+        { day: 'Mar', count: 4 },
+        { day: 'Abr', count: 0 },
+        { day: 'May', count: 0 },
+        { day: 'Jun', count: 0 },
+        { day: 'Jul', count: 0 },
+        { day: 'Ago', count: 0 },
+        { day: 'Sep', count: 0 },
+        { day: 'Oct', count: 0 },
+        { day: 'Nov', count: 0 },
+        { day: 'Dic', count: 0 },
     ];
 
+    {/* Estados para controlar la apertura y cierre de los modales */}
     const [isModalCitasOpen, setIsModalCitasOpen] = useState(false);
     const [isModalHorariosOpen, setIsModalHorariosOpen] = useState(false);
     const [isModalPerfilOpen, setIsModalPerfilOpen] = useState(false);
 
+    {/* Estados para controlar las citas */}
     const [citas, setCitas] = useState([
         { proveedor: 'Juan Perez', especialidad: 'Abogado', fecha: '2024-10-15', hora: '10:00', usuario: 'Pedro González' },
         { proveedor: 'María López', especialidad: 'Asistente Legal', fecha: '2024-10-16', hora: '11:30', usuario: 'Ana Martínez' }
     ]);
 
+    {/* Estados para controlar los horarios*/}
     const [horarios, setHorarios] = useState([
         { proveedor: 'Juan Perez', especialidad: 'Abogado', horarios: [{ dia: 'Lunes', horas: '09:00 - 12:00' }, { dia: 'Martes', horas: '10:00 - 13:00' }] },
         { proveedor: 'María López', especialidad: 'Asistente Legal', horarios: [{ dia: 'Martes', horas: '10:00 - 13:00' }] }
     ]);
 
+    {/* Estados para controlar los perfiles */}
     const [perfiles, setPerfiles] = useState([
         { nombre: 'Juan Perez', tipo: 'Proveedor', rut: '12.345.678-9', correo: 'juan.perez@example.com', fono: '+56 9 1234 5678' },
         { nombre: 'Pedro González', tipo: 'Usuario', rut: '11.223.344-5', correo: 'pedro.gonzalez@example.com', fono: '+56 9 9876 5432' }
     ]);
 
+    {/* Estados para controlar la edición de citas, horarios y perfiles */}
     const [editIndex, setEditIndex] = useState(null); // Índice para controlar qué fila se está editando
     const [editedCita, setEditedCita] = useState(null); // Datos de la cita editada
     const [editedHorario, setEditedHorario] = useState(null); // Datos del horario editado
@@ -63,13 +85,14 @@ function AsistenciaJuridica() {
         setEditedCita({ ...citas[index] });
     };
 
+    {/* Función para manejar los cambios en los campos de la cita */}
     const handleCitaChange = (e, field) => {
         setEditedCita({
             ...editedCita,
             [field]: e.target.value,
         });
     };
-
+    {/* Función para guardar los cambios en la cita */}
     const handleSaveCitas = () => {
         if (!editedCita.proveedor || !editedCita.especialidad || !editedCita.fecha || !editedCita.hora || !editedCita.usuario) {
             alert("Por favor, completa todos los campos.");
@@ -83,12 +106,12 @@ function AsistenciaJuridica() {
         }
         closeModal();
     };
-
+    {/* Función para eliminar una cita */}
     const handleDeleteCita = (index) => {
         const updatedCitas = citas.filter((_, i) => i !== index);
         setCitas(updatedCitas);
     };
-
+    {/* Función para agregar una nueva cita */}
     const handleAddCita = () => {
         setCitas([...citas, { proveedor: '', especialidad: '', fecha: '', hora: '', usuario: '' }]);
     };
@@ -99,13 +122,14 @@ function AsistenciaJuridica() {
         setEditedHorario({ ...horarios[index] });
     };
 
+    {/* Función para manejar los cambios en los campos del horario */}
     const handleHorarioChange = (e, field) => {
         setEditedHorario({
             ...editedHorario,
             [field]: e.target.value,
         });
     };
-
+    {/* Función para guardar los cambios en el horario */}
     const handleSaveHorarios = () => {
         if (!editedHorario.proveedor || !editedHorario.especialidad || !editedHorario.dia || !editedHorario.hora) {
             alert("Por favor, completa todos los campos.");
@@ -119,12 +143,12 @@ function AsistenciaJuridica() {
         }
         closeModal();
     };
-
+    {/* Función para eliminar un horario */}
     const handleDeleteHorario = (index) => {
         const updatedHorarios = horarios.filter((_, i) => i !== index);
         setHorarios(updatedHorarios);
     };
-
+    {/* Función para agregar un nuevo horario */}
     const handleAddHorario = () => {
         setHorarios([...horarios, { proveedor: '', especialidad: '', horarios: [{ dia: '', horas: '' }] }]);
     };
@@ -136,12 +160,12 @@ function AsistenciaJuridica() {
         setEditIndex(index); // Almacena el índice del perfil a editar
         setIsModalPerfilOpen(true); // Abre el modal
     };
-
+    {/* Función para guardar los cambios en el perfil */}
     const handleDeletePerfil = (index) => {
         const updatedPerfiles = perfiles.filter((_, i) => i !== index);
         setPerfiles(updatedPerfiles);
     };
-
+    {/* Función para agregar un nuevo perfil */}
     const handlePerfilChange = (e, field) => {
         setEditedPerfil({
             ...editedPerfil,
@@ -152,7 +176,7 @@ function AsistenciaJuridica() {
     const handleAddPerfil = () => {
         setPerfiles([...perfiles, { nombre: '', tipo: '', rut:'', correo: '', fono: '' }]);
     }
-
+    {/* Función para guardar los cambios en el perfil */}
     const handleSavePerfil = () => {
         if (editIndex !== null) {
             const updatedPerfiles = [...perfiles];
@@ -187,81 +211,129 @@ function AsistenciaJuridica() {
     );
 
     return (
-        <div className="min-h-screen bg-gray-200 flex flex-col">
+        <div className="min-h-screen flex flex-col relative" >
+
+            {/* Encabezado de la página */}
             <header>
                 <HeaderLog />
             </header>
 
-            <div className="bg-red-600 text-white text-center py-8">
-                <h1 className="text-4xl font-bold mb-4">Administrador de Asistencia Jurídica</h1>
-                <p className="text-2xl">Gestión de servicios y especialistas.</p>
-            </div>
+            {/* Seccion principal de la página */}
 
-            <div className="flex-grow p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-red-600">
-                    <h2 className="text-2xl font-bold text-red-700 mb-4">Gráfico de Atención Mensual</h2>
-                    <LineChart width={500} height={300} data={data}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="day" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="count" stroke="#8884d8" />
-                    </LineChart>
-                </div>
+            <main className='flex-1 flex justify-center relative' style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
+            
+                {/* Capa semitransparente negra */}
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+                
+                <div className='bg-slate-900 h-full w-full max-w-screen-2xl mx-auto p-10 shadow-lg z-10 flex items-center relative'>
+                
+                    <div className='w-full p-10'>
+                        <div >
+                            <h1 className='text-center text-white text-4xl font-bold mb-6'>Administración de Asistencia Jurídica</h1>
 
-                <div className="bg-white p-6 rounded-lg shadow-xl border-2 border-red-600">
-                    <h2 className="text-2xl font-bold text-red-700 mb-4">Administrador</h2>
-                    <div className='text-3xl'>
-                        <h4><strong>Nombre:</strong> Juan Perez</h4>
-                        <h4><strong>RUT:</strong> 12.345.678-9</h4>
-                        <h4><strong>Correo:</strong> juan.perez@example.com</h4>
-                        <h4><strong>Fono oficina:</strong> +56 9 1234 5678</h4>
+                        </div>
+                        
+                         {/* Contenedor de las columnas: grafico y botones */}
+                        <div className="py-8 grid grid-cols-3 grid-rows-1 gap-8">
+              
+                            {/* Columna izquierda: grafico de atencion mensual */}
+                            <div className="rounded-lg col-span-2 shadow-lg col-start-1 ">   
+
+                                <div className="bg-gray-800 animate-slide-top5 p-6 rounded-lg shadow-xl border-2">
+                                    <h2 className="text-xl font-bold text-white mb-4 text-center">Gráfico de Atención Mensual</h2>
+                                     {/* Contenedor del gráfico */}
+                                    <div className=' h-64'>
+                                        <ResponsiveContainer width="95%" height="100%">
+                                            <LineChart  data={data}>
+                                                <CartesianGrid strokeDasharray="3 3" />
+                                                <XAxis dataKey="day" />
+                                                <YAxis />
+                                                <Tooltip />
+                                                <Legend />
+                                                <Line type="monotone" dataKey="count" stroke="#ffff" />
+                                            </LineChart>
+
+                                        </ResponsiveContainer>
+                                    </div>
+                                </div>              
+                            </div>
+
+                            <div className="my-auto lg:col-start-3 sm:col-span-2">
+                                {/* Botón para editar horarios */}
+                                <button
+                                    className="bg-gray-800 animate-slide-top border w-full text-white font-bold py-1 px-3 rounded hover:bg-gray-600 transition duration-300"
+                                    onClick={handleEditHorarios}
+                                >   
+                                    <div className='flex items-center'>
+                                        <img src={EditHorario} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Editar Horarios
+                                        </div>
+                                        <img src={EditHorario} alt="" className="w-10 h-10"/>
+                                    </div>
+                                </button>
+                                {/* Botón para editar citas */}
+                                <button
+                                    className="bg-gray-800 animate-slide-top2 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                                    onClick={handleEditCitas}
+                                >
+                                    <div className='flex items-center'>
+                                        <img src={EditCitas} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Editar Citas
+                                        </div>
+                                        <img src={EditCitas} alt="" className="w-10 h-10"/>                             
+                                    </div>
+                                </button>
+                                  {/* Botón para editar perfil */}
+                                <button
+                                    className="bg-gray-800 animate-slide-top3 border w-full text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                                    onClick={ ()=> handleEditPerfil()}
+                                >
+                                    <div className='flex items-center'>
+                                        <img src={EditPerfil} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Editar Perfil
+                                        </div>
+                                        <img src={EditPerfil} alt="" className="w-10 h-10"/> 
+                                    </div>
+                                </button>
+                                {/* Botón para ver el calendario */}
+                                <button
+                                    onClick={toggleCalendar}
+                                    className="bg-gray-800 animate-slide-top4 border w-full my-4 text-white font-bold py-1 px-3  rounded hover:bg-gray-600 transition duration-300"
+                                >
+                                    <div className='flex items-center'>
+                                        <img src={VerCalendario} alt="" className="w-10 h-10 my-1"/>
+                                        <div className='mx-auto text-xl'>
+                                            Ver Calendario
+                                        </div>
+                                        <img src={VerCalendario} alt="" className="w-10 h-10"/>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="p-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-                <button
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={handleEditHorarios}
-                >
-                    Editar Horarios
-                </button>
-                <button
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={handleEditCitas}
-                >
-                    Editar Citas
-                </button>
-                <button
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                    onClick={ ()=> handleEditPerfil()}
-                >
-                    Editar Perfil
-                </button>
-                <button
-                    onClick={toggleCalendar}
-                    className="text-xl bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600 transition duration-300"
-                >
-                    Ver Calendario
-                </button>
-            </div>
-
-
+            </main>
             <footer>
-                <FooterPS />
-
+                <FooterPS/> 
             </footer>
-
+            
+        {/*Contenedor principal para el modal de citas*/}
+        <div className="z-10">
+            {/* Verifica si el modal de citas está abierto */}
             {isModalCitasOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                     {/* Contenedor del modal, con animación, borde y desplazamiento automático en el contenido */}
+                    <div className="bg-slate-800 border  animate-slide-top p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                        {/* Contenedor para los botones de cerrar y agregar cita */}
                         <div className="absolute top-4 right-4 flex space-x-2">
                             <button onClick={handleAddCita} className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600">+</button>
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
-                        <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Citas</h2>
+                        <h2 className="text-2xl font-bold text-white text-center mb-4">Lista de Citas</h2>
+                         {/* Contenedor para el campo de búsqueda */}
                         <div className="mb-4">
                             <input
                                 type="text"
@@ -271,27 +343,32 @@ function AsistenciaJuridica() {
                                 className="w-full p-2 border border-gray-300 rounded"
                             />
                         </div>
-                        <table className="w-full border-collapse">
+                        {/* Tabla que muestra la lista de citas */}
+                        <table className="w-full border-separate border-spacing-0 ">
                             <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-2">Proveedor</th>
-                                    <th className="border border-gray-300 p-2">Especialidad</th>
-                                    <th className="border border-gray-300 p-2">Fecha</th>
-                                    <th className="border border-gray-300 p-2">Hora</th>
-                                    <th className="border border-gray-300 p-2">Usuario</th>
-                                    <th className="border border-gray-300 p-2">Acciones</th>
+                                <tr className="bg-slate-800 ">
+                                    <th className="text-white border  p-2 mx-auto">Proveedor</th>
+                                    <th className="text-white border p-2">Especialidad</th>
+                                    <th className="text-white border p-2">Fecha</th>
+                                    <th className="text-white border p-2">Hora</th>
+                                    <th className="text-white border p-2">Usuario</th>
+                                    <th className="text-white border p-2">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className>
+                                {/* Mapea las citas filtradas y las muestra en filas */}
                                 {filteredCitas.map((cita, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
-                                        <td className="border border-gray-300 p-2">{cita.proveedor}</td>
-                                        <td className="border border-gray-300 p-2">{cita.especialidad}</td>
-                                        <td className="border border-gray-300 p-2">{cita.fecha}</td>
-                                        <td className="border border-gray-300 p-2">{cita.hora}</td>
-                                        <td className="border border-gray-300 p-2">{cita.usuario}</td>
-                                        <td className="border border-gray-300 p-2 flex space-x-2">
+                                    <tr key={index} className="hover:bg-slate-700">
+                                        {/* Columna para las acciones de cada cita */}
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.proveedor}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.especialidad}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.fecha}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.hora}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2">{cita.usuario}</td>
+                                        <td className=" text-white border hover:border-red-700 p-2 flex space-x-2">
+                                            {/* Botón para editar la cita */}
                                             <button onClick={() => handleEditCitaClick(index)} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Editar</button>
+                                            {/* Botón para eliminar la cita */}
                                             <button onClick={() => handleDeleteCita(index)} className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600">Borrar</button>
                                         </td>
                                     </tr>
@@ -299,12 +376,15 @@ function AsistenciaJuridica() {
                             </tbody>
                         </table>
 
+                        {/* Verifica si hay una cita siendo editada */}           
                         {editedCita && (
                             <div className="mt-4">
-                                <h3 className="text-lg font-bold mb-2">Editar Cita</h3>
+                                <h3 className="text-lg font-bold mb-2 text-center text-white">Editar Cita</h3>
+                                {/* Contenedor para los campos de entrada de la cita */}
                                 <div className="space-y-2">
+                                    {/* Campo para editar el proveedor */}
                                     <div>
-                                        <label className="block text-gray-700">Proveedor:</label>
+                                        <label className="block text-white my-2">Proveedor:</label>
                                         <input
                                             type="text"
                                             value={editedCita.proveedor}
@@ -312,8 +392,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar la especialidad */}
                                     <div>
-                                        <label className="block text-gray-700">Especialidad:</label>
+                                        <label className="block text-white my-2">Especialidad:</label>
                                         <input
                                             type="text"
                                             value={editedCita.especialidad}
@@ -321,8 +402,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar la fecha */}
                                     <div>
-                                        <label className="block text-gray-700">Fecha:</label>
+                                        <label className="block text-white my-2">Fecha:</label>
                                         <input
                                             type="text"
                                             value={editedCita.fecha}
@@ -330,8 +412,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar la hora */}
                                     <div>
-                                        <label className="block text-gray-700">Hora:</label>
+                                        <label className="block text-white my-2">Hora:</label>
                                         <input
                                             type="text"
                                             value={editedCita.hora}
@@ -340,7 +423,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-gray-700">Usuario:</label>
+                                        <label className="block text-white my-2">Usuario:</label>
                                         <input
                                             type="text"
                                             value={editedCita.usuario}
@@ -349,6 +432,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                 </div>
+                                 {/* Contenedor de los botones de guardar y cancelar */}
                                 <div className="mt-4 flex justify-end space-x-2">
                                     <button onClick={handleSaveCitas} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Guardar</button>
                                     <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cancelar</button>
@@ -358,15 +442,17 @@ function AsistenciaJuridica() {
                     </div>
                 </div>
             )}
-
+            {/* Verifica si el modal de horarios está abierto */}
             {isModalHorariosOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                    <div className="bg-slate-800 p-6 border animate-slide-top rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                        {/* Botones para agregar un nuevo horario y cerrar el modal */}
                         <div className="absolute top-4 right-4 flex space-x-2">
                             <button onClick={handleAddHorario} className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600">+</button>
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
-                        <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Horarios</h2>
+                        <h2 className="text-2xl font-bold text-white text-center mb-4">Lista de Horarios</h2>
+                        {/* Campo de búsqueda para filtrar los horarios */}
                         <div className="mb-4">
                             <input
                                 type="text"
@@ -376,25 +462,26 @@ function AsistenciaJuridica() {
                                 className="w-full p-2 border border-gray-300 rounded"
                             />
                         </div>
-                        <table className="w-full border-collapse">
+                        {/* Tabla de horarios filtrados */}
+                        <table className="w-full border-separate border-spacing-0 ">
                             <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-2">Proveedor</th>
-                                    <th className="border border-gray-300 p-2">Especialidad</th>
-                                    <th className="border border-gray-300 p-2">Día</th>
-                                    <th className="border border-gray-300 p-2">Horas</th>
-                                    <th className="border border-gray-300 p-2">Acciones</th>
+                                <tr className="bg-slate-800 ">
+                                    <th className="text-white border  p-2 mx-auto">Proveedor</th>
+                                    <th className="text-white border p-2">Especialidad</th>
+                                    <th className="text-white border p-2">Fecha</th>
+                                    <th className="text-white border p-2">Hora</th>
+                                    <th className="text-white border p-2">Usuario</th>
                                 </tr>
                             </thead>
-                            
+                               {/* Mapea los horarios filtrados y los muestra en la tabla */}
                             <tbody>
-                                {filteredHorarios.map((horario, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
-                                        <td className="border border-gray-300 p-2">{horario.proveedor}</td>
-                                        <td className="border border-gray-300 p-2">{horario.especialidad}</td>
-                                        <td className="border border-gray-300 p-2">{horario.horarios.map(h => h.dia).join(', ')}</td>
-                                        <td className="border border-gray-300 p-2">{horario.horarios.map(h => h.horas).join(', ')}</td>
-                                        <td className="border border-gray-300 p-2 flex space-x-2">
+                            {filteredHorarios.map((horario, index) => (
+                                    <tr key={index} className="hover:bg-slate-700">
+                                        <td className="border hover:border-red-700 p-2 text-white">{horario.proveedor}</td>
+                                        <td className="border hover:border-red-700 text-white p-2">{horario.especialidad}</td>
+                                        <td className="border hover:border-red-700 text-white p-2">{horario.horarios.map(h => h.dia).join(', ')}</td>
+                                        <td className="border hover:border-red-700 text-white p-2">{horario.horarios.map(h => h.horas).join(', ')}</td>
+                                        <td className="border hover:border-red-700 text-white p-2 flex space-x-2">
                                             <button onClick={() => handleEditHorarioClick(index)} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Editar</button>
                                             <button onClick={() => handleDeleteHorario(index)} className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600">Borrar</button>
                                         </td>
@@ -402,13 +489,14 @@ function AsistenciaJuridica() {
                                 ))}
                             </tbody>
                         </table>
-
+                           {/* Si hay un horario siendo editado, muestra el formulario de edición */}
                         {editedHorario && (
                             <div className="mt-4">
-                                <h3 className="text-lg font-bold mb-2">Editar Horario</h3>
+                                <h3 className="text-white  text-center text-lg font-bold mb-2">Editar Horario</h3>
                                 <div className="space-y-2">
+                                     {/* Campo para editar el proveedor */}
                                     <div>
-                                        <label className="block text-gray-700">Proveedor:</label>
+                                        <label className="block text-white my-2">Proveedor:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.proveedor}
@@ -416,8 +504,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar la especialidad */}
                                     <div>
-                                        <label className="block text-gray-700">Especialidad:</label>
+                                        <label className="block text-white my-2">Especialidad:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.especialidad}
@@ -425,8 +514,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar el día */}
                                     <div>
-                                        <label className="block text-gray-700">Día:</label>
+                                        <label className="block text-white my-2">Día:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.horarios.map(h => h.dia).join(', ')}
@@ -434,8 +524,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar la hora */}
                                     <div>
-                                        <label className="block text-gray-700">Horas:</label>
+                                        <label className="block text-white my-2">Horas:</label>
                                         <input
                                             type="text"
                                             value={editedHorario.horarios.map(h => h.horas).join(', ')}
@@ -444,6 +535,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                 </div>
+                                 {/* Botones para guardar los cambios o cancelar */}
                                 <div className="mt-4 flex justify-end space-x-2">
                                     <button onClick={handleSaveHorarios} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Guardar</button>
                                     <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cancelar</button>
@@ -453,16 +545,18 @@ function AsistenciaJuridica() {
                     </div>
                 </div>
             )}
-
+            {/* Verifica si el modal de perfiles está abierto */}
             {isModalPerfilOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                    <div className="bg-slate-800 border animate-slide-top p-3 rounded-lg shadow-xl w-full max-w-4xl relative overflow-y-auto max-h-screen">
+                        {/* Botones para agregar un nuevo perfil y cerrar el modal */}
                         <div className="absolute top-4 right-4 flex space-x-2">
                             <button onClick={handleAddPerfil} className="bg-green-500 text-white font-bold py-1 px-3 rounded hover:bg-green-600">+</button>
                             <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cerrar</button>
                         </div>
-                        <h2 className="text-2xl font-bold text-red-600 mb-4">Editar Perfil</h2>
-                        <div className="mb-4">
+                        <h2 className="text-2xl font-bold text-white text-center mb-4">Perfiles</h2>
+                        {/* Campo de búsqueda para filtrar los perfiles */}
+                        <div className="mb-4 ">
                             <input
                                 type="text"
                                 placeholder="Buscar Perfil..."
@@ -471,26 +565,29 @@ function AsistenciaJuridica() {
                                 className="w-full p-2 border border-gray-300 rounded"
                             />
                         </div>
-                        <table className="w-full border-collapse">
+                        {/* Tabla de perfiles filtrados */}
+                        <table className="w-full  border-separate border-spacing-0">
                             <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-2">Nombre</th>
-                                    <th className="border border-gray-300 p-2">Tipo</th>
-                                    <th className="border border-gray-300 p-2">RUT</th>
-                                    <th className="border border-gray-300 p-2">Correo</th>
-                                    <th className="border border-gray-300 p-2">Fono</th>
-                                    <th className="border border-gray-300 p-2">Acciones</th>
+                                <tr className="bg-slate-800">
+                                    <th className="border border-gray-300 text-white p-2">Nombre</th>
+                                    <th className="border border-gray-300 text-white p-2">Tipo</th>
+                                    <th className="border border-gray-300 text-white p-2">RUT</th>
+                                    <th className="border border-gray-300 text-white p-2">Correo</th>
+                                    <th className="border border-gray-300 text-white p-2">Fono</th>
+                                    <th className="border border-gray-300 text-white p-2">Acciones</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
+                                {/* Mapea los perfiles filtrados y los muestra en la tabla */}
                                 {filteredPerfiles.map((perfil, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
-                                        <td className="border border-gray-300 p-2">{perfil.nombre}</td>
-                                        <td className="border border-gray-300 p-2">{perfil.tipo}</td>
-                                        <td className="border border-gray-300 p-2">{perfil.rut}</td>
-                                        <td className="border border-gray-300 p-2">{perfil.correo}</td>
-                                        <td className="border border-gray-300 p-auto">{perfil.fono}</td>
-                                        <td className="border border-gray-300 p-2 flex space-x-2">
+                                    <tr key={index} className="hover:bg-slate-700">
+                                        <td className="border  text-white hover:border-red-700 p-2">{perfil.nombre}</td>
+                                        <td className="border text-white hover:border-red-700 p-2">{perfil.tipo}</td>
+                                        <td className="border text-white hover:border-red-700 p-2">{perfil.rut}</td>
+                                        <td className="border text-white hover:border-red-700 p-2">{perfil.correo}</td>
+                                        <td className="border text-white hover:border-red-700 p-auto">{perfil.fono}</td>
+                                        <td className="border  hover:border-red-700 p-2 flex space-x-2">
                                             <button onClick={() => handleEditPerfilClick(index)} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Editar</button>
                                             <button onClick={() => handleDeletePerfil(index)} className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600">Borrar</button>
                                         </td>
@@ -500,11 +597,13 @@ function AsistenciaJuridica() {
                         </table>
 
                         {editedPerfil && (
-                            <div className="mt-4">
-                                <h3 className="text-lg font-bold mb-2">Editar Perfil</h3>
+                            <div className="mt-4 ">
+                                <h3 className="text-lg font-bold mb-2 text-white text-center">Editar Perfil</h3>
+                                {/* Contenedor para los campos de entrada del perfil */}
                                 <div className="space-y-2">
+                                    {/* Campo para editar el nombre */}
                                     <div>
-                                        <label className="block text-gray-700">Nombre:</label>
+                                        <label className="block text-white my-2">Nombre:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.nombre}
@@ -512,8 +611,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar el tipo */}
                                     <div>
-                                        <label className="block text-gray-700">Tipo:</label>
+                                        <label className="block text-white my-2">Tipo:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.tipo}
@@ -521,8 +621,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar el RUT */}
                                     <div>
-                                        <label className="block text-gray-700">RUT:</label>
+                                        <label className="block text-white my-2">RUT:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.rut}
@@ -530,8 +631,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar el correo */}
                                     <div>
-                                        <label className="block text-gray-700">Correo:</label>
+                                        <label className="block text-white my-2">Correo:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.correo}
@@ -539,8 +641,9 @@ function AsistenciaJuridica() {
                                             className="w-full p-2 border border-gray-300 rounded"
                                         />
                                     </div>
+                                    {/* Campo para editar el fono */}
                                     <div>
-                                        <label className="block text-gray-700">Fono:</label>
+                                        <label className="block text-white my-2">Fono:</label>
                                         <input
                                             type="text"
                                             value={editedPerfil.fono}
@@ -549,6 +652,7 @@ function AsistenciaJuridica() {
                                         />
                                     </div>
                                 </div>
+                                {/* Contenedor de los botones de guardar y cancelar */}
                                 <div className="mt-4 flex justify-end space-x-2">
                                     <button onClick={handleSavePerfil} className="bg-blue-500 text-white font-bold py-1 px-3 rounded hover:bg-blue-600">Guardar</button>
                                     <button onClick={closeModal} className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600">Cancelar</button>
@@ -558,12 +662,14 @@ function AsistenciaJuridica() {
                     </div>
                 </div>
             )}
-
+            {/* Verifica si el calendario está abierto */}
             {isCalendarOpen && (
-                <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
+                <div className="fixed inset-0 bg-gray-800 animate-slide-top bg-opacity-50 flex items-center justify-center z-50">
+                    {/* Contenedor del calendario, con animación, borde y desplazamiento automático en el contenido */}
+                    <div className="bg-slate-800 border p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
                         <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-2xl font-bold text-red-700">Calendario de Psicología</h2>
+                        <h2 className="mx-auto text-2xl font-bold text-white">Calendario de Asistencia Juridica</h2>
+                        {/* Botón para cerrar el calendario */}
                         <button
                             onClick={toggleCalendar}
                             className="bg-gray-500 text-white font-bold py-1 px-3 rounded hover:bg-gray-600"
@@ -571,10 +677,11 @@ function AsistenciaJuridica() {
                             Cerrar
                         </button>
                         </div>
+                        {/* Contenedor del calendario de Google */}
                         <div className="flex-grow overflow-auto">
                             <iframe
                                 src="https://calendar.google.com/calendar/embed?src=eff5da9c280da4b997f8cc2c5e8a649b62fffd71d0be5c347ef755f7e8817192%40group.calendar.google.com&ctz=America%2FSantiago"
-                                className="w-full h-full"
+                                className="w-full h-full rounded border border-green-500"
                                 frameBorder="0"
                                 scrolling="no"
                                 title="Calendario de Psicología"
@@ -583,7 +690,8 @@ function AsistenciaJuridica() {
                     </div>
                 </div>
             )}
-            
+                
+            </div>
         </div>
     );
 }

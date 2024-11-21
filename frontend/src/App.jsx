@@ -11,15 +11,12 @@ import GenerarReportes from "./pages/generador_reportes";
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
-
 import AsJuPS from './pages/AsistenciaJuridicaps';
 import AsSoPS from './pages/AsistenciaSocialPS';
 import FonoPS from './pages/FonoaudiologiaPS';
 import KinePS from './pages/KinesiologiaPS';
-
 import PeluPS from './pages/PeluqueriaPS';
-
-import PodoPS from './pages/Podologiaps';
+import PodoPS from './pages/PodologiapPS';
 import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
@@ -34,32 +31,24 @@ import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/Psicologiapm';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
 
-
 /* Para probar funcionamiento */
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
-
-
 import RegisSoc from './pages/RegistroSocialHogar';
-
 import PerPS from './pages/PerfilPrestadorServicios';
 import FormAV from './component/FormAggVac';
 import FormEPPS from './component/FormEdPerfPS';
 import FormEPPM from './component/FormEdPerfPM';
-
 import EvaluacionServicios from "./component/Evaluacion_servicio"; 
-
+import Sug from "./component/Sugerencias";
 
 
 function App() {
     return (
         <Router>
             <Routes>
-
                 <Route path="/EvaluacionServicios" element={<EvaluacionServicios/>}/>
-
-
                 <Route path="/" element={<Login />} />
 
                 {/* Rutas Administrador */}
@@ -100,7 +89,7 @@ function App() {
                 <Route path="PerfPS/FAV" element={<FormAV />} />
                 <Route path="PerfPS/FEPPS" element={<FormEPPS />} />
                 <Route path="PerfPM/FEPPM" element={<FormEPPM />} />
-
+                <Route path="Sug" element={<Sug />} />
             </Routes>
         </Router>
     );

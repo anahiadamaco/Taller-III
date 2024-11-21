@@ -14,6 +14,7 @@ function HeaderNoLog() {
                     </div>
 
                     {/* Nav que redirige a la página de registro */}
+
                     <nav className="ml-auto flex items-center">
                         <Link 
                             to="/RPM" 
