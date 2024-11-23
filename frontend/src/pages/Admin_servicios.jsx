@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import HeaderLog from '../component/NavLog.jsx';
 import FooterPS from '../component/FooterPS.jsx';
+import logo from '../img/logo_muni.webp';
+import { Outlet, Link } from 'react-router-dom';
 
 function AdministrarServicios() {
     const [servicios, setServicios] = useState([]);
@@ -37,11 +38,68 @@ function AdministrarServicios() {
         obtenerServicios();
     }, []);
 
+    const [showEstetica, setShowEstetica] = useState(false);
+    const [timeoutId, setTimeoutId] = useState(null);
+    const handleMouseEnterEstetica = () => {
+      clearTimeout(timeoutId);
+      setShowEstetica(true);
+    };
+    const handleMouseLeaveEstetica = () => {
+      const id = setTimeout(() => {
+          setShowEstetica(false);
+      }, 100); 
+      setTimeoutId(id);
+    };
+
     return (
         <div className="flex flex-col min-h-screen">
-            <header>
-                <HeaderLog />
-            </header>
+            {/* Encabezado de la página */}
+            <section className='z-20'> 
+                <header className="flex items-center bg-black h-24 shadow-md px-8">
+                    <div className="flex items-center">
+                        <img src={logo} alt="Logo" className="h-12 w-auto" />
+                    </div>
+                    {/* Navegación principal */}
+                    <nav className="ml-auto flex items-center space-x-8 text-xl">
+                        {/* Botón de Cerrar Sesión */}
+                        <Link to="/Admin" className="px-4 py-1 text-center text-white duration-300 hover:text-sky-600 border-b-2 border-transparent hover:border-sky-600">
+                            Home
+                        </Link>
+                        {/* Botón desplegable de Estética */}
+                        <div className="relative group" onMouseEnter={handleMouseEnterEstetica} onMouseLeave={handleMouseLeaveEstetica}>
+                            <button className="px-4 py-1 text-white duration-300 hover:text-green-600 focus:outline-none">
+                                Gestion
+                            </button>
+                            {showEstetica && (
+                            <div className="absolute mt-2 bg-white shadow-lg rounded-md py-2">
+                                <Link to="/Admin/GestionarPS" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
+                                    Gestionar Prestadores
+                                </Link>
+                                <Link to="/Admin/GestionarPS" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
+                                    Gestion de operativos
+                                </Link>
+                            </div>
+                            )}
+                        </div>
+                  
+                        {/* Botón de Cerrar Sesión */}
+                        <Link to="/Admin/Servicios" className="px-4 py-1 text-center text-white duration-300 hover:text-yellow-500 border-b-2 border-transparent    hover:border-yellow-500">
+                            Administrar Servicios
+                        </Link>
+                        {/* Botón de Cerrar Sesión */}
+                        <Link to="/Admin/Reportes" className="px-4 py-1 text-center text-white duration-300 hover:text-orange-500 border-b-2 border-transparent     hover:border-orange-500">
+                            Generar Reportes
+                        </Link>
+                  
+                  
+                        {/* Botón de Cerrar Sesión */}
+                        <Link to="/" className="px-4 py-1 text-center text-white duration-300 hover:text-red-600 border-b-2 border-transparent hover:border-red-600">
+                            Cerrar Sesión
+                        </Link>
+                    </nav>
+                </header>
+                <Outlet />  
+            </section>
             <div className="p-6 flex flex-col min-h-screen">
                 <h1 className="text-3xl font-bold mb-6">Administrar Servicios</h1>
 
