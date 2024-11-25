@@ -30,6 +30,7 @@ import PeluPM from './pages/Peluqueriapm';
 import PodoPM from './pages/PodologiaPM';
 import PsicPM from './pages/Psicologiapm';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
+import FormularioCondicionesMedicas from "./pages/CondicionesMedicas";
 
 /* Para probar funcionamiento */
 import Graf from './component/Grafico';
@@ -78,6 +79,7 @@ function App() {
                 <Route path="/POPM" element={<PodoPM />} />
                 <Route path="/PSPM" element={<PsicPM />} />
                 <Route path="/FM" element={<FormularioMovilidad />} />
+                <Route path="/FCM" element={<FormularioCondicionesMedicas/>} />
 
                 {/* Para probar funcionamiento */}
                 <Route path="Graf" element={<Graf />} />

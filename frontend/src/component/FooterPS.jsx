@@ -30,6 +30,7 @@ function FooterPM() {
                         <li>Municipal: 800 100 650</li>
                         <li>Salud: 45 297 3630</li>
                         <li>Educación: 45 297 3771</li>
+                        <li className="mt-2 font-bold text-lg">Emergencias: 1409</li>
                     </ul>
                 </div>
 

@@ -9,6 +9,8 @@
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
     "googleapis": "^143.0.0",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "react": "^18.3.1",
     "react-calendar": "^5.1.0",
     "react-chartjs-2": "^5.2.0",
