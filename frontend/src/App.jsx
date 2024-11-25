@@ -6,7 +6,7 @@ import Login from './pages/Login';
 /* Rutas Administrador */
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
-import Servicios from './pages/Admin_servicios';
+import Servicios from './pages/Admin_Servicios';
 import GenerarReportes from "./pages/generador_reportes";
 
 /* Rutas Prestador de Servicios */
@@ -21,14 +21,14 @@ import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
-import RegiPM from './pages/Registropm';
+import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
 import AsSoPM from './pages/AsistenicaSocialPM';
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/Peluqueriapm';
+import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/Psicologiapm';
+import PsicPM from './pages/PsicologiaPM';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
 
 /* Para probar funcionamiento */
