@@ -2,12 +2,22 @@ import React, { useState } from "react";
 import FooterPS from "../component/FooterPS.jsx";
 import logo from '../img/logo_muni.webp';
 import { Outlet, Link } from 'react-router-dom';
+import Fondo from '../img/fondologin.webp';
+
 
 function GestionarPS() {
     const [prestadores, setPrestadores] = useState([]);
     const [newPrestador, setNewPrestador] = useState("");
     const [correo, setCorreo] = useState("");
     const [idServicio, setIdServicio] = useState("");
+
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const filteredPrestadores = prestadores.filter(
+        (prestador) =>
+            prestador.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            prestador.id_servicio.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     // Crear un nuevo prestador
     const createPrestador = () => {
@@ -48,9 +58,12 @@ function GestionarPS() {
     };
 
 
+    
+
+
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="min-h-screen flex flex-col relative">
             {/* Encabezado de la página */}
             <section className='z-20'> 
                 <header className="flex items-center bg-black h-24 shadow-md px-8">
@@ -78,12 +91,7 @@ function GestionarPS() {
                                 </Link>
                             </div>
                             )}
-                        </div>
-                  
-                        {/* Botón de Cerrar Sesión */}
-                        <Link to="/Admin/Servicios" className="px-4 py-1 text-center text-white duration-300 hover:text-yellow-500 border-b-2 border-transparent    hover:border-yellow-500">
-                            Administrar Servicios
-                        </Link>
+                        </div>                       
                         {/* Botón de Cerrar Sesión */}
                         <Link to="/Admin/Reportes" className="px-4 py-1 text-center text-white duration-300 hover:text-orange-500 border-b-2 border-transparent     hover:border-orange-500">
                             Generar Reportes
@@ -99,79 +107,107 @@ function GestionarPS() {
                 <Outlet />  
             </section>
 
-            <div className="p-6">
-                <h1 className="text-3xl font-bold mb-6">Gestionar Prestadores de Servicio</h1>
+            <div className='flex-1 flex justify-center relative' style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
+            
+                {/* Capa semitransparente negra */}
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-                {/* Formulario para crear un nuevo prestador */}
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        value={newPrestador}
-                        onChange={(e) => setNewPrestador(e.target.value)}
-                        className="border border-gray-300 p-2 rounded-md"
-                        placeholder="Nombre del Prestador"
-                    />
-                    <input
-                        type="email"
-                        value={correo}
-                        onChange={(e) => setCorreo(e.target.value)}
-                        className="border border-gray-300 p-2 rounded-md ml-2"
-                        placeholder="Correo"
-                    />
-                    <input
-                        type="text"
-                        value={idServicio}
-                        onChange={(e) => setIdServicio(e.target.value)}
-                        className="border border-gray-300 p-2 rounded-md ml-2"
-                        placeholder="Servicio"
-                    />
-                    <button
-                        onClick={createPrestador}
-                        className="ml-2 p-2 bg-blue-500 text-white rounded-md"
-                    >
-                        Crear Prestador
-                    </button>
-                </div>
+                <div className='bg-slate-900 h-full w-full max-w-screen-2xl mx-auto p-10 shadow-lg z-10 flex items-center relative'>
+        
+                    <div className='w-full p-10'>
+                        <div className="p-">
+                            <h1 className="text-3xl font-bold mb-10 text-white text-center">
+                                Gestionar Prestadores de Servicio
+                            </h1>
 
-                {/* Tabla de prestadores */}
-                {prestadores.length ? (
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full border border-gray-300">
-                            <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-300 p-4">Nombre</th>
-                                    <th className="border border-gray-300 p-4">Correo</th>
-                                    <th className="border border-gray-300 p-4">Servicio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {prestadores.map((prestador) => (
-                                    <tr key={prestador.id} className="hover:bg-gray-100">
-                                        <td className="border border-gray-300 p-2">{prestador.nombre}</td>
-                                        <td className="border border-gray-300 p-2">{prestador.correo}</td>
-                                        <td className="border border-gray-300 p-2">{prestador.id_servicio}</td>
-                                        <td className="border border-gray-300 p-2">
-                                            <button
-                                                onClick={() => deletePrestador(prestador.id)}
-                                                className="p-1 bg-red-500 text-white rounded-md"
-                                            >
-                                                Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                            <div className="text-white text-lg">
+                                <p>Añadir personal:</p>
+                            </div>
+
+                            <div className="mb-4 my-4 ">
+                                <input
+                                    type="text"
+                                    value={newPrestador}
+                                    onChange={(e) => setNewPrestador(e.target.value)}
+                                    className="border-2 p-2 rounded-md hover:border-green-600 focus:outline-none focus:border-green-600 "
+                                    placeholder="Nombre del Prestador"
+                                />
+                                <input
+                                    type="email"
+                                    value={correo}
+                                    onChange={(e) => setCorreo(e.target.value)}
+                                    className="border-2  p-2 rounded-md ml-2 hover:border-green-600 focus:outline-none focus:border-green-600"
+                                    placeholder="Correo"
+                                />
+                                <input
+                                    type="text"
+                                    value={idServicio}
+                                    onChange={(e) => setIdServicio(e.target.value)}
+                                    className="border-2 p-2 rounded-md ml-2 hover:border-green-600 focus:outline-none focus:border-green-600"
+                                    placeholder="Servicio"
+                                />
+                                <button
+                                    onClick={createPrestador}
+                                    className="ml-2 p-2 bg-blue-500 text-white rounded-md"
+                                >
+                                    Crear Prestador
+                                </button>
+                            </div>
+
+                            <div className="text-white text-lg ">
+                                <p>Buscar personal por nombre o servicio:</p>
+                            </div>
+                            <div className="mb-4 my-4">
+                                <input
+                                    type="text"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="border-2 p-2 rounded-md min-w-96 hover:border-green-600 focus:outline-none focus:border-green-600"
+                                    placeholder="ej. Juan, Psicología"
+                                />
+                            </div>
+
+                            {filteredPrestadores.length ? (
+                                <div className="overflow-x-auto bg-slate-800 ">
+                                    <table className="min-w-full border border-gray-300 border-separate border-spacing-0">
+                                        <thead>
+                                            <tr className="bg-slate-800 text-white">
+                                                <th className="border border-gray-300 p-4">Nombre</th>
+                                                <th className="border border-gray-300 p-4">Correo</th>
+                                                <th className="border border-gray-300 p-4">Servicio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {filteredPrestadores.map((prestador) => (
+                                                <tr key={prestador.id} className="hover:bg-slate-700 text-white">
+                                                    <td className="border  text-white hover:border-red-700 p-2">{prestador.nombre}</td>
+                                                    <td className="border  text-white hover:border-red-700 p-2">{prestador.correo}</td>
+                                                    <td className="border  text-white hover:border-red-700 p-2">{prestador.id_servicio}</td>
+                                                    <td className="border  text-white hover:border-red-700 p-2">
+                                                        <button
+                                                            onClick={() => deletePrestador(prestador.id)}
+                                                            className="p-2 bg-red-500 text-white rounded-md"
+                                                        >
+                                                            Eliminar
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            ) : (
+                                <p className="text-white">No se encontraron resultados.</p>
+                            )}
+                        </div>
                     </div>
-                ) : (
-                    <p>No hay prestadores registrados.</p>
-                )}
+                </div>
             </div>
-
             <footer className="mt-auto">
                 <FooterPS />
             </footer>
         </div>
+    
     );
 }
 

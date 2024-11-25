@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import Footer from '../component/FooterPS';
 import { Outlet, Link } from 'react-router-dom';
 import logo from '../img/logo_muni.webp';
