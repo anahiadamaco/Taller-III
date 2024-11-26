@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import HeaderLog from '../component/NavLog.jsx';
 
+import { Outlet, Link } from 'react-router-dom';
+import logo from '../img/logo_muni.webp';
 
 import FooterPS from '../component/FooterPS.jsx';
 
@@ -214,9 +215,28 @@ function AsistenciaJuridica() {
         <div className="min-h-screen flex flex-col relative" >
 
             {/* Encabezado de la página */}
-            <header>
-                <HeaderLog />
-            </header>
+            <section className='z-20'> 
+                <header className="flex items-center bg-black h-24 shadow-md px-8">
+                    <div className="flex items-center">
+                        <img src={logo} alt="Logo" className="h-12 w-auto" />
+                    </div>
+
+
+                    {/* Navegación principal */}
+                    <nav id="Menu1" className="ml-auto flex items-center space-x-8 text-xl">
+                        
+                        
+                        {/* Botón de Cerrar Sesión */}
+                        <Link
+                            to="/"
+                            className="px-4 py-1 text-center text-white duration-300 hover:text-sky-600 border-b-2 border-transparent hover:border-sky-600"
+                        >
+                            Cerrar Sesión
+                        </Link>
+                    </nav>
+                </header>
+                <Outlet />  
+            </section>
 
             {/* Seccion principal de la página */}
 
@@ -229,7 +249,7 @@ function AsistenciaJuridica() {
                 
                     <div className='w-full p-10'>
                         <div >
-                            <h1 className='text-center text-white text-4xl font-bold mb-6'>Administración de Asistencia Jurídica</h1>
+                            <h1 className='text-center text-white text-4xl font-bold mb-12'>Administración de Asistencia Jurídica</h1>
 
                         </div>
                         
@@ -321,7 +341,7 @@ function AsistenciaJuridica() {
             </footer>
             
         {/*Contenedor principal para el modal de citas*/}
-        <div className="z-10">
+        <div className="z-20">
             {/* Verifica si el modal de citas está abierto */}
             {isModalCitasOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -664,7 +684,7 @@ function AsistenciaJuridica() {
             )}
             {/* Verifica si el calendario está abierto */}
             {isCalendarOpen && (
-                <div className="fixed inset-0 bg-gray-800 animate-slide-top bg-opacity-50 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-gray-800 animate-slide-top bg-opacity-0 flex items-center justify-center z-50">
                     {/* Contenedor del calendario, con animación, borde y desplazamiento automático en el contenido */}
                     <div className="bg-slate-800 border p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
                         <div className="flex justify-between items-center mb-4">

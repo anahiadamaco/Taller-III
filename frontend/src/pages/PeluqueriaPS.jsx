@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import HeaderLog from '../component/NavLog.jsx';
+import { Outlet, Link } from 'react-router-dom';
+import logo from '../img/logo_muni.webp';
 
 
 import FooterPS from '../component/FooterPS.jsx';
@@ -204,9 +205,29 @@ function Peluqueria() {
 
     return (
         <div className="min-h-screen flex flex-col relative" >
-            <header>
-                <HeaderLog />
-            </header>
+            {/* Encabezado de la página */}
+            <section className='z-20'> 
+                <header className="flex items-center bg-black h-24 shadow-md px-8">
+                    <div className="flex items-center">
+                        <img src={logo} alt="Logo" className="h-12 w-auto" />
+                    </div>
+
+
+                    {/* Navegación principal */}
+                    <nav id="Menu1" className="ml-auto flex items-center space-x-8 text-xl">
+                        
+                        
+                        {/* Botón de Cerrar Sesión */}
+                        <Link
+                            to="/"
+                            className="px-4 py-1 text-center text-white duration-300 hover:text-sky-600 border-b-2 border-transparent hover:border-sky-600"
+                        >
+                            Cerrar Sesión
+                        </Link>
+                    </nav>
+                </header>
+                <Outlet />  
+            </section>
             
             <main className='flex-1 flex justify-center relative' style={{backgroundImage: `url(${Fondo})`, backgroundSize: 'cover',backgroundPosition: 'center'}}>
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>

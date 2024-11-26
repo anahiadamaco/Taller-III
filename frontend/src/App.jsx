@@ -6,8 +6,7 @@ import Login from './pages/Login';
 /* Rutas Administrador */
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
-import Servicios from './pages/Admin_servicios';
-import GenerarReportes from "./pages/generador_reportes";
+import GestionOperativosAdmin from "./pages/GestionOperativosAdmin";
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
@@ -51,11 +50,10 @@ function App() {
                 <Route path="/EvaluacionServicios" element={<EvaluacionServicios/>}/>
                 <Route path="/" element={<Login />} />
 
-                {/* Rutas Administrador */}
-                <Route path="/Admin" element={<HomeAdmin />} />
+                {/* Rutas Administrador*/} 
+                <Route path="/Admin" element={<HomeAdmin />}/>
                 <Route path="/Admin/GestionarPS" element={<GestionarPS />} />
-                <Route path="/Admin/Servicios" element={<Servicios />} />
-                <Route path="/Admin/Reportes" element={<GenerarReportes />} />
+                <Route path="/Admin/GestionOperativos" element={<GestionOperativosAdmin />}/>
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />
