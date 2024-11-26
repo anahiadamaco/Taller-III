@@ -7,7 +7,6 @@ import Login from './pages/Login';
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
 import GestionOperativosAdmin from "./pages/GestionOperativosAdmin";
-import Servicios from './pages/Admin_Servicios';
 import GenerarReportes from "./pages/generador_reportes";
 
 /* Rutas Prestador de Servicios */
@@ -22,14 +21,14 @@ import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
-import RegiPM from './pages/RegistroPM';
+import RegiPM from './pages/Registropm';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
 import AsSoPM from './pages/AsistenicaSocialPM';
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/PeluqueriaPM';
+import PeluPM from './pages/Peluqueriapm';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/PsicologiaPM';
+import PsicPM from './pages/Psicologiapm';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
 import FormularioCondicionesMedicas from "./pages/CondicionesMedicas";
 
@@ -99,7 +98,6 @@ function App() {
                 <Route path="PerfPS/FEPPS" element={<FormEPPS />} />
                 <Route path="PerfPM/FEPPM" element={<FormEPPM />} />
                 <Route path="Sug" element={<Sug />} />
-                <Route path="Servicios" element={<Servicios />} />
                 <Route path="GeRe" element={<GenerarReportes />} />
             </Routes>
         </Router>

@@ -24,61 +24,48 @@ app.use(express.json());
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/citas', citaRoutes);
 
-// Ruta para registrar el usuario
 app.post('/api/registerPM', async (req, res) => {
   const {
-    rut,
-    nombre,
-    apellido_paterno,
-    apellido_materno,
-    fechaNacimiento,
-    celular,
-    correo,
-    contrasena,
-    confirmarContrasena
+      rut,
+      nombre,
+      apellido_paterno,
+      apellido_materno,
+      fechaNacimiento,
+      celular,
+      correo,
+      contrasena,
+      confirmarContrasena,
   } = req.body;
 
   
-
+  if (contrasena !== confirmarContrasena) {
+      return res.status(400).json({ error: 'Las contraseñas no coinciden' });
+  }
 
   try {
-    // Verificar si el correo ya está registrado
-    db.query('SELECT * FROM usuarios WHERE correo = ?', [correo], (err, results) => {
-      if (err) {
-        console.error('Error al verificar el correo:', err);
-        return res.status(500).json({ error: 'Error al verificar el correo' });
-      }
+      // Verificar si el correo ya está registrado
+      const [results] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [correo]);
 
       if (results.length > 0) {
-        return res.status(400).json({ error: 'El correo ya está registrado' });
+          return res.status(400).json({ error: 'El correo ya está registrado' });
       }
 
-      // Hashear la contraseña
-      bcrypt.hash(contrasena, 10, (err, hashedPassword) => {
-        if (err) {
-          console.error('Error al hashear la contraseña:', err);
-          return res.status(500).json({ error: 'Error al procesar la contraseña' });
-        }
+      const bcrypt = require('bcrypt');
+      const hashedPassword = await bcrypt.hash(contrasena, 10);
 
-        // Insertar el nuevo usuario en la base de datos
-        const query = `INSERT INTO Usuarios (rut, nombre, apellido_paterno, apellido_materno, fecha_nacimiento, celular, correo, contrasena)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+      // Insertar el nuevo usuario en la base de datos
+      const query = `INSERT INTO Usuarios (rut, nombre, apellido_paterno, apellido_materno, fecha_nacimiento, celular, correo, contrasena)
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
-        db.query(query, [rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, celular, correo, hashedPassword], (err, result) => {
-          if (err) {
-            console.error('Error al registrar el usuario:', err);
-            return res.status(500).json({ error: 'Error al registrar el usuario' });
-          }
+      await pool.query(query, [rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, celular, correo, hashedPassword]);
 
-          res.status(201).json({ message: 'Registro exitoso' });
-        });
-      });
-    });
+      res.status(201).json({ message: 'Registro exitoso' });
   } catch (error) {
-    console.error('Error en el registro:', error);
-    res.status(500).json({ error: 'Error en el registro' });
+      console.error('Error en el registro:', error);
+      res.status(500).json({ error: 'Error en el registro' });
   }
 });
+
 
 // Exporta la aplicación en lugar de iniciar el servidor aquí
 module.exports = app;
