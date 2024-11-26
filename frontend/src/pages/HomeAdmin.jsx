@@ -11,6 +11,8 @@ function HomeAdmin() {
   const [rangoTiempoPS, setRangoTiempoPS] = useState('mes');
   const [tipoGraficoPM, setTipoGraficoPM] = useState('barras');  // Para PM
   const [tipoGraficoPS, setTipoGraficoPS] = useState('barras');  // Para PS
+  const [rangoTiempoPS3, setRangoTiempoPS3] = useState('mes'); // Nuevo estado
+  const [tipoGraficoPS3, setTipoGraficoPS3] = useState('barras'); // Nuevo estado
 
   // Datos de ejemplo para gráficos
   const dataMensualPM = [
@@ -19,10 +21,10 @@ function HomeAdmin() {
     { tiempo: 'Marzo', Atenciones: 80 },
   ];
 
-  const dataSemanalPM = [
-    { tiempo: 'Semana 1', Atenciones: 20 },
-    { tiempo: 'Semana 2', Atenciones: 30 },
-    { tiempo: 'Semana 3', Atenciones: 50 },
+  const dataPsicologiaPM = [
+    { tiempo: 'Enero', Atenciones: 20 },
+    { tiempo: 'Febrero', Atenciones: 30 },
+    { tiempo: 'Marzo', Atenciones: 50 },
   ];
 
   const dataDiariaPM = [
@@ -50,11 +52,29 @@ function HomeAdmin() {
     { tiempo: 'Miércoles', uso: 25 },
   ];
 
+  const dataMensualPS3 = [
+    { tiempo: 'Enero', asistencias: 55 },
+    { tiempo: 'Febrero', asistencias: 60 },
+    { tiempo: 'Marzo', asistencias: 50 },
+  ];
+
+  const dataSemanalPS3 = [
+    { tiempo: 'Semana 1', asistencias: 10 },
+    { tiempo: 'Semana 2', asistencias: 15 },
+    { tiempo: 'Semana 3', asistencias: 25 },
+  ];
+
+  const dataDiariaPS3 = [
+    { tiempo: 'Lunes', asistencias: 5 },
+    { tiempo: 'Martes', asistencias: 8 },
+    { tiempo: 'Miércoles', asistencias: 10 },
+  ];
+
   // Función para obtener los datos según el rango de tiempo
   const obtenerDatosPM = () => {
     switch (rangoTiempoPM) {
       case 'mes': return dataMensualPM;
-      case 'semana': return dataSemanalPM;
+      case 'Mes': return dataPsicologiaPM;
       case 'dia': return dataDiariaPM;
       default: return dataMensualPM;
     }
@@ -66,6 +86,19 @@ function HomeAdmin() {
       case 'semana': return dataSemanalPS;
       case 'dia': return dataDiariaPS;
       default: return dataMensualPS;
+    }
+  };
+
+  const obtenerDatosPS3 = () => {
+    switch (rangoTiempoPS3) {
+      case 'mes':
+        return dataMensualPS3;
+      case 'Mes':
+        return dataSemanalPS3;
+      case 'dia':
+        return dataDiariaPS3;
+      default:
+        return dataMensualPS3;
     }
   };
   
@@ -106,17 +139,13 @@ function HomeAdmin() {
                     <Link to="/Admin/GestionarPS" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
                       Gestionar Prestadores
                     </Link>
-                    <Link to="/Admin/GestionarPS" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
+                    <Link to="/Admin/GestionOperativos" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
                       Gestion de operativos
                     </Link>
                   </div>
                 )}
               </div>
              
-              {/* Botón de Cerrar Sesión */}
-              <Link to="/Admin/Servicios" className="px-4 py-1 text-center text-white duration-300 hover:text-yellow-500 border-b-2 border-transparent hover:border-yellow-500">
-                Administrar Servicios
-              </Link>
               {/* Botón de Cerrar Sesión */}
               <Link to="/Admin/Reportes" className="px-4 py-1 text-center text-white duration-300 hover:text-orange-500 border-b-2 border-transparent hover:border-orange-500">
                 Generar Reportes
@@ -146,7 +175,7 @@ function HomeAdmin() {
               
             {/* Título principal */}
             <h1 className="text-4xl font-extrabold text-center text-white mb-10">
-              Indicadores Clave
+              Reportes estadísticos
             </h1>
                   
             {/* Contenedor de las columnas: grafico y botones */}
@@ -154,7 +183,7 @@ function HomeAdmin() {
 
               {/*Seccion de Atenciones por Mes*/}
               <div>
-                <h2 className="text-2xl font-semibold mb-4 text-center my-4 text-white">Atenciones por Mes</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center my-4 text-white">Atenciones totales</h2>
                 <div className="flex justify-center mb-2">
                   <select value={rangoTiempoPM} onChange={(e) => setRangoTiempoPM(e.target.value)} className="p-2 border border-gray-300 rounded">
                     <option value="mes">Mensual</option>
@@ -233,8 +262,49 @@ function HomeAdmin() {
                   </button>
                 </div>
               </div>
+
+              {/*Filtrado para ver el uso de diferentes servicios*/}
+              <div>
+                <h2 className="text-2xl font-semibold mb-4 text-center my-4 text-white">Estadisticas de atenciones de servicios</h2>
+                <div className="flex justify-center mb-2">
+                  <select value={rangoTiempoPS3} onChange={(e) => setRangoTiempoPS3(e.target.value)} className="p-2 border border-gray-300 rounded">
+                    <option value="mes">Peluqueria</option>
+                    <option value="Mes">Psicologia</option>
+                    <option value="dia">Podologia</option>
+                  </select>
+                </div>
+                <div className="p-4 bg-white border-2 border-indigo-500 rounded-lg shadow-md mx-4">
+                  <ResponsiveContainer width="100%" height={400}>
+                    {tipoGraficoPS3 === 'barras' ? (
+                      <BarChart data={obtenerDatosPS3()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="tiempo" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="asistencias" fill="#8884d8" />
+                      </BarChart>
+                      ):(
+                    <LineChart data={obtenerDatosPS3()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="tiempo" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="asistencias" stroke="#8884d8" />
+                    </LineChart>
+                    )}
+                  </ResponsiveContainer>
+                </div>
+                {/* Toggle para cambiar el tipo de gráfico de PM */}
+                <div className="flex justify-center mt-4 p-4">
+                  <button onClick={() => setTipoGraficoPS3(tipoGraficoPS3 === 'barras' ? 'lineas' : 'barras')} className="bg-indigo-500 text-white py-2 px-4 rounded">
+                    Cambiar a {tipoGraficoPS3 === 'barras' ? 'Gráfico de Líneas' : 'Gráfico de Barras'}
+                  </button>
+                </div>
+              </div>
+
             </div>
-   
           </div>
         </div>
       </div>

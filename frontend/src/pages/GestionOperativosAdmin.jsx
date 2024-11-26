@@ -81,7 +81,7 @@ function GestionarPS() {
                                 <Link to="/Admin/GestionarPS" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
                                     Gestionar Prestadores
                                 </Link>
-                                <Link to="/Admin/GestionOperativos" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
+                                <Link to="/Admin/GestionarPS" className="block px-4 py-2 text-gray-700 hover:bg-green-200">
                                     Gestion de operativos
                                 </Link>
                             </div>
@@ -112,7 +112,7 @@ function GestionarPS() {
                     <div className='w-full p-10'>
                         <div className="p-">
                             <h1 className="text-3xl font-bold mb-10 text-white text-center">
-                                Gestionar Prestadores de Servicio
+                                Gestionar de operativos
                             </h1>
 
                             <div className="text-white text-lg">
