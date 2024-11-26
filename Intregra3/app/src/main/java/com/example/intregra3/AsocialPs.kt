@@ -107,7 +107,7 @@ fun ButtonAsistencia() {
 
     Button(
         onClick = {
-            val intent = Intent(context, AsocialPs::class.java) // Navega a AsocialPs
+            val intent = Intent(context, FooterPS::class.java) // Navega a AsocialPs
             context.startActivity(intent)
         },
         modifier = Modifier
