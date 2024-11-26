@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
 import GestionOperativosAdmin from "./pages/GestionOperativosAdmin";
+import Servicios from './pages/Admin_Servicios';
+import GenerarReportes from "./pages/generador_reportes";
 
 /* Rutas Prestador de Servicios */
 import HomePS from './pages/HomePS';
@@ -20,17 +22,20 @@ import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
-import RegiPM from './pages/Registropm';
+import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
 import AsSoPM from './pages/AsistenicaSocialPM';
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/Peluqueriapm';
+import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/Psicologiapm';
+import PsicPM from './pages/PsicologiaPM';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
 
 /* Para probar funcionamiento */
+import ModuloSugerencia from "./pages/ModuloSugerencia";
+import UserProfile from "./pages/UserProfile";
+import ReviewPage from "./pages/ReviewPage";
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
@@ -78,6 +83,9 @@ function App() {
                 <Route path="/FM" element={<FormularioMovilidad />} />
 
                 {/* Para probar funcionamiento */}
+                <Route path="/USER" element={<UserProfile/>} />
+                <Route path="/RWPS" element={<ReviewPage/>} />
+                <Route path="/MDS" element={<ModuloSugerencia/>} />
                 <Route path="Graf" element={<Graf />} />
                 <Route path="Guia" element={<Guia />} />
                 <Route path="Perf" element={<PerPM />} />
@@ -88,6 +96,8 @@ function App() {
                 <Route path="PerfPS/FEPPS" element={<FormEPPS />} />
                 <Route path="PerfPM/FEPPM" element={<FormEPPM />} />
                 <Route path="Sug" element={<Sug />} />
+                <Route path="Servicios" element={<Servicios />} />
+                <Route path="GeRe" element={<GenerarReportes />} />
             </Routes>
         </Router>
     );
