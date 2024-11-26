@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import HeaderLog from '../component/NavLog.jsx';
-
-
 import FooterPS from '../component/FooterPS.jsx';
-
-//Importacion de imagenes
 import Fondo from '../img/fondologin.webp';
 import EditHorario from '../img/edithorario.png';
 import EditCitas from '../img/editcitas.png';

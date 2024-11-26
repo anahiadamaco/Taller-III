@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mysql = require('mysql2/promise'); // Nota el uso de 'promise'
+const mysql = require('mysql2');
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -9,7 +9,23 @@ const pool = mysql.createPool({
     port: process.env.DB_PORT,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0,
+    queueLimit: 0
 });
 
-module.exports = pool;
+// Usamos el pool con promesas para facilitar async/await
+const promisePool = pool.promise();
+
+// Prueba de conexión
+async function testConnection() {
+    try {
+        const [rows] = await promisePool.query('SELECT 1 + 1 AS result');
+        console.log('Conexión exitosa a la base de datos:', rows[0].result);
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+    }
+}
+
+// Ejecuta la prueba de conexión
+testConnection();
+
+module.exports = promisePool;

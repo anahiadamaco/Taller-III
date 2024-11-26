@@ -1,144 +1,84 @@
-// Importar módulos necesarios
 const express = require('express');
-const pool = require('./config/db'); // Importar la configuración del pool
-const multer = require('multer');
-const path = require('path');
+const dotenv = require('dotenv');
 const cors = require('cors');
-require('dotenv').config(); // Cargar variables de entorno
-const bodyParser = require('body-parser');
+const pool = require('./config/db'); 
+const usuarioRoutes = require('./routes/userRoute');
+const citaRoutes = require('./routes/citaRoute');
 
-// Verificar las variables de entorno
-console.log('DB_HOST:', process.env.DB_HOST);
-console.log('DB_USER:', process.env.DB_USER);
-console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
-console.log('DB_NAME:', process.env.DB_NAME);
-console.log('DB_PORT:', process.env.DB_PORT);
+// Configura dotenv para manejar variables de entorno
+dotenv.config();
 
-// Inicializar la aplicación
 const app = express();
-app.use(express.json()); // Middleware para procesar JSON
-app.use(bodyParser.json());
 
+// Configuración de CORS
 app.use(cors({
-  origin: 'http://localhost:3000',  // Cambiar por tu front-end si es necesario
+  origin: 'http://localhost:3001',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Verificar conexión a la base de datos
-(async () => {
+// Middleware para manejar JSON
+app.use(express.json());
+
+// Rutas
+app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/citas', citaRoutes);
+
+// Ruta para registrar el usuario
+app.post('/api/registerPM', async (req, res) => {
+  const {
+    rut,
+    nombre,
+    apellido_paterno,
+    apellido_materno,
+    fechaNacimiento,
+    celular,
+    correo,
+    contrasena,
+    confirmarContrasena
+  } = req.body;
+
+  
+
+
   try {
-    const [rows] = await pool.query('SELECT 1 + 1 AS solution');
-    console.log('Conexión exitosa a la base de datos. Prueba:', rows[0].solution);
+    // Verificar si el correo ya está registrado
+    db.query('SELECT * FROM usuarios WHERE correo = ?', [correo], (err, results) => {
+      if (err) {
+        console.error('Error al verificar el correo:', err);
+        return res.status(500).json({ error: 'Error al verificar el correo' });
+      }
+
+      if (results.length > 0) {
+        return res.status(400).json({ error: 'El correo ya está registrado' });
+      }
+
+      // Hashear la contraseña
+      bcrypt.hash(contrasena, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error('Error al hashear la contraseña:', err);
+          return res.status(500).json({ error: 'Error al procesar la contraseña' });
+        }
+
+        // Insertar el nuevo usuario en la base de datos
+        const query = `INSERT INTO Usuarios (rut, nombre, apellido_paterno, apellido_materno, fecha_nacimiento, celular, correo, contrasena)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        db.query(query, [rut, nombre, apellido_paterno, apellido_materno, fechaNacimiento, celular, correo, hashedPassword], (err, result) => {
+          if (err) {
+            console.error('Error al registrar el usuario:', err);
+            return res.status(500).json({ error: 'Error al registrar el usuario' });
+          }
+
+          res.status(201).json({ message: 'Registro exitoso' });
+        });
+      });
+    });
   } catch (error) {
-    console.error('Error al conectar a la base de datos:', error.message);
-    process.exit(1); // Detener la aplicación si no puede conectar
-  }
-})();
-
-// Ruta raíz para prueba
-app.get('/', async (req, res) => {
-  try {
-    const [rows] = await pool.query('SELECT 1 + 1 AS solution');
-    res.send(`Servidor funcionando correctamente. Resultado: ${rows[0].solution}`);
-  } catch (error) {
-    console.error('Error al realizar la consulta:', error.message);
-    res.status(500).send('Error en la base de datos');
+    console.error('Error en el registro:', error);
+    res.status(500).json({ error: 'Error en el registro' });
   }
 });
 
-// Configuración de multer para almacenar la imagen
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadPath = 'uploads/';
-    cb(null, uploadPath); // Carpeta donde se guardarán las imágenes
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname)); // Renombrar la imagen
-  },
-});
-
-const upload = multer({ storage: storage });
-
-// Ruta para recibir la imagen
-app.post('/api/receive-image', upload.single('image'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("No se subió ninguna imagen.");
-  }
-
-  console.log("Imagen recibida:", req.file.filename);
-  res.status(200).send("Imagen recibida y almacenada correctamente.");
-});
-
-
-app.post('/api/prestadores/crear', async (req, res) => {
-  const { nombre, correo, id_servicio } = req.body;
-  const query = 'INSERT INTO prestadores (nombre, correo, id_servicio) VALUES (?, ?, ?)';
-  
-  try {
-      const [result] = await pool.query(query, [nombre, correo, id_servicio]);
-      res.json({ id: result.insertId, nombre, correo, id_servicio });  // Respuesta JSON
-  } catch (err) {
-      console.error('Error al crear prestador:', err.message);
-      res.status(500).json({ error: 'Error al crear prestador.' });  // Asegúrate de responder con JSON
-  }
-});
-
-// Obtener todos los prestadores
-app.get('/api/prestadores', async (req, res) => {
-  try {
-    const [results] = await pool.query('SELECT * FROM prestadores');
-    res.json(results);
-  } catch (err) {
-    console.error('Error al obtener prestadores:', err.message);
-    res.status(500).send('Error al obtener prestadores.');
-  }
-});
-
-// Eliminar un prestador
-app.delete('/api/prestadores/eliminar/:id', async (req, res) => {
-  const { id } = req.params;
-  const query = 'DELETE FROM prestadores WHERE id = ?';
-  
-  try {
-    await pool.query(query, [id]);
-    res.sendStatus(204);
-  } catch (err) {
-    console.error('Error al eliminar prestador:', err.message);
-    res.status(500).send('Error al eliminar prestador.');
-  }
-});
-
-
-// Cita reservada
-app.post('/api/citas', async (req, res) => {
-  const { fecha, hora, prestador } = req.body;
-  const query = 'INSERT INTO Cita (estado, id_hora, reg_paciente) VALUES (?, ?, ?)';
-  try {
-    const [result] = await pool.query(query, [fecha, hora, prestador]);
-    res.status(201).json({ message: 'Cita reservada con éxito' });
-  } catch (err) {
-    console.error('Error al reservar la cita:', err);
-    res.status(500).json({ message: 'Error al reservar la cita', error: err });
-  }
-});
-
-// Ruta en Node.js para obtener el nombre del usuario
-app.get('/api/usuario', (req, res) => {
-  const userId = req.user.id; // Suponiendo que usas autenticación y tienes el ID del usuario
-  const query = 'SELECT nombre FROM personas_mayores WHERE id = ?';
-  
-  db.query(query, [userId], (error, results) => {
-    if (error) return res.status(500).json({ error: 'Error al obtener el nombre' });
-    if (results.length > 0) {
-      res.json({ nombre: results[0].nombre });
-    } else {
-      res.status(404).json({ error: 'Usuario no encontrado' });
-    }
-  });
-});
-
-// Puerto del servidor
-const PORT = process.env.PORT || 3308;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+// Exporta la aplicación en lugar de iniciar el servidor aquí
+module.exports = app;

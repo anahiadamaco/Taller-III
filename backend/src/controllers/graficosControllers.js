@@ -1,19 +1,26 @@
-const pool = require('../db');
+const { Cita} = require('../models/Cita');
+const { Horario } = require('../models/Horario');
+const sequelize = require('../config/db');
 
-// Otener los datos de atenciones mensuales
+// Obtener los datos de atenciones mensuales
 const AtencionesMensuales = async (req, res) => {
-    const query = `
-    SELECT EXTRACT(MONTH FROM h.fecha_hora) AS mes, COUNT(*) AS total_atenciones
-    FROM Cita c
-    JOIN Horario h ON c.id_hora = h.id_hora
-    WHERE c.asistencia = true
-    GROUP BY mes
-    ORDER BY mes;
-    `;
-    
     try {
-        const resultado = await pool.query(query);
-        res.json(resultado.rows);
+        const resultado = await Cita.findAll({
+            attributes: [
+                [sequelize.fn('MONTH', sequelize.col('Horario.fecha_hora')), 'mes'],
+                [sequelize.fn('COUNT', sequelize.col('*')), 'total_atenciones']
+            ],
+            include: {
+                model: Horario,
+                attributes: []
+            },
+            where: {
+                asistencia: true
+            },
+            group: ['mes'],
+            order: [[sequelize.literal('mes'), 'ASC']]
+        });
+        res.json(resultado);
     } catch (err) {
         console.error('Error al obtener atenciones mensuales:', err);
         res.status(500).json({ error: 'Error al obtener los datos de atenciones' });

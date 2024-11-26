@@ -18,27 +18,13 @@ function Registro() {
   const [mensaje, setMensaje] = useState('');
   const [esError, setEsError] = useState(false); 
 
-  const calcularEdad = (fecha) => {
-    const cumpleanos = new Date(fecha);
-    const hoy = new Date();
-    let edad = hoy.getFullYear() - cumpleanos.getFullYear();
-    const mes = hoy.getMonth() - cumpleanos.getMonth();
-    if (mes < 0 || (mes === 0 && hoy.getDate() < cumpleanos.getDate())) {
-      edad--;
-    }
-    return edad;
-  };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación de edad
-    const edad = calcularEdad(fechaNacimiento);
-    if (edad < 60) {
-      setMensaje('No cumple con requisito de edad');
-      setEsError(true); 
-      return;
-    }
+    
 
     // Validación de confirmación de contrasena
     if (contrasena !== confirmarContrasena) {

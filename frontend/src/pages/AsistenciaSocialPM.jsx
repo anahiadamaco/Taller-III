@@ -1,24 +1,15 @@
 import React, { useState } from "react";
 import HeaderLog from "../component/NavLog.jsx";
 import Footer from "../component/FooterPM.jsx";
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
 
 const AsistenciaSocial = () => {
   const [isCalendarOpen, setCalendarOpen] = useState(false);
   const [isFormOpen, setFormOpen] = useState(false);
   const [selectedEspecialista, setSelectedEspecialista] = useState(null);
   const [citas, setCitas] = useState([]);
-
-  const toggleCalendar = () => {
-    setCalendarOpen(!isCalendarOpen);
-  };
-
-  const toggleForm = () => {
-    setFormOpen(!isFormOpen);
-  };
-
-  const toggleModal = (especialista) => {
-    setSelectedEspecialista(especialista ? especialista : null);
-  };
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
 
   const personas = [
     {
@@ -38,30 +29,94 @@ const AsistenciaSocial = () => {
     },
   ];
 
-  const agendarCita = (especialista, fechaHora) => {
+  const handleLoginSuccess = (credentialResponse) => {
+    const token = credentialResponse.credential;
+    setAccessToken(token);
+    setIsAuthenticated(true);
+    alert("Inicio de sesión exitoso");
+  };
+
+  const handleLogout = () => {
+    googleLogout();
+    setAccessToken(null);
+    setIsAuthenticated(false);
+    alert("Sesión cerrada");
+  };
+
+  const toggleCalendar = () => {
+    setCalendarOpen(!isCalendarOpen);
+  };
+
+  const toggleForm = () => {
+    setFormOpen(!isFormOpen);
+  };
+
+  const toggleModal = (especialista) => {
+    setSelectedEspecialista(especialista ? especialista : null);
+  };
+
+  const agendarCita = async (especialista, fechaHora) => {
     if (!especialista) {
       alert("Por favor, selecciona un especialista antes de agendar una cita.");
       return;
     }
-  
+
     const citaExistente = citas.some(
       (cita) => cita.fechaHora === fechaHora && cita.especialista === especialista.nombre
     );
-  
+
     if (citaExistente) {
       alert("Este horario ya está ocupado.");
       return;
     }
-  
+
     const nuevaCita = {
       especialista: especialista.nombre,
       especialidad: especialista.especialidad,
       fechaHora: fechaHora,
     };
-  
+
+    // Crea el evento en Google Calendar si el usuario está autenticado
+    if (accessToken) {
+      try {
+        const res = await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            summary: `Cita con ${especialista.nombre}`,
+            description: `Especialidad: ${especialista.especialidad}`,
+            start: {
+              dateTime: fechaHora,
+              timeZone: "America/Santiago",
+            },
+            end: {
+              dateTime: new Date(new Date(fechaHora).getTime() + 3600000).toISOString(),
+              timeZone: "America/Santiago",
+            },
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error("Error al crear el evento en Google Calendar");
+        }
+
+        const data = await res.json();
+        alert(`Evento creado con éxito. Detalles: ${data.htmlLink}`);
+      } catch (error) {
+        console.error(error);
+        alert("No se pudo crear el evento en Google Calendar.");
+      }
+    } else {
+      alert("Por favor, inicia sesión con Google para sincronizar tu calendario.");
+    }
+
+    // Actualiza las citas locales
     setCitas([...citas, nuevaCita]);
   };
-  
+
   const onDateChange = (e) => {
     if (selectedEspecialista) {
       agendarCita(selectedEspecialista, e.target.value);
@@ -158,8 +213,14 @@ const AsistenciaSocial = () => {
             </div>
             <div className="flex flex-col gap-4">
               {selectedEspecialista.horarios.map((horario, idx) => (
-                <div key={idx} className="p-4 bg-red-100 text-red-700 font-bold rounded-md">
-                  {horario}
+                <div key={idx} className="p-4 bg-red-600 text-white rounded-lg">
+                                    <p className="text-xl">{horario}</p>
+                  <button
+                    onClick={() => agendarCita(selectedEspecialista, `${new Date().toISOString().split('T')[0]}T${horario.split(' ')[1]}`)}
+                    className="mt-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Agendar Cita
+                  </button>
                 </div>
               ))}
             </div>
@@ -169,26 +230,19 @@ const AsistenciaSocial = () => {
 
       {isCalendarOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl max-w-full w-full md:max-w-4xl h-3/4 flex flex-col">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-lg w-full">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-red-700">
-                Calendario de Asistencia Social
-              </h2>
+              <h2 className="text-2xl font-bold text-red-700">Calendario</h2>
               <button
                 onClick={toggleCalendar}
                 className="text-red-600 hover:text-red-700 font-bold"
               >
-                ✕
+                Cerrar
               </button>
             </div>
-            <div className="flex-grow overflow-auto">
-              <iframe
-                src="https://calendar.google.com/calendar/embed?src=eff5da9c280da4b997f8cc2c5e8a649b62fffd71d0be5c347ef755f7e8817192%40group.calendar.google.com&ctz=America%2FSantiago"
-                className="w-full h-full"
-                frameBorder="0"
-                scrolling="no"
-                title="Calendario de Asistencia Social"
-              ></iframe>
+            <div className="grid grid-cols-1 gap-4">
+              {/* Aquí iría la integración con Google Calendar */}
+              <p className="text-xl text-gray-700">Calendario de citas y horarios será mostrado aquí.</p>
             </div>
           </div>
         </div>
@@ -196,51 +250,61 @@ const AsistenciaSocial = () => {
 
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg flex flex-col">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-lg w-full">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-red-700">Agendar Cita</h2>
+              <h2 className="text-2xl font-bold text-red-700">Formulario de Cita</h2>
               <button
                 onClick={toggleForm}
                 className="text-red-600 hover:text-red-700 font-bold"
               >
-                ✕
+                Cerrar
               </button>
             </div>
             <form className="space-y-4">
               <div>
-                <label className="block text-red-700 font-bold">Nombre</label>
-                <input
-                  type="text"
-                  className="w-full border-2 border-gray-300 rounded px-3 py-2"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-red-700 font-bold">Especialidad</label>
-                <select className="w-full border-2 border-gray-300 rounded px-3 py-2" required>
-                  <option value="">Selecciona una especialidad</option>
+                <label className="block text-xl font-semibold text-gray-700" htmlFor="especialista">
+                  Selecciona un especialista
+                </label>
+                <select
+                  id="especialista"
+                  onChange={(e) => setSelectedEspecialista(personas.find(persona => persona.nombre === e.target.value))}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
+                >
+                  <option value="">Selecciona un especialista</option>
                   {personas.map((persona, index) => (
-                    <option key={index} value={persona.especialidad}>
-                      {persona.especialidad}
+                    <option key={index} value={persona.nombre}>
+                      {persona.nombre} - {persona.especialidad}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="block text-red-700 font-bold">Fecha y Hora</label>
+                <label className="block text-xl font-semibold text-gray-700" htmlFor="fechaHora">
+                  Fecha y hora
+                </label>
                 <input
                   type="datetime-local"
-                  className="w-full border-2 border-gray-300 rounded px-3 py-2"
-                  required
-                  onChange={onDateChange} // Ahora manejamos el cambio con la función onDateChange
+                  id="fechaHora"
+                  onChange={onDateChange}
+                  className="w-full p-2 border border-gray-300 rounded-lg"
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full"
-              >
-                Confirmar Cita
-              </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (selectedEspecialista) {
+                      alert(`Cita agendada con ${selectedEspecialista.nombre}`);
+                    } else {
+                      alert("Por favor selecciona un especialista");
+                    }
+                  }}
+                  className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Agendar
+                </button>
+              </div>
             </form>
           </div>
         </div>

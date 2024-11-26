@@ -1,20 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const {loginUser} = require('../controllers/loginUser');
-const cors = require('cors');
-const app = express();
 
+const usuarioController = require('../controllers/userController');
+const authController = require('../controllers/authController');
 
-app.use(cors());
-app.use(express.json());
+// Rutas para usuarios
+router.get('/', usuarioController.getAll);
+router.get('/:rut', usuarioController.getById);
+router.post('/', usuarioController.create);
+router.put('/:rut', usuarioController.update);
+router.delete('/:rut', usuarioController.delete);
 
-// Asegúrate de que esta ruta esté correctamente definida
-app.post('/login', loginUser);
-
+// Ruta para autenticación
+router.post('/login', authController.login);
 
 module.exports = router;
-
-app.listen(3000, () => {
-  console.log('Servidor escuchando en el puerto localhost:3000');
-});
-
