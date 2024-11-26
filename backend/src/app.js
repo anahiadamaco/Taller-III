@@ -142,3 +142,51 @@ const PORT = process.env.PORT || 3308;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+
+// Ruta para guardar condiciones médicas
+app.post('/api/condiciones-medicas', async (req, res) => {
+  const { nombre, edad, condiciones, medicamentos, alergias, observaciones } = req.body;
+
+  const query = `
+    INSERT INTO condiciones_medicas (nombre, edad, condiciones, medicamentos, alergias, observaciones)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  try {
+    const [result] = await pool.query(query, [nombre, edad, condiciones, medicamentos, alergias, observaciones]);
+    res.status(201).json({ id: result.insertId, message: 'Condición médica registrada con éxito' });
+  } catch (err) {
+    console.error('Error al guardar condiciones médicas:', err.message);
+    res.status(500).json({ error: 'Error al guardar las condiciones médicas.' });
+  }
+});
+
+
+// Ruta para obtener datos de personas mayores
+app.get('/api/datos-pm', async (req, res) => {
+  try {
+    const [rows] = await pool.query(`
+      SELECT mes AS tiempo, asistencias, inasistencias 
+      FROM personas_mayores_asistencia
+    `);
+    res.json(rows);
+  } catch (err) {
+    console.error('Error al obtener datos de PM:', err.message);
+    res.status(500).json({ error: 'Error al obtener datos de PM' });
+  }
+});
+
+// Ruta para obtener datos de prestadores de servicios
+app.get('/api/datos-ps', async (req, res) => {
+  try {
+    const [rows] = await pool.query(`
+      SELECT mes AS tiempo, uso, faltantes 
+      FROM prestadores_uso
+    `);
+    res.json(rows);
+  } catch (err) {
+    console.error('Error al obtener datos de PS:', err.message);
+    res.status(500).json({ error: 'Error al obtener datos de PS' });
+  }
+});

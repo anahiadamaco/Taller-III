@@ -1,5 +1,5 @@
 import React from "react";
- 
+
 import Gmailicon from "../img/Gmailicon.png";
 import IconGoogleMaps from "../img/IconGoogleMaps.png";
 import Phoneicon from "../img/Phoneicon.png";
@@ -12,7 +12,7 @@ import logo from "../img/logo_muni.webp";
 
 function FooterPM() {
     return (
-        <footer className="bg-zinc-800  grid grid-cols-3 gap-4 p-6 py-10">
+        <footer className="bg-zinc-800 grid grid-cols-3 gap-4 p-6 py-10">
             <div className="flex flex-col items-start justify-center mx-8">
                 <h3 className="text-white font-bold">Municipalidad de Temuco</h3>
                 <div className="flex items-center my-2">
@@ -30,6 +30,7 @@ function FooterPM() {
                         <li>Municipal: 800 100 650</li>
                         <li>Salud: 45 297 3630</li>
                         <li>Educación: 45 297 3771</li>
+                        <li className="mt-2 font-bold text-lg">Emergencias: 1409</li>
                     </ul>
                 </div>
 
@@ -66,7 +67,7 @@ function FooterPM() {
 
             <div className="flex items-start justify-start space-x-4">
                 <img src={Emergencia} alt="Emergencia" className="h-20 w-30" /> 
-                <img src={logo} alt="Logo" className="h-20 w-30" /> 
+                <img src={logo} alt="Logo" className="h-20 w-30" />
             </div>
         </footer>
     );
