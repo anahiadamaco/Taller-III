@@ -65,9 +65,9 @@ function HomeAdmin() {
   ];
 
   const dataDiariaPS3 = [
-    { tiempo: 'Lunes', asistencias: 5 },
-    { tiempo: 'Martes', asistencias: 8 },
-    { tiempo: 'Miércoles', asistencias: 10 },
+    { tiempo: 'Enero', asistencias: 5 },
+    { tiempo: 'Febrero', asistencias: 8 },
+    { tiempo: 'Marters', asistencias: 10 },
   ];
 
   // Función para obtener los datos según el rango de tiempo
@@ -95,7 +95,7 @@ function HomeAdmin() {
         return dataMensualPS3;
       case 'Mes':
         return dataSemanalPS3;
-      case 'dia':
+      case 'Podologia':
         return dataDiariaPS3;
       default:
         return dataMensualPS3;
@@ -145,12 +145,6 @@ function HomeAdmin() {
                   </div>
                 )}
               </div>
-             
-              {/* Botón de Cerrar Sesión */}
-              <Link to="/Admin/Reportes" className="px-4 py-1 text-center text-white duration-300 hover:text-orange-500 border-b-2 border-transparent hover:border-orange-500">
-                Generar Reportes
-              </Link>
-              
 
               {/* Botón de Cerrar Sesión */}
               <Link
@@ -191,7 +185,7 @@ function HomeAdmin() {
                     <option value="dia">Diario</option>
                   </select>
                 </div>
-                <div className="p-4 bg-white border-2 border-indigo-500 rounded-lg shadow-md mx-4">
+                <div className="p-4 bg-white border-2 border-sky-600 rounded-lg shadow-md mx-4">
                   <ResponsiveContainer width="100%" height={400}>
                     {tipoGraficoPM === 'barras' ? (
                       <BarChart data={obtenerDatosPM()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -200,7 +194,7 @@ function HomeAdmin() {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="Atenciones" fill="#8884d8" />
+                        <Bar dataKey="Atenciones" fill="#0284c7" />
                       </BarChart>
                       ):(
                     <LineChart data={obtenerDatosPM()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -209,14 +203,14 @@ function HomeAdmin() {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line type="monotone" dataKey="Atenciones" stroke="#8884d8" />
+                      <Line type="monotone" dataKey="Atenciones" stroke="#0284c7" />
                     </LineChart>
                     )}
                   </ResponsiveContainer>
                 </div>
                 {/* Toggle para cambiar el tipo de gráfico de PM */}
                 <div className="flex justify-center mt-4 p-4">
-                  <button onClick={() => setTipoGraficoPM(tipoGraficoPM === 'barras' ? 'lineas' : 'barras')} className="bg-indigo-500 text-white py-2 px-4 rounded">
+                  <button onClick={() => setTipoGraficoPM(tipoGraficoPM === 'barras' ? 'lineas' : 'barras')} className="bg-sky-600 hover:bg-sky-700 text-white py-2 px-4 rounded">
                     Cambiar a {tipoGraficoPM === 'barras' ? 'Gráfico de Líneas' : 'Gráfico de Barras'}
                   </button>
                 </div>
@@ -232,7 +226,7 @@ function HomeAdmin() {
                     <option value="dia">Diario</option>
                   </select>
                 </div>
-                <div className="p-4 bg-white mx-4 border-2 border-green-300 rounded-lg shadow-md">
+                <div className="p-4 bg-white mx-4 border-2 border-green-600 rounded-lg shadow-md">
                   <ResponsiveContainer width="100%" height={400}>
                     {tipoGraficoPS === 'barras' ? (
                     <BarChart data={obtenerDatosPS()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -241,7 +235,7 @@ function HomeAdmin() {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Bar dataKey="uso" fill="#82ca9d" />
+                      <Bar dataKey="uso" fill="#16a34a" />
                     </BarChart>
                     ) : (
                     <LineChart data={obtenerDatosPS()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -250,14 +244,14 @@ function HomeAdmin() {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line type="monotone" dataKey="uso" stroke="#82ca9d" />
+                      <Line type="monotone" dataKey="uso" stroke="#16a34a" />
                     </LineChart>
                     )}
                   </ResponsiveContainer>
                 </div>
                 {/* Toggle para cambiar el tipo de gráfico de PS */}
                 <div className="flex justify-center mt-4 p-4">
-                  <button onClick={() => setTipoGraficoPS(tipoGraficoPS === 'barras' ? 'lineas' : 'barras')} className="bg-green-500 text-white py-2 px-4 rounded">
+                  <button onClick={() => setTipoGraficoPS(tipoGraficoPS === 'barras' ? 'lineas' : 'barras')} className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
                     Cambiar a {tipoGraficoPS === 'barras' ? 'Gráfico de Líneas' : 'Gráfico de Barras'}
                   </button>
                 </div>
@@ -270,10 +264,10 @@ function HomeAdmin() {
                   <select value={rangoTiempoPS3} onChange={(e) => setRangoTiempoPS3(e.target.value)} className="p-2 border border-gray-300 rounded">
                     <option value="mes">Peluqueria</option>
                     <option value="Mes">Psicologia</option>
-                    <option value="dia">Podologia</option>
+                    <option value="Podologia">Podologia</option>
                   </select>
                 </div>
-                <div className="p-4 bg-white border-2 border-indigo-500 rounded-lg shadow-md mx-4">
+                <div className="p-4 bg-white border-2 border-red-600 rounded-lg shadow-md mx-4">
                   <ResponsiveContainer width="100%" height={400}>
                     {tipoGraficoPS3 === 'barras' ? (
                       <BarChart data={obtenerDatosPS3()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -282,7 +276,7 @@ function HomeAdmin() {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="asistencias" fill="#8884d8" />
+                        <Bar dataKey="asistencias" fill="#dc2626" />
                       </BarChart>
                       ):(
                     <LineChart data={obtenerDatosPS3()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -291,14 +285,14 @@ function HomeAdmin() {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line type="monotone" dataKey="asistencias" stroke="#8884d8" />
+                      <Line type="monotone" dataKey="asistencias" stroke="#dc2626" />
                     </LineChart>
                     )}
                   </ResponsiveContainer>
                 </div>
                 {/* Toggle para cambiar el tipo de gráfico de PM */}
                 <div className="flex justify-center mt-4 p-4">
-                  <button onClick={() => setTipoGraficoPS3(tipoGraficoPS3 === 'barras' ? 'lineas' : 'barras')} className="bg-indigo-500 text-white py-2 px-4 rounded">
+                  <button onClick={() => setTipoGraficoPS3(tipoGraficoPS3 === 'barras' ? 'lineas' : 'barras')} className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">
                     Cambiar a {tipoGraficoPS3 === 'barras' ? 'Gráfico de Líneas' : 'Gráfico de Barras'}
                   </button>
                 </div>

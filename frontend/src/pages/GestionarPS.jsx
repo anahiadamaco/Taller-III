@@ -86,13 +86,7 @@ function GestionarPS() {
                                 </Link>
                             </div>
                             )}
-                        </div>                       
-                        {/* Botón de Cerrar Sesión */}
-                        <Link to="/Admin/Reportes" className="px-4 py-1 text-center text-white duration-300 hover:text-orange-500 border-b-2 border-transparent     hover:border-orange-500">
-                            Generar Reportes
-                        </Link>
-                  
-                  
+                        </div>                                         
                         {/* Botón de Cerrar Sesión */}
                         <Link to="/" className="px-4 py-1 text-center text-white duration-300 hover:text-red-600 border-b-2 border-transparent hover:border-red-600">
                             Cerrar Sesión
