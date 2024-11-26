@@ -33,7 +33,7 @@ class Perfilmovil : ComponentActivity() {
                 consejos = "Evitar esfuerzos físicos.",
                 onCondicionesClick = {
                     // Navegar a la página CondicionesMedicas
-                    val intent = Intent(this, CondicionesMedicas::class.java)
+                    val intent = Intent(this, Condicionesmedicas::class.java)
                     startActivity(intent)
                 }
             )

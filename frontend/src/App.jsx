@@ -6,7 +6,8 @@ import Login from './pages/Login';
 /* Rutas Administrador */
 import HomeAdmin from './pages/HomeAdmin';
 import GestionarPS from './pages/GestionarPS';
-import Servicios from './pages/Admin_servicios';
+import GestionOperativosAdmin from "./pages/GestionOperativosAdmin";
+import Servicios from './pages/Admin_Servicios';
 import GenerarReportes from "./pages/generador_reportes";
 
 /* Rutas Prestador de Servicios */
@@ -21,17 +22,21 @@ import PsicPS from './pages/PsicologiaPS';
 
 /* Rutas Persona Mayor */
 import HomePM from './pages/HomePM';
-import RegiPM from './pages/Registropm';
+import RegiPM from './pages/RegistroPM';
 import AsJuPM from './pages/AsistenciaJuridicaPM';
 import AsSoPM from './pages/AsistenicaSocialPM';
 import FonoPM from './pages/FonoaudiologiaPM';
 import KinePM from './pages/KinesiologiaPM';
-import PeluPM from './pages/Peluqueriapm';
+import PeluPM from './pages/PeluqueriaPM';
 import PodoPM from './pages/PodologiaPM';
-import PsicPM from './pages/Psicologiapm';
+import PsicPM from './pages/PsicologiaPM';
 import FormularioMovilidad from "./pages/Fomulario_Movi";
+import FormularioCondicionesMedicas from "./pages/CondicionesMedicas";
 
 /* Para probar funcionamiento */
+import ModuloSugerencia from "./pages/ModuloSugerencia";
+import UserProfile from "./pages/UserProfile";
+import ReviewPage from "./pages/ReviewPage";
 import Graf from './component/Grafico';
 import Guia from './component/GuiaPM';
 import PerPM from './pages/PerfilUsuarios';
@@ -52,11 +57,10 @@ function App() {
                 <Route path="/EvaluacionServicios" element={<EvaluacionServicios/>}/>
                 <Route path="/" element={<Login />} />
 
-                {/* Rutas Administrador */}
-                <Route path="/Admin" element={<HomeAdmin />} />
+                {/* Rutas Administrador*/} 
+                <Route path="/Admin" element={<HomeAdmin />}/>
                 <Route path="/Admin/GestionarPS" element={<GestionarPS />} />
-                <Route path="/Admin/Servicios" element={<Servicios />} />
-                <Route path="/Admin/Reportes" element={<GenerarReportes />} />
+                <Route path="/Admin/GestionOperativos" element={<GestionOperativosAdmin />}/>
                 
                 {/* Rutas Prestador de Servicios */}
                 <Route path="/HPS" element={<HomePS />} />
@@ -79,8 +83,12 @@ function App() {
                 <Route path="/POPM" element={<PodoPM />} />
                 <Route path="/PSPM" element={<PsicPM />} />
                 <Route path="/FM" element={<FormularioMovilidad />} />
+                <Route path="/FCM" element={<FormularioCondicionesMedicas/>} />
 
                 {/* Para probar funcionamiento */}
+                <Route path="/USER" element={<UserProfile/>} />
+                <Route path="/RWPS" element={<ReviewPage/>} />
+                <Route path="/MDS" element={<ModuloSugerencia/>} />
                 <Route path="Graf" element={<Graf />} />
                 <Route path="Guia" element={<Guia />} />
                 <Route path="Perf" element={<PerPM />} />
@@ -91,6 +99,8 @@ function App() {
                 <Route path="PerfPS/FEPPS" element={<FormEPPS />} />
                 <Route path="PerfPM/FEPPM" element={<FormEPPM />} />
                 <Route path="Sug" element={<Sug />} />
+                <Route path="Servicios" element={<Servicios />} />
+                <Route path="GeRe" element={<GenerarReportes />} />
             </Routes>
         </Router>
     );

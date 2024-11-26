@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Intregra3"
         tools:targetApi="31">
         <activity
+            android:name=".FooterPS"
+            android:exported="false" />
+        <activity
             android:name=".GraficoAtencion"
             android:exported="false" />
         <activity
@@ -28,6 +31,21 @@
             android:exported="false" />
         <activity
             android:name=".Peluqueria"
+            android:exported="false" />
+        <activity
+            android:name=".FormularioMovilidad"
+            android:exported="false" />
+        <activity
+            android:name=".Condicionesmedicas"
+            android:exported="false" />
+        <activity
+            android:name=".ServiciosAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".FormularioRSH"
+            android:exported="false" />
+        <activity
+            android:name=".Perfilmovil"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
